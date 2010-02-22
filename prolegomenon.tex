@@ -1,0 +1,250 @@
+\listfiles
+\documentclass[12pt,ngerman]{scrartcl}
+
+\usepackage[]{geometry}
+\usepackage{
+  amsmath,
+  dtklogos,
+  graphicx,
+  hyperref,
+  marginnote,
+  lastpage,
+  polyglossia,
+  shortvrb,
+  xcolor,
+  xltxtra,
+  xspace
+}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue,
+  urlcolor=blue
+}
+
+% \pagestyle{fancy}
+% \fancyhead{\small\hfill\normalsize\LaTeX}
+% \fancyfoot{\hfill\thepage/\pageref{LastPage}}
+
+\newcommand{\TeXlive}{\TeX\textsf{live}\xspace}
+\newcommand{\luaTeX}{\textsf{lua}\TeX\xspace}
+
+
+\MakeShortVerb\|
+\title{\fontspec{Arno Pro}\sf\Huge\bf Einführung in das Textsatzsystem \LaTeX}
+\subtitle{{\fontspec{DS-Normal-Fraktur} univer@tati+~studii~heydelbergen@+,} \fontspec{Arno Pro}2010}
+\author{Arno Trautmann\\[-1ex] \normalsize \texttt{arno.trautmann@gmx.de}}
+\date{}
+
+\setmainfont{Arno Pro}
+\setkomafont{disposition}{\fontspec{Arno Pro Bold}}
+\setmonofont[Scale=0.75]{DejaVu Sans Mono}
+
+\xdef\marginnotetextwidth{\the\textwidth}
+
+\begin{document}
+\maketitle\thispagestyle{empty}
+\begin{center}
+  \includegraphics[height=2cm]{latexlion}
+\end{center}
+
+\tableofcontents
+\newpage
+\section{Einleitung}
+In diesem Kurs über \LaTeX\footnote{Wie der Begriff \LaTeX\ ausgesprochen wird und warum er so komische geschrieben wird, wird im Kurs erläutert. Im folgenden steht \LaTeX\ für alles, was mit \TeX\ zu tun hat und bei der Arbeit mit \LaTeX\ verwendet wird.} wird versucht, eine Einführung in das moderne Textsatzsystem \LaTeX\ zugeben. Am Ende des Kurses sollen die Teilnehmer in der Lage sein, komplexe Texte wie Diplom-, Bachelor- oder Masterarbeiten, Hausarbeiten und Referate in typographisch ansprechender Form zu gestalten. Auch das Erstellen von Präsentationen wird behandelt.
+
+Der Kurs besteht aus einer 2-stündigen \emph{Vorlesung}. Zusätzlich gibt es Übungen, in denen der Umgang mit \LaTeX\ geübt werden kann – und sollte. Ohne die Bearbeitung von Übungen wird der Lerneffekt wie bei allen Lehrveranstaltungen nur gering sein.
+
+Unabhängig davon wird es einen \emph{Fortgeschrittenenkurs} geben, der vor allem für Interessierte bereits mit Vorkenntnissen interessant sein kann. Ohne Vorkenntnisse ist der Kurs nicht zu empfehlen. Bei Interesse einfach bei mir melden.
+
+Dieses Dokument gibt eine Übersicht über den Kurs sowie eine Vorab-Anleitung zur Installation und Einrichtung eines vollständigen \LaTeX-Systems. Der Kurs wird dabei auf die neuste Weiterentwicklung namens \luaTeX setzen. Daher ist eine \emph{aktuelle \TeX-Distribution unbedingt nötig}! Ein veraltetes System kann bei vielen Übungen Probleme machen. Sollte also schon ein altes System installiert sein, dieses entfernen und nach unten angegebener Anleitung vorgehen. Bei Problemen stehe ich jederzeit per Mail zur Verfügung.
+
+\newpage
+\section{Kursinhalt}
+Grundsätzlich wird sich der Kurs in drei Teile gliedern:
+\catcode`\•13
+\let•\item
+\begin{enumerate}
+  • Verwenden von \LaTeX\ – was tun, um eine bestimmte Sache zu erhalten?
+  • Typographische Tips – was sieht gut aus, was sollte man beachten?
+  • Verstehen von \LaTeX\ – was passiert eigentlich, wenn man was tippt?
+\end{enumerate}
+Im Folgenden ist eine (unvollständige) Liste der vorläufigen Themen.
+\subsection{Nutzung von \LaTeX}
+\begin{itemize}
+  • Grundbedienung von \LaTeX: logisches Markup, Macros, Texteingabe
+  • Erstellen von Minimalbeispielen
+  • Anpassung des Layouts, moderne Schriften, vielsprachige Texte
+  • Formeln, Tabellen, Aufzählungen
+  • Graphiken und Bilder, Nutzung der Graphiktools |PStricks| und |tikz|
+  • Indizes, Verzeichnisse und Bibliographien
+  • Erstellen von Präsentationen
+  • Finden von Paketen, Nutzung von CTAN
+\footnote{
+  \marginnote{\includegraphics[height=2cm]{ctanlion}\\ CTAN-Löwe}
+  Comprehensive TeX Archive Network – hier sind alle „offiziell“ verfügbaren \TeX-Pakete in geordneter Struktur verfügbar. \TeXlive\ nutzt CTAN direkt, um Pakete zu laden und aktualisieren.}
+\end{itemize}
+
+\subsection{Typographische Tips}
+\begin{itemize}
+  • was ist überhaupt eine Schrift – technisch gesehen?
+  • was macht eine „schöne“ Schrift aus und welche Schriften „passen“ zusammen?
+  • Verwenden von Mikrotypographie, der großen Stärke von pdf\LaTeX\ – und \textsf{lua}\LaTeX
+  • Lernen und Beachten typographischer Feinheiten: Abstände, Strichlängen, Kerning, Ligaturen, …
+\end{itemize}
+
+\subsection{Verstehen von \LaTeX}
+\begin{itemize}
+  • Verstehen und Beheben von Fehlern
+  • Unterschied zwischen \TeX, \LaTeX, \textsf{lua}\LaTeX und \ConTeXt
+  • Befehlsdefinitionen mittels |(re)newcommand|
+  • Verstehen der |aux|, |log|, |idx| u.\,a. Dateien
+  • Trennalgorithmus von \TeX: Wie baut \TeX\ Absätze und Seiten zusammen?\\ (Der große Vorteil von \TeX\ gegenüber anderen Systemen.)
+  • Innereien: category und character codes; Schreiben eigener Pakete und Klassen\footnote{Das kann sehr nützlich sein, wenn man oft speziell angepasste Befehle und Umgebungen verwendet.}
+\end{itemize}
+
+\section{Installationsanleitungen}
+Das Aufsetzen eines \LaTeX-Systems besteht aus zwei Teilen: Zunächst müssen die Programme und Pakete installiert werden. (\emph{Distribution}\footnote{Eine Sammlung von Paketen, Software und Installationshilfen nennt man Distribution. Damit ist es nicht nötig, von Hand alle Dateien einzeln zu laden und an die richtigen Stellen zu bringen und sich um Abhängigkeiten etc. zu kümmern.}) Der Kurs wird auf der \TeXlive-Distribution aufbauen, die daher unbedingt empfohlen wird. Aktuell ist Version 2009, Version 2010 ist für die Mitte des Jahres geplant.
+
+Danach wird ein \emph{Editor} benötigt, mit dem die eigentliche Arbeit gemacht wird, also die Texte geschrieben. Bei der täglichen Arbeit sieht man nur den Editor und das gesamte \TeX-System arbeitet nur im Hintergrund. Daher ist es wichtig, einen Editor zu finden, in dem man sich „wohl fühlt“. Deswegen sollte man verschiedene Editoren testen und herausfinden, welcher am besten für den eigenen Bedarf geeignet ist. Je nach Zweck (kurzer Brief vs. mehrbändige Enzyklopädie) können auch verschiedene Editoren nützlich sein.
+
+Sollte eine veraltetes oder nicht genutztes \TeX-System schon auf dem Rechner sein, dieses bitte \emph{vollständig} entfernen, da es sonst zu Konflikten und seltsamem Verhalten kommen kann.
+
+\subsection{Windows}
+Für Windows stehen zwei Systeme zur Verfügung: \TeXlive und Mik\TeX. Mik\TeX\ ist recht einfach zu installieren und kann fehlende Pakete automatisch nachinstallieren. Allerdings enthält die aktuelle Version 2.8 eine veraltete \XeTeX-Version, \emph{keine} \luaTeX-Version und evtl. alte Pakete. Daher wird von der Installation von Mik\TeX\ hier abgeraten. (Dennoch kann Mik\TeX\ eine sehr nützliche Distribution unter Windows sein, wenn kein hochaktuelles System benötigt wird.)
+
+Eine \LaTeX-Installation kann sehr groß sein – wenn der Download von mehr als 500\,MB Daten Probleme bereitet, kann ich eine DVD mit Pro\TeX t (wozu auch \TeXlive gehört) zur Verfügung stellen.
+
+\subsubsection{\TeX\textbf{\textsf{live}}}
+Die \TeXlive-Distribution ist eine \TeX-Distribution der TUG.\footnote{\TeX\ Users Group, die internationale Gruppierung von \TeX-Nutzern.} Die Installation ist nicht ganz so einfach wie die \MikTeX-Installation, hat aber gewisse Vorteile – es ist die „offizielle“ \TeX-Distribution und liegt unter der Pflege eines ganzen Teams und nicht nur einer Einzelperson. Für die praktische Arbeit macht das aber alles keinen Unterschied; im Alltag verhalten sich beide großen Distributionen völlig gleich – wenn, keine aktuellen Systeme nötig sind.
+
+Die Informationen, Anleitungen und Downloads finden sich auf:\\ \url{http://www.tug.org/texlive/}\\ Die Installation dieses Systems wird in der Vorlesung besprochen und ist nicht im Voraus nötig – aber die vorlesungsfreie Zeit bietet eine gute Gelegenheit dafür. Sollten bei der Installation Probleme auftreten, einfach in der Vorlesung nachfragen.
+
+\subsubsection{Editoren}
+Wichtige Bedingung für einen Editor für den Kurs ist utf8-Fähigkeit, d.\,h. der Editor muss alle Zeichen, die im unicode kodiert werden, darstellen. Was das bedeutet, wird im Kurs erklärt – kurz gesagt, wird vermieden, dass Zeichen wie äöüß, aber auch αβγ überall korrekt dargestellt werden. Sollte das nicht gegeben sein, kann es vorkommen, dass eigentlich korrekte Übungsabgaben beim Tutor nicht funktionieren, was ärgerlich ist und Punktabzüge geben kann.
+
+\paragraph{\TeX works}
+Der freie Editor \TeX works ist dem unter Mac verfügbaren \TeX shop nachempfunden. Unter Windows gehört er zur \TeX live-Installation dazu, muss also nicht separat installiert werden. \TeX works bringt einen eigenen pdf-Viewer mit und unterstützt sync\TeX. Mit diesem Programm ist es möglich, zwischen Quellcode und pdf zu navigieren: Klicken auf eine Stelle im pdf öffnet die entsprechende Stelle im Quellcode – und umgekehrt! Das kann vor allem bei großen Dokumenten ein sehr mächtiges Hilfsmittel sein. \TeX works wird für den Kurs sehr empfohlen.
+
+\paragraph{TeXmaker}
+Unter \url{http://www.xm1math.net/texmaker/} findet sich der TeXmaker, ein zuverlässiger, funktionenreicher Editor, der macht, was er soll, und alles nötige kann (auch utf8). Es gibt eine graphische Installationsdatei, die selbsterklärend ist.
+
+\paragraph{TeXnicCenter}
+Ein häufig empfohlener Editor für Windows, zu finden unter \url{http://www.texniccenter.org/}. Die aktuelle Standardversion unterstützt \emph{kein utf8}, die aktuelle Entwicklungsversion (α-Version2) hingegen unterstützt es, ist aber nicht stabil und nur zu Testzwecken zu empfehlen.
+
+\paragraph{Vim, Emacs}
+Natürlich gibt es auch für die Klassiker der Editoren \LaTeX-Plugins. Wer vim oder Emacs verwendet, wird die Plugins finden, wer sie nicht kennt, sollte sich für \LaTeX\ nicht in diese sehr mächtigen, aber ebenso komplexen Systeme einarbeiten.
+
+\subsection{Linux}
+\subsubsection{\TeX\textbf{\textsf{live}} über Distributionsmanager}
+Die meisten Linux-Distributionen haben ein \TeXlive-Paket, das über den systemeigenen Paketmanager installiert werden kann, z.\,B.:
+
+\begin{tabbing}
+Ubuntu:\quad \= |sudo apt-get install texlive|\\
+Arch: \> |pacman -S texlive-core texlive-bin|\\
+Gentoo: \> |emerge -av texlive|\\
+\end{tabbing}
+
+Für den Kurs ist dies nur möglich, wenn eine \TeXlive 2009-version vorliegt. Ältere Versionen beinhalten nicht die benötigten aktuellen Dateien und werden auch nicht weiter aktualisiert. Auch können einzelne \TeX-Pakete meist nicht aktualisiert oder nachinstalliert werden und müssen dann von Hand ins System integriert werden, was einen großen Aufwand bedeutet. Allerdings muss man sich nicht um Installationspfade u.\,ä. kümmern, das macht die Paketverwaltung des Systems. Die Installation von Hand wird aber empfohlen:
+
+\subsubsection{\TeX\textbf{\textsf{live}} manuell installieren}
+Für eine manuelle Installation müssen zunächst alle möglicherweise vorhandenen \TeX-Pakete \emph{entfernt} werden. Auch Abhängigkeiten z.\,B. von Editoren (Emacs, Kile, Vim) müssen gelöst werden. Bei Problemen der Entfernung von Abhängigkeiten am besten an den Linux-Experten des Vertrauens wenden, im Notfall an mich.
+
+Sind alle vorhandenen \TeX-Reste entfernt, kann der Installer des \TeXlive-Systems von der \TeX\ Users Group (TUG) unter \url{http://www.tug.org/texlive/} heruntergeladen werden. Die dortige Installationsanleitung ist ausreichend und ausführlich. Die Installation sollte als normaler Nutzer durchgeführt werden. Bitte auf Rechte zum Schreiben bei der Installation achten. (Sinnvoll ist z.\,B. ein Ordner |/home/texlive| mit Schreibrechten für den Nutzer.)
+
+\subsubsection{Editoren}
+Es gibt eine Vielzahl mächtiger Editoren für Linux, von denen viele über spezielle \LaTeX-Unter-stützung verfügen. utf8-Fähigkeit ist überall vorhanden.
+
+\paragraph{Vim, Emacs}
+Die bekanntesten Editoren sind Emacs und Vim. Beide sind höchst konfigurabel, erfordern aber eine längere Einarbeitung. Wer an die Editoren gewöhnt ist, sollte diese für die Arbeit mit \LaTeX\ verwenden.
+
+\paragraph{\TeX works}
+Der freie Editor \TeX works ist dem unter Mac verfügbaren \TeX shop nachempfunden. Unter Windows gehört er zur \TeX live-Installation dazu, unter Linux kann man ihn unabhängig davon installieren, entweder über Paketmanager oder von Hand.  \TeX works bringt einen eigenen pdf-Viewer mit und unterstützt sync\TeX. Mit diesem Programm ist es möglich, zwischen Quellcode und pdf zu navigieren. Klicken auf eine Stelle im pdf öffnet die entsprechende Stelle im Quellcode. Das kann vor allem bei großen Dokumenten ein sehr mächtiges Hilfsmittel sein. Für den Kurs empfehle ich \TeX works.
+
+\paragraph{Kile}
+Kile ist der KDE-Editor für \LaTeX. Hat man \TeXlive\ manuell installiert, muss man Kile ohne Abhängigkeiten installieren, also z.\,B.
+\begin{tabbing}
+Ubuntu:\quad \= |sudo apt-get install -m kile|\\
+Arch: \> |pacman -Sf kile|
+\end{tabbing}
+Kile ist sehr einfach und intuitiv zu verwenden, bietet alle Funktionen, die man zum effizienten Arbeiten mit \LaTeX\ benötigt und kann ein sehr nützliches Werkzeug sein. Es gibt u.\,a. eine Vorschau-Funktion für dvi- und pdf-Dateien integriert in den Editor.
+
+Unterstützung von sync\TeX\ ist mit etwas Aufwand zumindest theoretisch möglich.\footnote{Über Erfahrungsberichte dazu würde ich mich freuen.}
+
+\subsection{Mac OS}
+Für Mac OS gibt es das Mac\TeX-Paket. Damit wird automatisch ein \TeXlive-Paket aufgespielt, ein Editor eingerichtet und das ganze System sollte sofort vollständig verfügbar sein. Die Projektseite ist \url{http://www.tug.org/mactex}, dort ist auch Anleitung und Hilfe angeboten. Eine kleine Installation (\textsf{Smaller Packages}) sollte für den Anfang ausreichen; fehlende Pakete können mit dem \TeXlive-Manager nachinstalliert werden. Bei den Editoren ist die Wahl Geschmackssache; \TeX shop wird häufig empfohlen. utf8-Fähigkeit sollte überall gegeben sein.
+
+\newpage
+\section{Weitere Informationen und Hilfen}
+Eigentlich kann dieser Abschnitt den ganzen Kurs ersetzen – denn \LaTeX\ gehört zu den bestdokumentierten Systemen überhaupt. Leider sind viele Anleitungen, vor allem für Anfänger, häufig veraltet, unvollständig oder setzen andere Schwerpunkte als in diesem Kurs. Viele Bücher verschweigen etwa die Existenz von \XeTeX\ und \luaTeX völlig, da es sehr neue Systeme sind. Auch gibt es für \ConTeXt\ leider kein Referenzbuch.
+
+Eines der nützlichsten Werkzeuge bei der Arbeit mit \LaTeX\ ist |texdoc|. In einer Konsole (Windows: in der cmd, siehe Anhang \ref{cmd}) kann man einfach die Zeile
+\begin{verbatim}
+  texdoc paketname
+\end{verbatim}
+eingeben und erhält in den allermeisten Fällen sofort die Dokumentation zu diesem Paket (als pdf in einem Viewer geöffnet oder als Text im Standardeditor). Das ist sehr nützlich, wenn man mehr über das Paket erfahren will oder nur den genauen Namen eines Befehls vergessen hat.
+
+Die FAQ\footnote{frequently asked questions}-Liste von DANTE\footnote{Deutschsprachige Anwendervereinigung \TeX\ e.\,V., ein Verein, der sich der Verbreitung und Weiterentwicklung von \TeX\ und verwandter Software gewidmet hat – Gründungsort ist Heidelberg!} ist eine gute Anlaufstelle, wenn man weiß, was man machen will – dort steht, wie es geht.\\
+\url{http://www.dante.de/faq/de-tex-faq/de-tex-faq.pdf}\\
+Wenn man noch nicht so ganz weiß, was man will, lohnt auf jeden Fall ein Blick in die englischsprachige visualFAQ:\\
+\url{http://www.tex.ac.uk/tex-archive/info/visualFAQ/visualFAQ.pdf}\\
+Dort ist ein komplexes Dokument gezeigt und bei jedem Element ein Tip, wie es erzeugt wurde.
+
+Folgende Bücher (unvollständige Liste) bieten eine Einführung oder weiterführende Informationen zum Thema \LaTeXTeX:
+\begin{itemize}
+  • Detig, C. (2004²). Der \LaTeX-Wegweiser. mitp-Verlag. ISBN-13: 978-3826614149
+  • Niedermair, E. \& Niedermair, M. (2006³). LaTeX – Das Praxisbuch. Franzis. ISBN-13: 9783772369308
+  • Mittelbach, F. \& Goossens, M. (2005²). Der LaTeX-Begleiter. Pearson Studium. ISBN-13: 9783827371669
+  • Knuth, D. (1986). Computers \& Typesetting, Volume A, The \TeX{}book. Addison-Wesley. ISBN: 0-201-13447-0
+\end{itemize}
+Paketspezifische Bücher: (auch online verfügbar)
+\begin{itemize}
+  • KOMA-Skript
+  • PS-Tricks
+\end{itemize}
+Dokumentationen im Internet:
+\begin{itemize}
+  • l2tabu – böse Fehler, die man unbedingt vermeiden sollte. Auf dem eigenen Rechner unter\\ \texttt{texdoc l2tabu}\\
+  zu erreichen oder unter\\
+  \url{http://tug.ctan.org/tex-archive/info/l2tabu/german/l2tabu.pdf}
+  • l2kurz – eine kurze Einführung in \LaTeX. Wie l2tabu auf dem Rechner zu finden, außerdem:\\
+  \url{http://www.dante.de/CTAN/info/lshort/german/l2kurz.pdf}
+  • Die gesamte DANTE Edition, die zu einigen Themen gute und umfangreiche Bücher anbietet:\\
+  \url{http://www.dante.de/index/Literatur.html}\\
+  Für DANTE-Mitglieder gibt es Rabatt, bei Interesse an mich wenden.
+\end{itemize}
+
+Sollte man bei all dem nicht fündig werden oder mit der gegebenen Hilfe nichts anfangen können, so kann man die Community fragen:\\[.4ex]
+\texttt{tex-d-l@listserv.dfn.de} – deutschsprachige Mailingliste – deutschsprachige Gruppe im Usenet\footnote{Zugriff auf das Usenet ist auch über die Server des URZ möglich.}\\
+\texttt{de.comp.text.tex} – deutsche Gruppe im Usenet\\
+\texttt{comp.text.tex} – englischsprachige Gruppe im Usenet
+\\[.4ex]
+Man erwartet hier aber überlegte Fragestellung: Zunächst sollte ein Minimalbeispiel\footnote{Das ist eine kleine Kunst, die schnell gelernt ist und im Kurs am Anfang vermittelt wird.} erstellt werden, in dem nur noch das Problem und ein minimales Dokument stehen. Wenn dann das Problem immer noch nicht zu lösen ist, kann man unter Angabe aller wichtigen Informationen (was will man eigentlich machen, was hat man versucht, welches System, welche \TeX-Version etc.) eine Frage stellen. Sind die Informationen vollständig und die Fragestellung höflich, kurz und deutlich, wird meist sehr schnell und kompetent geantwortet. Eine unfreundliche Antwort sollte man nicht persönlich nehmen, sondern seine Frage überdenken – eine „schlechte“ Frage vergeudet nur die Zeit der Leute, die in ihrer Freizeit antworten. Für alle Listen gibt es ein durchsuchbares Archiv, in dem man zuerst nachsehen kann, ob diese Frage schonmal aufkam und beantwortet wurde.
+
+Für persönlichen Kontakt gibt es die \DANTE-Stammtischen, bei denen in lockerer Atmosphäre über \TeX\ und ähnliches geplaudert wird. Der Heidelberger Stammtisch findet jeden letzten Mittwoch- oder Freitagabend im Monat statt und wird auf obigen Listen angekündigt – Neulinge sind herzlich willkommen!
+\vspace{1cm}
+
+Happy \TeX{}ing!
+
+\newpage
+\begin{appendix}
+\section*{Anhang}
+l\section{Die Windows-Kommandozeile}
+Unter\label{cmd} Windows ist der Umgang mit der Kommandozeile selten und für den Nutzer oft ungewohnt. Ab und zu kann dieses Werkzeug aber sehr nützlich sein, um z.\,B. ohne großen Aufwand die Lauffähigkeit von Programmen zu testen.
+
+Um die Kommandozeile zu starten, klickt man auf das |start|-Menü und wählt den Eintrag |Ausführen|. Dort gibt man |cmd| ein und bestätigt mit Klicken auf |ok|. Es öffnet sich ein schwarzes Fenster mit einer Eingabeaufforderung. Man arbeitet mit der Kommandozeile, indem man einen Befehl eingibt und danach Parameter: Z.\,B. den Befehl, das Verzeichnis zu wechseln (|cd|), dann ein Leerzeichen, um den Befehl abzuschließen und dann den Parameter, also das Unterverzeichnis, in das gewechselt werden soll.
+
+Eine kurze Liste der wichtigsten Befehle:
+\\ \\\hfill
+\begin{minipage}{\textwidth}
+\begin{tabular}{lll}
+  cd & wechselt in den angegebenen Ordner & |cd texordner|\\
+  .. & stellt den übergeordneten Ordner dar & |cd ..|\\
+  dir & zeigt den Inhalt des angegebenen Ordners & |dir texordner|\\
+  del & löscht die angegebene Datei & |del test.aux|\\
+  tex & startet \TeX\ mit der angegebenen Datei & |tex test.tex|\\
+\end{tabular}
+\end{minipage}\hfill
+\end{appendix}
+
+\end{document}
