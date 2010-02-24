@@ -31,7 +31,7 @@
 
 
 \MakeShortVerb\|
-\title{\fontspec{Arno Pro}\sf\Huge\bf Einführung in das Textsatzsystem \LaTeX}
+\title{\vspace*{-1cm}\fontspec{Arno Pro}\sf\Huge\bf Einführung in das Textsatzsystem \LaTeX}
 \subtitle{{\fontspec{DS-Normal-Fraktur} univer@tati+~studii~heydelbergen@+,} \fontspec{Arno Pro}2010}
 \author{Arno Trautmann\\[-1ex] \normalsize \texttt{arno.trautmann@gmx.de}}
 \date{}
@@ -176,52 +176,31 @@ Für Mac OS gibt es das Mac\TeX-Paket. Damit wird automatisch ein \TeXlive-Paket
 
 \newpage
 \section{Weitere Informationen und Hilfen}
-Eigentlich kann dieser Abschnitt den ganzen Kurs ersetzen – denn \LaTeX\ gehört zu den bestdokumentierten Systemen überhaupt. Leider sind viele Anleitungen, vor allem für Anfänger, häufig veraltet, unvollständig oder setzen andere Schwerpunkte als in diesem Kurs. Viele Bücher verschweigen etwa die Existenz von \XeTeX\ und \luaTeX völlig, da es sehr neue Systeme sind. Auch gibt es für \ConTeXt\ leider kein Referenzbuch.
+Eigentlich kann dieser Abschnitt den ganzen Kurs ersetzen – denn \LaTeX\ gehört zu den bestdokumentierten Systemen überhaupt. Leider sind viele Anleitungen, vor allem für Anfänger, häufig veraltet, unvollständig oder setzen andere Schwerpunkte als in diesem Kurs. Viele Bücher verschweigen etwa die Existenz von \XeTeX\ und \luaTeX völlig, da es sehr neue Systeme sind und die Bücher vor deren Aufkommen verfasst wurden. Auch gibt es für \ConTeXt\ leider kein Referenzbuch. Eine kurze Literaturliste mit persönlichen Empfehlungen findet sich im Moodle.
 
-Eines der nützlichsten Werkzeuge bei der Arbeit mit \LaTeX\ ist |texdoc|. In einer Konsole (Windows: in der cmd, siehe Anhang \ref{cmd}) kann man einfach die Zeile
+\subsection{texdoc}
+Eines der nützlichsten Werkzeuge bei der Arbeit mit \LaTeX\ ist |texdoc|. In einer Konsole (unter Windows: in der cmd, siehe Anhang \ref{cmd}) kann man einfach die Zeile
 \begin{verbatim}
   texdoc paketname
 \end{verbatim}
 eingeben und erhält in den allermeisten Fällen sofort die Dokumentation zu diesem Paket (als pdf in einem Viewer geöffnet oder als Text im Standardeditor). Das ist sehr nützlich, wenn man mehr über das Paket erfahren will oder nur den genauen Namen eines Befehls vergessen hat.
 
-Die FAQ\footnote{frequently asked questions}-Liste von DANTE\footnote{Deutschsprachige Anwendervereinigung \TeX\ e.\,V., ein Verein, der sich der Verbreitung und Weiterentwicklung von \TeX\ und verwandter Software gewidmet hat – Gründungsort ist Heidelberg!} ist eine gute Anlaufstelle, wenn man weiß, was man machen will – dort steht, wie es geht.\\
+\subsection{FAQ}
+Wenn man schon eine konkrete Fragestellung hat, ist die FAQ\footnote{frequently asked questions}-Liste von DANTE\footnote{Deutschsprachige Anwendervereinigung \TeX\ e.\,V., ein Verein, der sich der Verbreitung und Weiterentwicklung von \TeX\ und verwandter Software gewidmet hat – Gründungsort ist Heidelberg!} ein guter Anlaufpunkt:\\
 \url{http://www.dante.de/faq/de-tex-faq/de-tex-faq.pdf}\\
-Wenn man noch nicht so ganz weiß, was man will, lohnt auf jeden Fall ein Blick in die englischsprachige visualFAQ:\\
+Weiß man noch nicht so ganz, wonach man suchen muss, lohnt sich ein Blick auf die englischsprachige visualFAQ:\\
 \url{http://www.tex.ac.uk/tex-archive/info/visualFAQ/visualFAQ.pdf}\\
 Dort ist ein komplexes Dokument gezeigt und bei jedem Element ein Tip, wie es erzeugt wurde.
 
-Folgende Bücher (unvollständige Liste) bieten eine Einführung oder weiterführende Informationen zum Thema \LaTeXTeX:
-\begin{itemize}
-  • Detig, C. (2004²). Der \LaTeX-Wegweiser. mitp-Verlag. ISBN-13: 978-3826614149
-  • Niedermair, E. \& Niedermair, M. (2006³). LaTeX – Das Praxisbuch. Franzis. ISBN-13: 9783772369308
-  • Mittelbach, F. \& Goossens, M. (2005²). Der LaTeX-Begleiter. Pearson Studium. ISBN-13: 9783827371669
-  • Knuth, D. (1986). Computers \& Typesetting, Volume A, The \TeX{}book. Addison-Wesley. ISBN: 0-201-13447-0
-\end{itemize}
-Paketspezifische Bücher: (auch online verfügbar)
-\begin{itemize}
-  • KOMA-Skript
-  • PS-Tricks
-\end{itemize}
-Dokumentationen im Internet:
-\begin{itemize}
-  • l2tabu – böse Fehler, die man unbedingt vermeiden sollte. Auf dem eigenen Rechner unter\\ \texttt{texdoc l2tabu}\\
-  zu erreichen oder unter\\
-  \url{http://tug.ctan.org/tex-archive/info/l2tabu/german/l2tabu.pdf}
-  • l2kurz – eine kurze Einführung in \LaTeX. Wie l2tabu auf dem Rechner zu finden, außerdem:\\
-  \url{http://www.dante.de/CTAN/info/lshort/german/l2kurz.pdf}
-  • Die gesamte DANTE Edition, die zu einigen Themen gute und umfangreiche Bücher anbietet:\\
-  \url{http://www.dante.de/index/Literatur.html}\\
-  Für DANTE-Mitglieder gibt es Rabatt, bei Interesse an mich wenden.
-\end{itemize}
-
+\subsection{Community}
 Sollte man bei all dem nicht fündig werden oder mit der gegebenen Hilfe nichts anfangen können, so kann man die Community fragen:\\[.4ex]
-\texttt{tex-d-l@listserv.dfn.de} – deutschsprachige Mailingliste – deutschsprachige Gruppe im Usenet\footnote{Zugriff auf das Usenet ist auch über die Server des URZ möglich.}\\
-\texttt{de.comp.text.tex} – deutsche Gruppe im Usenet\\
+\texttt{tex-d-l@listserv.dfn.de} – deutschsprachige Mailingliste \\
+\texttt{de.comp.text.tex}– deutschsprachige Gruppe im Usenet\footnote{Zugriff auf das Usenet ist auch über die Server des URZ möglich.}\\
 \texttt{comp.text.tex} – englischsprachige Gruppe im Usenet
 \\[.4ex]
-Man erwartet hier aber überlegte Fragestellung: Zunächst sollte ein Minimalbeispiel\footnote{Das ist eine kleine Kunst, die schnell gelernt ist und im Kurs am Anfang vermittelt wird.} erstellt werden, in dem nur noch das Problem und ein minimales Dokument stehen. Wenn dann das Problem immer noch nicht zu lösen ist, kann man unter Angabe aller wichtigen Informationen (was will man eigentlich machen, was hat man versucht, welches System, welche \TeX-Version etc.) eine Frage stellen. Sind die Informationen vollständig und die Fragestellung höflich, kurz und deutlich, wird meist sehr schnell und kompetent geantwortet. Eine unfreundliche Antwort sollte man nicht persönlich nehmen, sondern seine Frage überdenken – eine „schlechte“ Frage vergeudet nur die Zeit der Leute, die in ihrer Freizeit antworten. Für alle Listen gibt es ein durchsuchbares Archiv, in dem man zuerst nachsehen kann, ob diese Frage schonmal aufkam und beantwortet wurde.
+Man erwartet hier aber überlegte Fragestellung: Zunächst sollte ein Minimalbeispiel\footnote{Das ist eine kleine Kunst, die schnell gelernt ist und im Kurs am Anfang vermittelt wird.} erstellt werden, in dem nur noch das Problem und ein minimales Dokument stehen. Wenn dann das Problem immer noch nicht zu lösen ist, kann man unter Angabe aller wichtigen Informationen (was will man eigentlich machen, was hat man versucht, welches System, welche \TeX-Version etc.) eine Frage stellen. Sind die Informationen vollständig und die Fragestellung höflich, kurz und deutlich, wird meist sehr schnell und kompetent geantwortet. Eine unfreundliche Antwort sollte man nicht persönlich nehmen, sondern seine Frage überdenken – eine „schlechte“ Frage vergeudet nur die Zeit der Leute, die in ihrer Freizeit (!) antworten. Für alle Listen gibt es ein durchsuchbares Archiv, in dem man zuerst nachsehen kann, ob diese Frage schonmal aufkam und beantwortet wurde.
 
-Für persönlichen Kontakt gibt es die \DANTE-Stammtischen, bei denen in lockerer Atmosphäre über \TeX\ und ähnliches geplaudert wird. Der Heidelberger Stammtisch findet jeden letzten Mittwoch- oder Freitagabend im Monat statt und wird auf obigen Listen angekündigt – Neulinge sind herzlich willkommen!
+Für persönlichen Kontakt gibt es die \DANTE-Stammtische, bei denen in lockerer Atmosphäre über \TeX, Schriftsatz oder sonstiges geplaudert wird. Der Heidelberger Stammtisch findet jeden letzten Mittwoch- oder Freitagabend im Monat statt und wird auf obigen Listen angekündigt – Neulinge sind herzlich willkommen!
 \vspace{1cm}
 
 Happy \TeX{}ing!
@@ -229,7 +208,7 @@ Happy \TeX{}ing!
 \newpage
 \begin{appendix}
 \section*{Anhang}
-l\section{Die Windows-Kommandozeile}
+\section{Die Windows-Kommandozeile}
 Unter\label{cmd} Windows ist der Umgang mit der Kommandozeile selten und für den Nutzer oft ungewohnt. Ab und zu kann dieses Werkzeug aber sehr nützlich sein, um z.\,B. ohne großen Aufwand die Lauffähigkeit von Programmen zu testen.
 
 Um die Kommandozeile zu starten, klickt man auf das |start|-Menü und wählt den Eintrag |Ausführen|. Dort gibt man |cmd| ein und bestätigt mit Klicken auf |ok|. Es öffnet sich ein schwarzes Fenster mit einer Eingabeaufforderung. Man arbeitet mit der Kommandozeile, indem man einen Befehl eingibt und danach Parameter: Z.\,B. den Befehl, das Verzeichnis zu wechseln (|cd|), dann ein Leerzeichen, um den Befehl abzuschließen und dann den Parameter, also das Unterverzeichnis, in das gewechselt werden soll.
