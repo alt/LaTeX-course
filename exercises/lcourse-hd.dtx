@@ -4,7 +4,7 @@
 \iffalse
 %</internal>
 %<*readme>
-This is the readme file.
+Use XeLaTeX format to compile the source file lcourse-hd.dtx. Resulting pdf is the documentation, cls file is the class needed to typeset exercises. If option |solution| is set in a document the corresponding filie solutions is needed to compile.
 %</readme>
 %<*internal>
 \fi
@@ -69,7 +69,6 @@ This work conists of this file lcourse-hd.dtx
 \date{\today}
 \setmainfont[Ligatures={Common,Rare}]{Linux Libertine}
 
-%\OnlyDescription
 \begin{document}
 \maketitle
 \begin{abstract}
@@ -78,10 +77,11 @@ A small class to build working sheets for the tutorial of the course on LaTeX\ i
 
 \tableofcontents
 
-
+\newpage
 \section{Usage}
+Two files are needed in order to typeset the full sheet including exercises and solutions. This has to be splitted as the source code of the exercises will be put on github. Would be pointless to put the solutions there, too. So the latter has to stay local until the sample solution is to be published.
 \subsection{Header}
-To typeset a document, use the following header:
+To typeset a sheet, use the following header in the main file:
 \begin{verbatim}
 \documentclass[
   blatt=5,
@@ -92,7 +92,13 @@ To typeset a document, use the following header:
 If any key is not given, a special default value will show up in the pdf. There won’t be an error when compiling with missing keys!
 
 \subsection{Exercise}
-Each exercise needs, a special keyword, a name, a score and an order for how to hand in the solution. They have to be given in the follogwing way:
+Each exercise (also in the main file!) needs: 
+\begin{itemize}
+\item special keyword (mandatory argument)
+\item a name (key-value)
+\item a score (key-value)
+\item an order for how to hand in the solution (key-value)
+\end{itemize}
 \begin{verbatim}
 \begin{exercise}[
   name=Minimales \TeX-Dokument,
@@ -107,7 +113,7 @@ exercise text
 As one can see, commas have to be grouped by \verb|{}|. Else they would be regarded as key seperators. The keyword is important to find the solution belonging to the exercise.
 
 \subsection{Solutions}
-One needs a second file to write down the solutions. 
+One needs a second file to write down the solutions. Every solution starts with |\startsolution{key}| where |key| corresponds to the one given to the exercise. End a solution with |\stopsolution|. |\begin \end| was not possible here as it is quite some hackery to tell \TeX\ to work with \LaTeX s environment this way.
 
 \StopEventually{}
 \clearpage
@@ -136,12 +142,11 @@ One needs a second file to write down the solutions.
 \DeclareOptionX{solution}{\solutiontrue}
 \ProcessOptionsX
 %    \end{macrocode}
-% We use |scrartcl| for the layout, |scrpage2| for headings and footers. Maybe the |\input| will be implemented in a special way, so def a synonyme for it.
+% We use |scrartcl| for the layout, |scrpage2| for headings and footers.
 %    \begin{macrocode}
 \LoadClass[headinclude,ngerman]{scrartcl}
 \RequirePackage{
   amsmath,
-  comment,
   moreverb,
   shortvrb,
   showexpl,
@@ -149,14 +154,13 @@ One needs a second file to write down the solutions.
   xltxtra,
   ellipsis
 }
-\usepackage[ngerman]{babel}
+\RequirePackage[ngerman]{babel}
 \RequirePackage[svgnames]{xcolor}
 \RequirePackage[ilines]{scrpage2}
 \RequirePackage{geometry}
 \geometry{top = 4cm,bottom = 3cm}
 \frenchspacing
 \reversemarginpar
-\let\exinput\input 
 
 \setheadtopline{2pt}
 \setheadsepline[text]{.7pt}
@@ -195,7 +199,7 @@ One needs a second file to write down the solutions.
 }
 %    \end{macrocode}
 % \subsection{Macros}
-% Macro definitions for printing the exercises. We count the number of exercises for each sheet. So they will be numbered like 1.1, 1.2 for the first sheet, 2.1, 2.2 for the second and so on. This is not a nice solution, but the only one that works with the standard |\ref| commands.
+% Environments definitions for printing the exercises. We count the number of exercises for each sheet. So they will be numbered like 1.1, 1.2 for the first sheet, 2.1, 2.2 for the second and so on. This is not a nice solution, but the only one that works with the standard |\ref| commands.
 % \begin{environment}{exercise}
 %    \begin{macrocode}
 \newcounter{excount}
@@ -206,30 +210,27 @@ One needs a second file to write down the solutions.
 \define@key{exercise}{name}[Namenlose Übung]{\def\übungsname{#1}}
 
 \renewcommand*{\othersectionlevelsformat}[3]{Übung \blattnummer.\theexcount:\enskip}
+%    \end{macrocode}
+% \subsection{Environments}
+% \subsubsection{Exercise}
+%    \begin{macrocode}
 \newenvironment{exercise}[2][]
 {
   \setkeys{exercise}{#1}
-  \def\exkey{#2}
+  \def\exkey{#2}  %% to find the corresponding solution
   \subsection{\übungsname \hfill \punkte\ Punkte}
   \label{ex:\jobname}
   \begin{minipage}{1.0\textwidth} 
-  
-  \specialcomment{solution}{\begin{solutionenv}}{\end{solutionenv}}
-  \includecomment{solution}
-  \let\oldsolution\solution
-  \renewcommand\solution[1]{
-   	\let\solution\oldsolution
-  	  	\ifthenelse{\equal{##1}{\exkey}}
-		{gleich \includecomment{solution}}
-	  	{nicht gleich \excludecomment{solution}}
-	\begin{solution}
-  }
 }
 {
   \end{minipage}\stepcounter{excount}\bigskip\par
-  \textit{Abgabe:} \abgabe\bigskip
+  \textit{Abgabe:} \abgabe\par\bigskip
+%    \end{macrocode}
+% Now, input the file with solutions and hope to find one corresponding to this exercise, using the |\exkey| defd above. |\stopsolution| is needed below when throwing away solutions that don’t fit to the exercise calling.
+%    \begin{macrocode}
+  \let\stopsolution\fi
+  \ifsolution \input{\jobname-solutions}\fi
 }
-
 %    \end{macrocode}
 % \end{environment}
 % \begin{environment}{expertexercise}
@@ -249,10 +250,23 @@ One needs a second file to write down the solutions.
 }
 %    \end{macrocode}
 % \end{environment}
+% \subsubsection{Solution}
 % \begin{environment}{solution}
 % Finally, the solutions to the exercises:
+% This is a bit tricky: There are two files for the exercises, one with the exercise texts, one with the solutions. Now every exercise needs its solution printed directly behind it, but \emph{only} if class option |solution| is given. That is managed above when |\input|ting the solutions.
+
+% Now, there are different solutions in that file. To find the only one matching the key, every solution has a key, too. If they don’t fit, an |\iffalse| is started. That will be ended by |\stopsolution| which is |\let| to |\fi| above. If the keys fit, an environment for the solution will be started and |\stopsolution| is turned into ending that environment and stopping the input. This is a great improvement in performance, of course!
 %    \begin{macrocode}
-\newenvironment{solutionenv}[1]
+\newcommand\startsolution[1]{%
+  \ifthenelse%
+    {\equal{#1}{\exkey}}
+    {\def\stopsolution{\end{solutionenv}\endinput} \begin{solutionenv}}
+    {\iffalse}
+}
+%    \end{macrocode}
+% The environment for the solutions:
+%    \begin{macrocode}
+\newenvironment{solutionenv}
 {\subsection*{Lösung:}\begin{minipage}{\textwidth}}
 {\end{minipage}}
 
@@ -261,6 +275,7 @@ One needs a second file to write down the solutions.
 \def\pkg#1{\textsf{#1}}
 %    \end{macrocode}
 % \end{environment}
+% \subsection{Miscellaneous}
 % The |itemize|-hack from the |alttex|-package, a bit shortened for stability:
 %    \begin{macrocode}
 \def\outside{o}
