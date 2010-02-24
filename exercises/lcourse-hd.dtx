@@ -167,11 +167,11 @@ One needs a second file to write down the solutions. Every solution starts with 
 \setfootsepline{.7pt}
 
 \ihead{\fontspec{Linux Libertine} \rm Einführung in das\\ Textsatzsystem \LaTeX}
-\chead{\fontspec{Linux Libertine} Übungsblatt \blattnummer\\ Sommersemester 2010}
-\ohead{\fontspec{Linux Libertine} Ausgegeben: \ausgabe\\Abgabe: \rückgabe}
+\chead{\fontspec{Linux Libertine} Übungsblatt \blattnummer}
+\ohead{\fontspec{Linux Libertine} {\rm Ausgegeben:} \ausgabe\\ {\rm Abgabe:} \rückgabe}
 \ofoot{Seite \thepage /\ref{TotPages}}
 \cfoot{}
-\ifoot{\rm Heidelberg, Sommersemester 2009}
+\ifoot{\rm Heidelberg, Sommersemester 2010}
 
 \pagestyle{scrheadings}
 \setmainfont[Ligatures={Rare,Common}]{Linux Libertine}
@@ -231,18 +231,22 @@ One needs a second file to write down the solutions. Every solution starts with 
   \let\stopsolution\fi
   \ifsolution \input{\jobname-solutions}\fi
 }
+
+\newcommand\subexercise[2][]{
+  \subsubsection*{#2\hfill #1}
+}
 %    \end{macrocode}
 % \end{environment}
 % \begin{environment}{expertexercise}
 % There will be some extra exercises for the \TeX{}perts. Here is their environment, with the well-known ”dangerous bend“-sign of the \TeX{}book:
 %    \begin{macrocode}
-\font\manual=manfnt
+\font\manual=manfnt at 14pt
 \reversemarginpar
 \newenvironment{expertexercise}[2][]
 {
-  \begin{exercise}[#1]{#2}
-  {\it keine}\vspace*{-.8cm}
-  \marginnote{\manual\char127\quad}
+  \begin{exercise}[#1,punkte=\normalfont \itshape keine]{#2}
+  \vspace*{-.8cm}
+  \marginnote{\quad\manual\char127}
   \vspace*{.8cm}
 }
 {
