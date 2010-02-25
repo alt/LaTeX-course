@@ -1,38 +1,65 @@
 \documentclass{scrartcl}
 
 \usepackage{
+  array,
   booktabs,
   dtklogos,
   hyperref,
-  xltxtra
+  xltxtra,
+  xspace
 }
 
 
-\title{Literaturempfehlungen}
-\subtitle{eine kurze, unvollständige Auflistung}
+\title{Literaturempfehlungen zum \LaTeX-Kurs}
+\subtitle{eine kurze, unvollständige Auflistung\\ (work in progress)}
 \author{Arno Trautmann\thanks{arno.trautmann@gmx.de}}
 
 \setmainfont{Arno Pro}
 \addtokomafont{disposition}{\fontspec{Arno Pro}}
 
+\newcommand\vorhanden{}
+\newcommand\nichtvorhanden{}
+\newcommand\präsenz{}
+
+\newcommand\e{(e)\xspace}
+\newcommand\w{(w)\xspace}
+
+\begin{filecontents}{literaturbib.bib}
+
+@book{knuth1986texbook,
+  title={{The TEXbook}},
+  author={Knuth, D.E. and Bibby, D. and Makai, I.},
+  year={1986},
+  publisher={Addison-Wesley Reading, MA}
+}
+
+\end{filecontents}
+
+
 \begin{document}
 \maketitle
 
+\section*{Bücher}
+Folgende Bücher (unvollständige Liste) sind als Einführungs- \e oder weiterführende \w Literatur zum Thema \LaTeXTeX\ geeignet und stellen eine persönliche Literaturempfehlung dar. 
 
-Folgende Bücher (unvollständige Liste) bieten eine Einführung oder weiterführende Informationen zum Thema \LaTeXTeX:
+\catcode`\•13
+\newcommand•[3]{\item[]#1. \emph{#2.} #3}
 
-\begin{tabular}{ll}
-  Detig, C. (2004²). Der \LaTeX-Wegweiser. mitp-Verlag. ISBN-13: 978-3826614149\\
-  Niedermair, E. \& Niedermair, M. (2006³). LaTeX – Das Praxisbuch. Franzis. ISBN-13: 9783772369308\\
-  Mittelbach, F. \& Goossens, M. (2005²). Der LaTeX-Begleiter. Pearson Studium. ISBN-13: 9783827371669\\
-  Knuth, D. (1986). Computers \& Typesetting, Volume A, The \TeX{}book. Addison-Wesley. ISBN: 0-201-13447-0\\
-\end{tabular}
-Paketspezifische Bücher: (auch online verfügbar)
+\begin{itemize}
+•{D.E. Knuth}{The \TeX book}{Addison-Wesley Reading, MA, 1986}
+•{C. Detig}{Der \LaTeX-Wegweiser}{mitp-Verlag.  2004²}
+•{E. Niedermair \& M. Niedermair}{\LaTeX – Das Praxisbuch}{Franzis. 2006³}
+•{F. Mittelbach \& M. Goossens}{Der \LaTeX-Begleiter }{Pearson Studium. 2005²}
+\subsubsection*{Paketspezifische Bücher: (auch online/mittels \texttt{texdoc} verfügbar)}
+\end{itemize}
+
 \begin{tabular}{ll}
   KOMA-Skript\\
   PS-Tricks\\
 \end{tabular}
-Dokumentationen im Internet:
+
+
+\section*{Dokumentationen im Internet}
 \begin{tabular}{ll}
   l2tabu – böse Fehler, die man unbedingt vermeiden sollte. Auf dem eigenen Rechner unter\\ \texttt{texdoc l2tabu}\\
   zu erreichen oder unter\\
