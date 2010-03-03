@@ -9,7 +9,10 @@
   xspace
 }
 
-
+\hypersetup{
+  colorlinks=true,
+  urlcolor=blue
+}
 \title{Literaturempfehlungen zum \LaTeX-Kurs}
 \subtitle{eine kurze, unvollständige Auflistung\\ (work in progress)}
 \author{Arno Trautmann\thanks{arno.trautmann@gmx.de}}
@@ -24,52 +27,38 @@
 \newcommand\e{(e)\xspace}
 \newcommand\w{(w)\xspace}
 
-\begin{filecontents}{literaturbib.bib}
-
-@book{knuth1986texbook,
-  title={{The TEXbook}},
-  author={Knuth, D.E. and Bibby, D. and Makai, I.},
-  year={1986},
-  publisher={Addison-Wesley Reading, MA}
-}
-
-\end{filecontents}
-
-
 \begin{document}
+\hyphenation{Mathe-satz}
 \maketitle
 
 \section*{Bücher}
 Folgende Bücher (unvollständige Liste) sind als Einführungs- \e oder weiterführende \w Literatur zum Thema \LaTeXTeX\ geeignet und stellen eine persönliche Literaturempfehlung dar. 
 
 \catcode`\•13
-\newcommand•[3]{\item[]#1. \emph{#2.} #3}
+\newcommand•[4]{\item[]#1. \emph{#2.} #3 #4}
 
 \begin{itemize}
-•{D.E. Knuth}{The \TeX book}{Addison-Wesley Reading, MA, 1986}
-•{C. Detig}{Der \LaTeX-Wegweiser}{mitp-Verlag.  2004²}
-•{E. Niedermair \& M. Niedermair}{\LaTeX – Das Praxisbuch}{Franzis. 2006³}
-•{F. Mittelbach \& M. Goossens}{Der \LaTeX-Begleiter }{Pearson Studium. 2005²}
-\subsubsection*{Paketspezifische Bücher: (auch online/mittels \texttt{texdoc} verfügbar)}
-
+•{D.E. Knuth}{The \TeX book}{Addison-Wesley Reading, MA, 1986}\w
+•{C. Detig}{Der \LaTeX-Wegweiser}{mitp-Verlag.  2004²}\e
+•{E. Niedermair \& M. Niedermair}{\LaTeX – Das Praxisbuch}{Franzis. 2006³}\e
+•{F. Mittelbach \& M. Goossens}{Der \LaTeX-Begleiter }{Pearson Studium. 2005²} {\e\w}
+\end{itemize}
+\subsubsection*{Paketspezifische Bücher: (auch online\,/\,mittels \texttt{texdoc} verfügbar)\footnote{Inhaltlich sind die pdf-Versionen identisch mit den Büchern, letztere sind aber typographisch hochwertig gesetzt.}}
+\begin{itemize}
+•{M. Kohm \& J-U. Morawski}{KOMA-Script}{Lehmanns Media. ³2008}\e
+•{H. Voß}{PSTricks}{Lehmanns Media. ⁵2008}\w
 \end{itemize}
 
-\begin{tabular}{ll}
-  KOMA-Skript\\
-  PS-Tricks\\
-\end{tabular}
+Die gesamte DANTE-Edition bietet sowohl breite Übersichten über große Themen (z.\,B. den Mathesatz) als auch sehr spezielle Literatur (etwa PSTricks):\\
+  \url{http://www.dante.de/index/Literatur.html}\\   Für DANTE-Mitglieder gibt es Rabatt; bei Interesse an mich wenden.
 
-
-\section*{Dokumentationen im Internet}
+\section*{Dokumentationen im Internet\,/\,mittels \texttt{texdoc}}
 \begin{tabular}{ll}
   l2tabu – böse Fehler, die man unbedingt vermeiden sollte. Auf dem eigenen Rechner unter\\ \texttt{texdoc l2tabu}\\
   zu erreichen oder unter\\
-  \url{http://tug.ctan.org/tex-archive/info/l2tabu/german/l2tabu.pdf}
+  \url{http://tug.ctan.org/tex-archive/info/l2tabu/german/l2tabu.pdf}\\
   l2kurz – eine kurze Einführung in \LaTeX. Wie l2tabu auf dem Rechner zu finden, außerdem:\\
-  \url{http://www.dante.de/CTAN/info/lshort/german/l2kurz.pdf}
-  Die gesamte DANTE Edition, die zu einigen Themen gute und umfangreiche Bücher anbietet:\\
-  \url{http://www.dante.de/index/Literatur.html}\\
-  Für DANTE-Mitglieder gibt es Rabatt, bei Interesse an mich wenden.
+  \url{http://www.dante.de/CTAN/info/lshort/german/l2kurz.pdf}\\
 \end{tabular}
 
 
