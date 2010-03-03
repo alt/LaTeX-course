@@ -1,7 +1,7 @@
 \listfiles
 \documentclass[12pt,ngerman]{scrartcl}
 
-\usepackage[]{geometry}
+\usepackage[xetex]{geometry}
 \usepackage{
   amsmath,
   dtklogos,
@@ -113,18 +113,18 @@ Sollte eine veraltetes oder nicht genutztes \TeX-System schon auf dem Rechner se
 \subsection{Windows}
 Für Windows stehen zwei Systeme zur Verfügung: \TeXlive und Mik\TeX. Mik\TeX\ ist recht einfach zu installieren und kann fehlende Pakete automatisch nachinstallieren. Allerdings enthält die aktuelle Version 2.8 eine veraltete \XeTeX-Version, \emph{keine} \luaTeX-Version und evtl. alte Pakete. Daher wird von der Installation von Mik\TeX\ hier abgeraten. (Dennoch kann Mik\TeX\ eine sehr nützliche Distribution unter Windows sein, wenn kein hochaktuelles System benötigt wird.)
 
+\subsubsection{Distribution: \TeX\textbf{\textsf{live}}}
+Die \TeXlive-Distribution ist eine \TeX-Distribution der TUG.\footnote{\TeX\ Users Group, die internationale Gruppierung von \TeX-Nutzern.} Die Installation ist nicht ganz so einfach wie die \MikTeX-Installation, hat aber gewisse Vorteile – es ist die „offizielle“ \TeX-Distribution und liegt unter der Pflege eines ganzen Teams und nicht nur einer Einzelperson. Für die praktische Arbeit macht das aber alles keinen Unterschied; im Alltag verhalten sich beide großen Distributionen völlig gleich – wenn keine aktuellen Dateien nötig sind.
+
+Die Informationen, Anleitungen und Downloads für \TeXlive\ finden sich auf:\\ \url{http://www.tug.org/texlive/}\\ Die Installation dieses Systems wird in der Vorlesung besprochen und ist nicht im Voraus nötig – aber die vorlesungsfreie Zeit bietet eine gute Gelegenheit dafür. Sollten bei der Installation Probleme auftreten, einfach in der Vorlesung nachfragen.
+
 Eine \LaTeX-Installation kann sehr groß sein – wenn der Download von mehr als 500\,MB Daten Probleme bereitet, kann ich eine DVD mit Pro\TeX t (wozu auch \TeXlive gehört) zur Verfügung stellen.
 
-\subsubsection{\TeX\textbf{\textsf{live}}}
-Die \TeXlive-Distribution ist eine \TeX-Distribution der TUG.\footnote{\TeX\ Users Group, die internationale Gruppierung von \TeX-Nutzern.} Die Installation ist nicht ganz so einfach wie die \MikTeX-Installation, hat aber gewisse Vorteile – es ist die „offizielle“ \TeX-Distribution und liegt unter der Pflege eines ganzen Teams und nicht nur einer Einzelperson. Für die praktische Arbeit macht das aber alles keinen Unterschied; im Alltag verhalten sich beide großen Distributionen völlig gleich – wenn, keine aktuellen Systeme nötig sind.
-
-Die Informationen, Anleitungen und Downloads finden sich auf:\\ \url{http://www.tug.org/texlive/}\\ Die Installation dieses Systems wird in der Vorlesung besprochen und ist nicht im Voraus nötig – aber die vorlesungsfreie Zeit bietet eine gute Gelegenheit dafür. Sollten bei der Installation Probleme auftreten, einfach in der Vorlesung nachfragen.
-
 \subsubsection{Editoren}
-Wichtige Bedingung für einen Editor für den Kurs ist utf8-Fähigkeit, d.\,h. der Editor muss alle Zeichen, die im unicode kodiert werden, darstellen. Was das bedeutet, wird im Kurs erklärt – kurz gesagt, wird vermieden, dass Zeichen wie äöüß, aber auch αβγ überall korrekt dargestellt werden. Sollte das nicht gegeben sein, kann es vorkommen, dass eigentlich korrekte Übungsabgaben beim Tutor nicht funktionieren, was ärgerlich ist und Punktabzüge geben kann.
+Um Probleme, die bei verschiedenen Kodierungen auftreten können, zu vermeiden, werden im Kurs nur utf8-kodierte Dateien akzeptiert. Daher muss ein Editor für den Kurs utf8-fähig sein, d.\,h. der Editor muss alle Zeichen, die im Unicode kodiert werden, darstellen können. Was das bedeutet, wird im Kurs erklärt – es wird so z.\,B. erreicht, dass Zeichen wie äöüß, aber auch αβγ überall korrekt dargestellt werden und keine seltsamen Zeichengruppen auftreten.
 
 \paragraph{\TeX works}
-Der freie Editor \TeX works ist dem unter Mac verfügbaren \TeX shop nachempfunden. Unter Windows gehört er zur \TeX live-Installation dazu, muss also nicht separat installiert werden. \TeX works bringt einen eigenen pdf-Viewer mit und unterstützt sync\TeX. Mit diesem Programm ist es möglich, zwischen Quellcode und pdf zu navigieren: Klicken auf eine Stelle im pdf öffnet die entsprechende Stelle im Quellcode – und umgekehrt! Das kann vor allem bei großen Dokumenten ein sehr mächtiges Hilfsmittel sein. \TeX works wird für den Kurs sehr empfohlen.
+Der freie Editor \TeX works ist dem unter Mac verfügbaren \TeX shop nachempfunden. Unter Windows gehört er zur \TeX live-Installation dazu, muss also nicht separat installiert werden.\footnote{Falls doch eine manuelle Installation nötig ist, bietet \url{http://tug.org/texworks/} die nötigen Informationen und einen Links zur experimentellen und stabilen Version. Beide sind durchaus nutzbar.} \TeX works bringt einen eigenen pdf-Viewer mit und unterstützt sync\TeX. Mit diesem Programm ist es möglich, zwischen Quellcode und pdf zu navigieren: Klicken auf eine Stelle im pdf öffnet die entsprechende Stelle im Quellcode – und umgekehrt! Das kann vor allem bei großen Dokumenten ein sehr mächtiges Hilfsmittel sein. \TeX works wird für den Kurs sehr empfohlen.
 
 \paragraph{TeXmaker}
 Unter \url{http://www.xm1math.net/texmaker/} findet sich der TeXmaker, ein zuverlässiger, funktionenreicher Editor, der macht, was er soll, und alles nötige kann (auch utf8). Es gibt eine graphische Installationsdatei, die selbsterklärend ist.
@@ -155,11 +155,11 @@ Sind alle vorhandenen \TeX-Reste entfernt, kann der Installer des \TeXlive-Syste
 \subsubsection{Editoren}
 Es gibt eine Vielzahl mächtiger Editoren für Linux, von denen viele über spezielle \LaTeX-Unter-stützung verfügen. utf8-Fähigkeit ist überall vorhanden.
 
+\paragraph{\TeX works}
+Der freie Editor \TeX works ist dem unter Mac verfügbaren \TeX shop nachempfunden. Unter Windows gehört er zur \TeX live-Installation dazu, unter Linux kann man ihn unabhängig davon installieren, entweder über Paketmanager\footnote{Unter Arch Linux z.\,B. kann der Quellcode aus dem aktuellen svn runtergeladen, automatisch kompiliert und installiert werden.} oder von Hand.  \TeX works bringt einen eigenen pdf-Viewer mit und unterstützt sync\TeX. Mit diesem Programm ist es möglich, zwischen Quellcode und pdf zu navigieren. Klicken auf eine Stelle im pdf öffnet die entsprechende Stelle im Quellcode. Das kann vor allem bei großen Dokumenten ein sehr mächtiges Hilfsmittel sein. Für den Kurs wird \TeX works empfohlen.
+
 \paragraph{Vim, Emacs}
 Die bekanntesten Editoren sind Emacs und Vim. Beide sind höchst konfigurabel, erfordern aber eine längere Einarbeitung. Wer an die Editoren gewöhnt ist, sollte diese für die Arbeit mit \LaTeX\ verwenden.
-
-\paragraph{\TeX works}
-Der freie Editor \TeX works ist dem unter Mac verfügbaren \TeX shop nachempfunden. Unter Windows gehört er zur \TeX live-Installation dazu, unter Linux kann man ihn unabhängig davon installieren, entweder über Paketmanager oder von Hand.  \TeX works bringt einen eigenen pdf-Viewer mit und unterstützt sync\TeX. Mit diesem Programm ist es möglich, zwischen Quellcode und pdf zu navigieren. Klicken auf eine Stelle im pdf öffnet die entsprechende Stelle im Quellcode. Das kann vor allem bei großen Dokumenten ein sehr mächtiges Hilfsmittel sein. Für den Kurs empfehle ich \TeX works.
 
 \paragraph{Kile}
 Kile ist der KDE-Editor für \LaTeX. Hat man \TeXlive\ manuell installiert, muss man Kile ohne Abhängigkeiten installieren, also z.\,B.
@@ -172,11 +172,11 @@ Kile ist sehr einfach und intuitiv zu verwenden, bietet alle Funktionen, die man
 Unterstützung von sync\TeX\ ist mit etwas Aufwand zumindest theoretisch möglich.\footnote{Über Erfahrungsberichte dazu würde ich mich freuen.}
 
 \subsection{Mac OS}
-Für Mac OS gibt es das Mac\TeX-Paket. Damit wird automatisch ein \TeXlive-Paket aufgespielt, ein Editor eingerichtet und das ganze System sollte sofort vollständig verfügbar sein. Die Projektseite ist \url{http://www.tug.org/mactex}, dort ist auch Anleitung und Hilfe angeboten. Eine kleine Installation (\textsf{Smaller Packages}) sollte für den Anfang ausreichen; fehlende Pakete können mit dem \TeXlive-Manager nachinstalliert werden. Bei den Editoren ist die Wahl Geschmackssache; \TeX shop wird häufig empfohlen. utf8-Fähigkeit sollte überall gegeben sein.
+Für Mac OS gibt es das Mac\TeX-Paket. Damit wird automatisch ein \TeXlive-Paket aufgespielt, ein Editor (\TeX shop) eingerichtet und das ganze System sollte sofort vollständig verfügbar sein. Die Projektseite ist \url{http://www.tug.org/mactex}, dort ist auch Anleitung und Hilfe angeboten. Eine kleine Installation (\textsf{Smaller Packages}) sollte für den Anfang ausreichen; fehlende Pakete können mit dem \TeXlive-Manager nachinstalliert werden. Bei den Editoren ist die Wahl Geschmackssache; \TeX shop wird häufig empfohlen. utf8-Fähigkeit sollte überall gegeben sein.
 
 \newpage
 \section{Weitere Informationen und Hilfen}
-Eigentlich kann dieser Abschnitt den ganzen Kurs ersetzen – denn \LaTeX\ gehört zu den bestdokumentierten Systemen überhaupt. Leider sind viele Anleitungen, vor allem für Anfänger, häufig veraltet, unvollständig oder setzen andere Schwerpunkte als in diesem Kurs. Viele Bücher verschweigen etwa die Existenz von \XeTeX\ und \luaTeX völlig, da es sehr neue Systeme sind und die Bücher vor deren Aufkommen verfasst wurden. Auch gibt es für \ConTeXt\ leider kein Referenzbuch. Eine kurze Literaturliste mit persönlichen Empfehlungen findet sich im Moodle.
+Eigentlich kann dieser Abschnitt den ganzen Kurs ersetzen – denn \LaTeX\ gehört wohl zu den bestdokumentierten Systemen überhaupt. Leider sind viele Anleitungen, vor allem für Anfänger, häufig veraltet, unvollständig oder setzen andere Schwerpunkte als in diesem Kurs. Viele Bücher verschweigen etwa die Existenz von \XeTeX\ und \luaTeX völlig, da es sehr neue Systeme sind und die Bücher vor deren Aufkommen verfasst wurden. Auch gibt es für \ConTeXt\ leider kein Referenzbuch. Eine kurze Literaturliste mit persönlichen Empfehlungen findet sich im Moodle (und im github).
 
 \subsection{texdoc}
 Eines der nützlichsten Werkzeuge bei der Arbeit mit \LaTeX\ ist |texdoc|. In einer Konsole (unter Windows: in der cmd, siehe Anhang \ref{cmd}) kann man einfach die Zeile
@@ -186,14 +186,16 @@ Eines der nützlichsten Werkzeuge bei der Arbeit mit \LaTeX\ ist |texdoc|. In ei
 eingeben und erhält in den allermeisten Fällen sofort die Dokumentation zu diesem Paket (als pdf in einem Viewer geöffnet oder als Text im Standardeditor). Das ist sehr nützlich, wenn man mehr über das Paket erfahren will oder nur den genauen Namen eines Befehls vergessen hat.
 
 \subsection{FAQ}
-Wenn man schon eine konkrete Fragestellung hat, ist die FAQ\footnote{frequently asked questions}-Liste von DANTE\footnote{Deutschsprachige Anwendervereinigung \TeX\ e.\,V., ein Verein, der sich der Verbreitung und Weiterentwicklung von \TeX\ und verwandter Software gewidmet hat – Gründungsort ist Heidelberg!} ein guter Anlaufpunkt:\\
+Wenn man schon eine konkrete Fragestellung hat, ist die FAQ\footnote{frequently asked questions}-Liste von DANTE\footnote{Deutschsprachige Anwendervereinigung \TeX\ e.\,V., ein Verein, der sich der Verbreitung und Weiterentwicklung von \TeX\ und verwandter Software gewidmet hat – Gründungsort und Vereinssitz ist Heidelberg!} ein guter Anlaufpunkt:\\
 \url{http://www.dante.de/faq/de-tex-faq/de-tex-faq.pdf}\\
+Die FAQ wird zur Zeit überarbeitet und soll in ein Wiki überführt werden, das wird aber noch einige Zeit beanspruchen.
+
 Weiß man noch nicht so ganz, wonach man suchen muss, lohnt sich ein Blick auf die englischsprachige visualFAQ:\\
 \url{http://www.tex.ac.uk/tex-archive/info/visualFAQ/visualFAQ.pdf}\\
 Dort ist ein komplexes Dokument gezeigt und bei jedem Element ein Tip, wie es erzeugt wurde.
 
 \subsection{Community}
-Sollte man bei all dem nicht fündig werden oder mit der gegebenen Hilfe nichts anfangen können, so kann man die Community fragen:\\[.4ex]
+Sollte man bei all dem nicht fündig werden oder mit der gegebenen Hilfe nichts anfangen können, so kann man die Community per Mail befragen:\\[.4ex]
 \texttt{tex-d-l@listserv.dfn.de} – deutschsprachige Mailingliste \\
 \texttt{de.comp.text.tex}– deutschsprachige Gruppe im Usenet\footnote{Zugriff auf das Usenet ist auch über die Server des URZ möglich.}\\
 \texttt{comp.text.tex} – englischsprachige Gruppe im Usenet
