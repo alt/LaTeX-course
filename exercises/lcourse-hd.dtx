@@ -49,7 +49,7 @@ This work conists of this file lcourse-hd.dtx
 %</internal>
 %
 %<*driver>
-\documentclass[a4paper]{ltxdoc}
+\documentclass[]{gmdocc}
 \usepackage[english]{polyglossia}
 \usepackage{
   ifxetex,
@@ -69,7 +69,10 @@ This work conists of this file lcourse-hd.dtx
 \date{\today}
 \setmainfont[Ligatures={Common,Rare}]{Linux Libertine}
 
+\def\marginpartt{\scriptsize\ttfamily}
+
 \begin{document}
+
 \maketitle
 \begin{abstract}
 A small class to build working sheets for the tutorial of the course on LaTeX\ in Heidelberg, 2009 and 2010. The course is held by the author.
@@ -78,10 +81,11 @@ A small class to build working sheets for the tutorial of the course on LaTeX\ i
 \tableofcontents
 
 \newpage
+\newcommand\alert[1]{\textcolor{red}{#1}}
 \section{Usage}
-Two files are needed in order to typeset the full sheet including exercises and solutions. This has to be splitted as the source code of the exercises will be put on github. Would be pointless to put the solutions there, too. So the latter has to stay local until the sample solution is to be published.
-\subsection{Header}
-To typeset a sheet, use the following header in the main file:
+\alert{Important:} \emph{Two} files are needed in order to typeset the full sheet including \alert{exercises} and \alert{solutions}. This has to be splitted as the source code of the exercises will be put on github. Would be pointless to put the solutions there, too. So the latter has to stay local until the sample solution is to be published.
+\subsection{Document Header}
+To typeset a sheet, use the following header in the main file (say, |exercises1.tex|):
 \begin{verbatim}
 \documentclass[
   blatt=5,
@@ -91,7 +95,7 @@ To typeset a sheet, use the following header in the main file:
 \end{verbatim}
 If any key is not given, a special default value will show up in the pdf. There won’t be an error when compiling with missing keys!
 
-\subsection{Exercise}
+\subsection{Exercises}
 Each exercise (also in the main file!) needs: 
 \begin{itemize}
 \item special keyword (mandatory argument)
@@ -108,12 +112,16 @@ Each exercise (also in the main file!) needs:
 
 exercise text
 
+\subexercise[5]{First}
+do this
+\subexercise[5]{Then}
+do this
 \end{exercise}
 \end{verbatim}
-As one can see, commas have to be grouped by \verb|{}|. Else they would be regarded as key seperators. The keyword is important to find the solution belonging to the exercise.
+As one can see, commas have to be grouped by \verb|{}|. Else they would be regarded as key seperators. The keyword is important to find the solution belonging to the exercise. The exercises can be parted into several subexercises, the optional argument of which shows the scores for each of them.
 
 \subsection{Solutions}
-One needs a second file to write down the solutions. Every solution starts with |\startsolution{key}| where |key| corresponds to the one given to the exercise. End a solution with |\stopsolution|. |\begin \end| was not possible here as it is quite some hackery to tell \TeX\ to work with \LaTeX s environment this way.
+One needs a second file to write down the solutions. The name of this file must be the name of the exercises-file plus |-solutions|, say |exercise1-solutions.tex|. Every solution starts with |\startsolution{key}| where |key| corresponds to the one given to the exercise. End a solution with |\stopsolution|. |\begin \end| was not possible here as it is quite some hackery to tell \TeX\ to work with \LaTeX s environment this way.
 
 \StopEventually{}
 \clearpage
@@ -199,8 +207,20 @@ One needs a second file to write down the solutions. Every solution starts with 
 }
 %    \end{macrocode}
 % \subsection{Macros}
-% Environments definitions for printing the exercises. We count the number of exercises for each sheet. So they will be numbered like 1.1, 1.2 for the first sheet, 2.1, 2.2 for the second and so on. This is not a nice solution, but the only one that works with the standard |\ref| commands.
-% \begin{environment}{exercise}
+% Two macros for some ”global“ layout: |\title| and |\header|. They will offer a way to give a title to the sheet or to write down special notes (something like ”everybody has to do this sheet, no group work allowed this time“).
+% \begin{macrocode}
+\renewcommand\title[1]{%
+  \AtBeginDocument{\vspace*{4ex}\centerline%
+    {\bfseries\huge#1}%
+  }
+}
+\newcommand\header[1]{%
+  \AtBeginDocument{\vspace*{3ex}\centerline%
+    {\parbox{.85\textwidth}{#1}}%
+  }
+}
+% \end{macrocode}
+% Environment definitions for printing the exercises. We count the number of exercises for each sheet. So they will be numbered like 1.1, 1.2 for the first sheet, 2.1, 2.2 for the second and so on. This is not a nice solution, but the only one that works with the standard |\ref| commands.
 %    \begin{macrocode}
 \newcounter{excount}
 \setcounter{excount}{1}
@@ -231,13 +251,14 @@ One needs a second file to write down the solutions. Every solution starts with 
   \let\stopsolution\fi
   \ifsolution \input{\jobname-solutions}\fi
 }
-
+% \end{macrocode}
+% Finally, the subexercise is defined:
+% \begin{macrocode}
 \newcommand\subexercise[2][]{
   \subsubsection*{#2\hfill #1}
 }
 %    \end{macrocode}
-% \end{environment}
-% \begin{environment}{expertexercise}
+% \subsubsection{Expertexercise}
 % There will be some extra exercises for the \TeX{}perts. Here is their environment, with the well-known ”dangerous bend“-sign of the \TeX{}book:
 %    \begin{macrocode}
 \font\manual=manfnt at 14pt
@@ -253,9 +274,7 @@ One needs a second file to write down the solutions. Every solution starts with 
   \end{exercise}
 }
 %    \end{macrocode}
-% \end{environment}
 % \subsubsection{Solution}
-% \begin{environment}{solution}
 % Finally, the solutions to the exercises:
 % This is a bit tricky: There are two files for the exercises, one with the exercise texts, one with the solutions. Now every exercise needs its solution printed directly behind it, but \emph{only} if class option |solution| is given. That is managed above when |\input|ting the solutions.
 
@@ -278,7 +297,6 @@ One needs a second file to write down the solutions. Every solution starts with 
 \def\endlcode{\endboxedverbatim\bigskip\\}
 \def\pkg#1{\textsf{#1}}
 %    \end{macrocode}
-% \end{environment}
 % \subsection{Miscellaneous}
 % The |itemize|-hack from the |alttex|-package, a bit shortened for stability:
 %    \begin{macrocode}
