@@ -4,7 +4,7 @@
 \iffalse
 %</internal>
 %<*readme>
-Use XeLaTeX format to compile the source file lcourse-hd.dtx. Resulting pdf is the documentation, cls file is the class needed to typeset exercises. If option |solution| is set in a document the corresponding filie solutions is needed to compile.
+Use XeLaTeX format to compile the source file lcourse-hd.dtx. The resulting pdf is the documentation, the cls file is the class needed to typeset exercises. If option |solution| is set in a document the corresponding filie solutions is needed to compile.
 %</readme>
 %<*internal>
 \fi
@@ -44,7 +44,7 @@ This work conists of this file lcourse-hd.dtx
 \generate{\file{lcourse-hd.ins}{\from{lcourse-hd.dtx}{batchfile}}}
 \nopostamble
 \nopreamble
-\generate{\file{readme}{\from{lcourse-hd.dtx}{readme}}}
+\generate{\file{readme.markdown}{\from{lcourse-hd.dtx}{readme}}}
 \endgroup
 %</internal>
 %
@@ -277,27 +277,35 @@ One needs a second file to write down the solutions. The name of this file must 
 % \subsubsection{Solution}
 % Finally, the solutions to the exercises:
 % This is a bit tricky: There are two files for the exercises, one with the exercise texts, one with the solutions. Now every exercise needs its solution printed directly behind it, but \emph{only} if class option |solution| is given. That is managed above when |\input|ting the solutions.
-
+% 
 % Now, there are different solutions in that file. To find the only one matching the key, every solution has a key, too. If they don’t fit, an |\iffalse| is started. That will be ended by |\stopsolution| which is |\let| to |\fi| above. If the keys fit, an environment for the solution will be started and |\stopsolution| is turned into ending that environment and stopping the input. This is a great improvement in performance, of course!
-%    \begin{macrocode}
+% \begin{macrocode}
 \newcommand\startsolution[1]{%
   \ifthenelse%
     {\equal{#1}{\exkey}}
     {\def\stopsolution{\end{solutionenv}\endinput} \begin{solutionenv}}
     {\iffalse}
 }
-%    \end{macrocode}
+% \end{macrocode}
 % The environment for the solutions:
-%    \begin{macrocode}
+% \begin{macrocode}
 \newenvironment{solutionenv}
 {\subsection*{Lösung:}\begin{minipage}{\textwidth}}
 {\end{minipage}}
-
+% \end{macrocode}
+% And markup for the subexercises. It is not always necessary or meaningfull to provide subsolutions to every subexercise, but in most cases it will be. This is just analogue to the subexercise; however, the scores are not given here again. So only one mandatory argument.
+% \begin{macrocode}
+\newcommand\subsolution[1]{
+  \subsubsection*{#2\hfill}
+}
+% \end{macrocode}
+% \subsection{Miscellaneous}
+% Some markup for easy typesetting:
+% \begin{macrocode}
 \def\lcode{\bigskip\\\boxedverbatim}
 \def\endlcode{\endboxedverbatim\bigskip\\}
 \def\pkg#1{\textsf{#1}}
-%    \end{macrocode}
-% \subsection{Miscellaneous}
+% \end{macrocode}
 % The |itemize|-hack from the |alttex|-package, a bit shortened for stability:
 %    \begin{macrocode}
 \def\outside{o}
