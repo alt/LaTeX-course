@@ -1,0 +1,19 @@
+\documentclass{minimal}
+
+\usepackage{
+  pdfpages
+}
+
+\newcommand\includelecture[2]{%
+  \IfFileExists{"#1"}{
+    \immediate\write18{%
+      xelatex "#1.tex" && cp "#1.pdf" #2.pdf%
+    }\includepdf[pages=1-,fitpaper]{#2.pdf}%
+  }{}
+}
+
+\begin{document}
+\includelecture{01-Einführung und grundlegende Bedienung}{01}
+\includelecture{02-Grundlegende Bedienung}{02}
+\includelecture{06-Erstellen umfangreicher Dokumente}{06}
+\end{document}

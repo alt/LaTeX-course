@@ -1,0 +1,200 @@
+\makeatletter
+\@ifundefined{draftmodeon}{
+  \documentclass[german,t]{beamer}
+}{
+  \documentclass[german,t,draft]{beamer}
+}
+\makeatother
+\input{beameranpassungen}
+
+\def\extractnumber"#1-#2".{#1}
+\def\extracttitle"#1-#2".{#2}
+\def\coursenumber{\expandafter\extractnumber\jobname.}
+\def\coursetitle{\expandafter\extracttitle\jobname.}
+
+\usepackage{
+  babel,
+  dtklogos,
+  moreverb,
+  shortvrb,
+  xltxtra,
+  yfonts
+}
+\usepackage[final]{showexpl}
+
+\hypersetup{
+  colorlinks=true,
+  breaklinks=true,
+  linkcolor=black, citecolor=black, filecolor=black, menucolor=black,
+  urlcolor=blue,
+  pdfauthor={Arno L. Trautmann},
+}
+
+\MakeShortVerb|
+
+\author{Arno Trautmann}
+\institute{Heidelberg}
+\title{Einführung in das Textsatzsystem\\[2ex] \Huge \LaTeX}
+\subtitlei{Vorlesungsreihe im Sommersemester 2010}
+\subtitleii{\textfrak{universitatis:~studii~heydelbergensis:}}
+\subtitle{\coursenumber\ – \coursetitle}
+
+\logo{}%\includegraphics[width=7.4em]{unilogo.svg}}
+
+\defaultfontfeatures{Scale=MatchLowercase}
+\setmonofont{DejaVu Sans Mono}
+
+\def\lcode{\vspace{.5ex}\par\boxedverbatim}
+\def\endlcode{\endboxedverbatim\bigskip\\}
+\newenvironment{mydesc}{\begin{tabular}{|>{\columncolor{lightgray}\color{blue}}rl|}\hline}{\\\hline\end{tabular}}
+
+\def\pkg#1{\texttt{#1}}
+\def\macro#1{|#1|}
+
+\def\plainTeX{\textsf{plain\TeX}}
+
+\catcode`\⇒=\active
+\def⇒{\ensuremath{\Rightarrow}}
+\catcode`\⇐=\active
+\def⇐{\ensuremath{\Leftarrow}}
+\catcode`\…13
+\let…\dots
+
+
+\newcommand\notiz[1]{}
+\renewcommand\checkmark{\color{green}\ding{51}}
+\newcommand\cross{\color{red}\ding{53}}
+
+\newcommand\pdf[2][]{\bgroup
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[#1]{#2}%
+    \egroup
+}
+
+\AtBeginDocument{
+  \lstset{%
+    backgroundcolor=\color[rgb]{.9 .9 .9},
+    basicstyle=\ttfamily\small,
+    breakindent=0em,
+    breaklines=true,
+    commentstyle=,
+    keywordstyle=,
+    identifierstyle=,
+    captionpos=b,
+    numbers=none,
+    frame=tlbr,%shadowbox,
+    frameround=tttt,
+    pos=r,
+    rframe={single},
+    explpreset={numbers=none}
+  }
+}
+\makeatletter
+\g@addto@macro\beamer@lastminutepatches{ % thanks to Ulrike for this!
+  \frame[plain,t]{\titlepage}
+  \frame{\centerline{\huge \color[RGB]{0,100,130}Inhalt}\tableofcontents}
+}
+
+%—— itemize-hack
+\def\outside{o}
+\def\inside{i}
+\let\insideitemizei\outside
+\let\insideitemizeii\outside
+\def\altenditemize{
+  \if\altlastitem 1%
+    \let\altlastitem0%
+  \else%
+    \end{itemize}%
+    \let\insideitemizei\outside%
+  \fi%
+}
+
+\begingroup
+  \lccode`\~=`\^^M%
+\lowercase{%
+  \endgroup
+  \def\makeenteractive{%
+    \catcode`\^^M=\active
+    \let~\altenditemize
+}%
+}
+
+\def\newitemi{%
+  \ifx\insideitemizei\inside%
+    \let\altlastitem1%
+    \expandafter\item%
+  \else%
+    \begin{itemize}%
+    \let\insideitemizei\inside%
+    \let\altlastitem1%
+    \makeenteractive%
+    \expandafter\item%
+  \fi
+}
+
+\def\newitemii{
+  \ifx\insideitemizeii\inside
+    \expandafter\item%
+  \else
+    \begin{itemize}
+      \let\insideitemizeii\inside
+      \expandafter\item%
+  \fi
+}
+
+\def\makeitemi#1{%
+  \expandafter\ifx\csname cc\string#1\endcsname\relax
+    \add@special{#1}%
+    \expandafter
+    \xdef\csname cc\string#1\endcsname{\the\catcode`#1}%
+    \begingroup
+      \catcode`\~\active  \lccode`\~`#1%
+      \lowercase{%
+      \global\expandafter\let
+         \csname ac\string#1\endcsname~%
+      \expandafter\gdef\expandafter~\expandafter{\newitemi}}%
+    \endgroup
+    \global\catcode`#1\active
+  \else
+  \fi
+}
+
+\def\makeitemii#1{%
+  \expandafter\ifx\csname cc\string#1\endcsname\relax
+    \add@special{#1}%
+    \expandafter
+    \xdef\csname cc\string#1\endcsname{\the\catcode`#1}%
+    \begingroup
+      \catcode`\~\active  \lccode`\~`#1%
+      \lowercase{%
+      \global\expandafter\let
+         \csname ac\string#1\endcsname~%
+      \expandafter\gdef\expandafter~\expandafter{\newitemii}}%
+    \endgroup
+    \global\catcode`#1\active
+  \else
+  \fi
+}
+
+\def\add@special#1{%
+  \rem@special{#1}%
+  \expandafter\gdef\expandafter\dospecials\expandafter
+{\dospecials \do #1}%
+  \expandafter\gdef\expandafter\@sanitize\expandafter
+{\@sanitize \@makeother #1}}
+\def\rem@special#1{%
+  \def\do##1{%
+    \ifnum`#1=`##1 \else \noexpand\do\noexpand##1\fi}%
+  \xdef\dospecials{\dospecials}%
+  \begingroup
+    \def\@makeother##1{%
+      \ifnum`#1=`##1 \else \noexpand\@makeother\noexpand##1\fi}%
+    \xdef\@sanitize{\@sanitize}%
+  \endgroup}
+\AtBeginDocument{
+  \makeitemi{•}
+}
+%——beamer versaut hier irgendwas…
+\def\•{\end{itemize}}
+%—— itemize-hack
+\makeatother

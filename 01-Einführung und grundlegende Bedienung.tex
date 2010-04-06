@@ -1,0 +1,368 @@
+\input{kursheader}
+
+\begin{document}
+\section{Organisatorisches}
+\begin{frame}{Organisatiorisches}{Anmeldung/Material}
+\begin{block}{Moodle}
+Anmeldung obligatorisch!
+• http://elearning.uni-heidelberg.de
+•[⇒] Fakultät für Mathematik und Informatik
+•[⇒] Suchen nach „LaTeX“
+•[⇒] „LaTeX-Kurs (SS 10)“
+• \url{http://elearning.uni-heidelberg.de/course/view.php?id=2885}
+\•
+\end{block}
+\end{frame}
+
+\begin{frame}{Organisatorisches}
+\begin{block}{Scheine}
+• 2 SWS Vorlesung/Übung
+• Übungsblätter
+• 50\% der Übungspunkte für Schein
+• Übungspunkte ergeben Scheinnote
+• 2 ECTS-Punkt (BSc, Informatik)
+\•
+\end{block}
+\end{frame}
+
+\begin{frame}{Organisatiorisches}
+\begin{block}{Übungen}
+• Blätter im Moodle/github, Ausgabe Freitag nach Vorlesung
+• Abgabe Freitag \emph{vor} Vorlesung
+• Abgaben in Dreiergruppen möglich
+• Besprechung am Beginn der nächsten Vorlesung
+• Bereitschaft, die eigene Lösung vorzustellen
+\•
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]{Organisatorisches}
+\begin{block}{Übungsabgabe}
+• Je nach Aufgabenstellung Ausdruck, per Mail, handschriftlich etc.%
+\\ E-Mail: jakobs@adres.se\\%
+Betreff: |LaTeX-Übung: Musterfrau, Mustermann|
+• Dateinamen: |uebung1.1_musterfrau_mustermann.tex|
+\•
+\end{block}
+\end{frame}
+
+\begin{frame}{Inhalt (vorläufig)}
+\begin{enumerate}\let•\item
+• Einführung, Übersicht
+• allgemeine Formatierung; Pakete
+• Gleitobjekte: Bilder, Tabellen, Verzeichnisse
+• Schriften, Zeichensätze, Kodierungen
+• Mathesatz
+• Umfangreiche, mehrsprachige Dokumente
+• Präsentationen
+• Typographische Feinheiten
+• Professionelle Briefe, Lebenslauf
+• \LaTeX-Pakete und -Klassen selbst schreiben
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{Aufbau der Vorlesungen}{}
+\begin{itemize}
+\item \alert{wie}\\ Nutzung von \LaTeX
+\\ \begin{quote}Wie erreiche ich, was ich haben will?\end{quote}
+\item \alert{was}\\ Verstehen von \LaTeXTeX
+\\ \begin{quote} Was passiert da eigentlich, wenn ich auf den Knopf drücke?\end{quote}
+\item \alert{warum}\\ Typographische Tips
+\\ \begin{quote}Warum sollte ich das genau so setzen und nicht anders?\end{quote}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{„Laientypographie“}
+\begin{block}{Hans Peter Willberg/Friedrich Forssmann}
+\begin{quotation}Das Selbermachen ist längst üblich, die Ergebnisse oft fragwürdig, weil Laien-Typografen nicht sehen, was nicht stimmt und nicht wissen können, worauf es ankommt. So gewöhnt man sich an falsche und schlechte Typografie. [\dots] Jetzt könnte der Einwand kommen, Typografie sei doch Geschmackssache. Wenn es um Dekoration ginge, könnte man das Argument vielleicht gelten lassen, da es aber bei Typografie in erster Linie um Information geht, können Fehler nicht nur stören, sondern sogar Schaden anrichten.
+\end{quotation}
+\end{block}
+\end{frame}
+
+\section{The name of the game}
+\begin{frame}[<+->][t]{The name of the game}
+• Programm \TeX (Seit 1977)
+\only<1>{\\ Geschrieben von Donald E. Knuth für sein Buch „The Art of Computer Programming“.
+\\ „\TeX“ von griechisch \fontspec{Arno Pro}τέχνη}
+• Makropaket \plainTeX
+\only<2>{\\ Macht die Nutzung von \TeX\ erst effizient.}
+• großes Makropaket \LaTeX2.09 (Anfänge 1980er)
+\only<3>{\\ Von Leslie Lamport: „Lamport’s \TeX“.\\ Viele Vereinfachungen für den normalen Anwender.}
+• aktuelle, stabile Version: \LaTeXe (1994)
+\only<4>{\\ „in einer $\varepsilon$-Umgebung von 2“…}
+• zukünftige Entwicklung: \LaTeX3 \\ momentan ohne praktische Bedeutung
+\•
+\end{frame}
+
+\section{Was ist \TeX?}
+\begin{frame}{ Was ist \TeX\ – was nicht?}
+\only<1>{\begin{block}{Was kann \TeX?}
+• Programm, um „The Art of Computer Programming“ zu schreiben
+• Für alle Schriftstücke mit logischem Aufbau:
+• Naturwissenschaftliche Arbeiten (hervorragender Mathesatz)
+• Geisteswissenschaftliche Arbeiten (hervorragende Mehrsprachigkeit, Bibliographieerstellung, Erstellung von Apparaten etc.)
+• Artikel, Diplomarbeiten, Dissertationen, …
+• Buchreihen, Briefe
+• Präsentationen
+\•
+\end{block}}
+\only<2>{\begin{block}{Was kann \TeX\ nicht?}
+• Präsentationen (bunt, „durcheinander“)
+• Werbezettel
+• Plakate 
+• Alles ohne logische Struktur
+\• 
+\end{block}}
+\end{frame}
+
+\section{Erste Schritte}
+\begin{frame}[fragile]{Wie funktioniert \TeX?}
+\begin{block}{Das Prinzip von \TeX}
+• reine Textdateien
+• keine Einstellungen, die der Nutzer nicht sieht
+• kein „Rumklicken“
+• Auszeichnungen besonderer Textstellen durch Befehle:\\%
+  „Ich will einen Artikel schreiben“\\%
+  „schreibe das Folgende fett“\\%
+  „schreibe eine Überschrift“%
+\•
+\end{block}
+\end{frame}
+
+\begin{frame}{Wie funktioniert \TeX?}
+\begin{columns}\begin{column}{.45\textwidth} 
+\begin{block}{ Vorteile}
+• Extreme Stabilität
+• Bearbeiten von Textdatein ist nicht aufwendig
+• Portabilität
+• Dateien mit beliebigem Programm lesbar
+• Winzige Dateigrößen auch bei riesigen Projekten
+\• 
+\end{block}
+\end{column}
+\begin{column}{.45\textwidth}
+\begin{block}{ Nachteile}
+• Dokument ist nicht direkt sichtbar
+• Unintuititve Bedienung
+• Bei Änderungen muss alles neu kompiliert werden
+\•
+\end{block}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Ein einfaches \TeX-Dokument}
+•<+->„Quellcode“, ähnlich Programmiersprachen.
+•<+->Problem: Wie Text von Befehlen unterscheiden?
+•<+->In den meisten Programmiersprachen: Anführungszeichen
+\•
+\pause
+\begin{lcode}
+print ("Hallo Welt!")
+\end{lcode}
+⇒ Für ein Textverarbeitungsprogramm ungeeignet.
+\end{frame}
+
+\begin{frame}[fragile]{Ein einfaches \TeX-Dokument}
+• In \TeX: \emph{escape character} Backslash \verb|\|\\
+Alle Befehle fangen mit \verb|\| an: \verb|\title, \author|
+• \emph{grouping character} \verb|{}|
+• \verb|$ & # ^ _ ~ %| haben alle besondere Bedeutungen
+\• 
+\vspace{1cm}
+
+\begin{lcode}
+Hallo Welt! \bye
+\end{lcode}
+
+\pause\vspace{1cm}
+⇒ Erzeugt eine |dvi|-Datei (DeVice Independent)\\
+\kern1em (Darstellbar z.\,B. mit |yap|)
+\end{frame}
+
+\begin{frame}[fragile]{Ein einfaches \LaTeX-Dokument} 
+\begin{lcode}
+\documentclass{minimal}
+\usepackage{amsmath}
+\begin{document}
+Hallo Welt!
+\end{document}
+\end{lcode}
+\end{frame}
+
+\begin{frame}{Dokumentenklassen}
+• Legen das Layout des Dokumentes fest:
+• Standardschriften
+• Seitenaufteilung
+• Gliederungsbefehle
+• Aussehen von Verzeichnissen, Tabellen etc.
+• Durch Änderung von Optionen oder Laden von Paketen änderbar
+\•
+\end{frame}
+
+\begin{frame}[fragile]{Gliederungsbefehle}
+• Struktierte Dokumente ⇒ feste Gliederungsebenen
+• Werden von der Dokumentenklasse definiert, aber standardisiert
+\•
+\begin{lcode}
+\part{Mechanik und Wärme (mit der Klasse scrbook)}
+\chapter{Gase}
+\section{Transportprozesse in Gasen}
+\section{Diffussion}
+\subsubsection{Unterunterabschnitt}
+\paragraph{Paragraph}
+\subparagraph{Unterparagraph}
+\end{lcode}
+\end{frame}
+
+%\pdf[pages={1,3}]{beispiele/gliederung_scrbook.pdf}
+%\pdf[pages=1]{beispiele/gliederung_scrartcl.pdf}
+
+\begin{frame}{Dokumentenklassen}
+\begin{tabular}{rl}
+&\kern-1.5cm \bf Standardklassen\\
+article & (Kurze) Artikel\\
+report & Reporte, Tagungsberichte\\
+book & Bücher\\
+letter & Briefe\\
+minimal & Für Minimalbeispiele\\ \\
+&\kern-1.5cm \bf KOMA-Script\\
+scrartcl & Erweiterung von article\\
+scrreprt & Erweiterung von report\\
+scrbook & Erweiterung von book\\
+scrlttr2 & Sehr mächtige Briefklasse\\
+&\kern-1.5cm \bf Spezialklassen\\
+beamer & Für Beamer-Präsentationen\\
+powerdot & einfachere Präsentationen
+\end{tabular}
+\end{frame}
+
+\begin{frame}[fragile]{Pakete}
+• Pakete liefern zusätzlichen Code
+• Vereinfachen die Arbeit
+• Korrigieren Fehler
+• Bieten viele zusätzliche Features
+• Einbinden mittels |\usepackage{paketname}| in Präambel:
+\• 
+\end{frame}
+
+\begin{frame}{Nützliche Pakete (sehr kleine Auswahl)}
+\begin{block}{}
+\begin{tabular}{ll}
+graphic(x) & bietet (erweiterte) Graphikunterstützung\\
+amsmath & Verbesserung des Mathesatz\\
+babel & Vielsprachigkeit\\
+lmodern & Stellt auf die lmodern-Schriften um\\
+xltxtra & wichtige Pakete für \XeLaTeX\\
+inputenc & ermöglicht verschiedene Eingabekodierungen\\
+fontenc & ermöglicht verschiedene Fontkodierungen\\
+tikz & bietet sehr mächtige Zeichenumgebung\\
+\vdots & \vdots
+\end{tabular}
+\end{block}
+\end{frame}
+
+
+\begin{frame}[c,fragile]{Grundbefehle: Struktur}
+\begin{tabular}{ll}
+|\textit{kursiv}| & \textit{kursiv} (bitte \emph{nicht} |{\it kursiv}| verwenden)\\
+|\textrm{Serifen}| & \textrm{Serifen}\\
+|\textsf{serifenlos}| & \textsf{serifenlos}\\
+|\textsl{geneigt}| & \textsl{geneigt}\\
+|\textbf{fett}| & \textbf{fett}\\
+|\texttt{Schreibmaschine}| & \texttt{Schreibmaschine}\\
+|\textsc{Kapitälchen}| & \textsc{Kapitälchen}\\
+|\emph{Hervorhebung}| & \emph{Hervorhebung}\\
+|\\| & Zeilenende\\
+|\par| oder Leerzeile & Absatzende\\
+|$E = \frac{p^2}{2m}$| & Inline-Mathemodus: $E = \frac{p^2}{2m}$\\
+|\[E = \frac{p^2}{2m}\]| & Display-Mathemodus: $\displaystyle E = \frac{p^2}{2m}$\\ % well that’s cheated …
+|\tableofcontents| & Produziert Inhaltsverzeichnis
+\end{tabular}
+\end{frame}
+
+\begin{frame}[c,fragile]{Grundbefehle}
+\begin{block}{}
+\begin{tabular}{ll}
+|\tiny| & \tiny winzig \\
+|\small| & \small klein \\
+|\normalsize| & \normalsize normal\\
+|\large| & \large große\\
+|\Large| & \Large größer\\
+|\LARGE| & \LARGE noch größer\\
+|\huge| & \huge riesig\\
+|\Huge| & \Huge noch riesiger\\
+\end{tabular}
+\end{block}
+\end{frame}
+
+
+\section[Warum LaTeX?]{Was ist toll an \LaTeX?}
+\begin{frame}{\LaTeX\ vs. Word}{Portabilität}
+\begin{block}{\strut\LaTeX}
+• Dokument als Textdatei
+•[⇒] \emph{immer} lesbar!
+• Ausgabe als dvi oder pdf
+•[⇒] Aussehen überall gleich
+\•
+\end{block}
+\end{frame}
+
+\begin{frame}{\LaTeX\ vs. Word}{Portabilität}
+\begin{block}{Word}
+• Nicht offenes Format
+•[⇒] Nur mit größerem Aufwand lesbar
+• Neuere Versionen nicht kompatibel
+• Immer neuste Version nötig (nicht kostenlos!)
+• Ausgabe als pdf:
+• Schriften werden oft \emph{nicht} eingebunden
+•[⇒] Dokument kann überall anders aussehen!
+\• 
+\end{block}
+\end{frame}
+
+\section{(Weiter-)Entwicklungen von \TeX}
+\begin{frame}{}
+Ein kurzer Überblick über \TeX\ und Weiterentwicklungen sowie Makropakete:
+\\\small \url{http://github.com/alt/tex-overview/tree/master}
+\end{frame}
+
+%\pdf[pages=2-4,scale=.4,noautoscale]{Zusatzmaterial/overview.pdf}
+
+\section{Hilfsdateien – Datenmüll?}
+\begin{frame}{So viele Dateien?}
+• \LaTeXTeX\ verwendet einige Hilfsdateien:
+• speichern von temporären Informationen
+• Verzeichniseinträge
+• Spracheinstellungen
+• Ausgabe von Fehlermeldungen
+• etc. …
+\•
+\end{frame}
+
+\begin{frame}[c]{Hilfsdateien}
+\begin{tabular}{ll}
+.tex & \TeX-Datei mit Dokumententext\\ \\
+& \bf Ausgabeformate\\
+.dvi & normale \TeX-Ausgabe\\
+.xdv & \XeTeX-Ausgabe\\
+.pdf & pdf\TeX-Ausgabe oder Umwandlung von (x)dvi\\ \\\pause
+& \bf Hilfsdateien (nur schreiben)\\
+.log & Log-Datei mit Informationen, Warnungen, Fehlern\\ \\\pause
+& \bf Hilfsdateien (schreiben und lesen)\\
+.aux & Hilfsdatei mit temporären Informationen\\
+.toc & table of contents\\
+.lof & list of figures\\
+.synctex.gz & nötig für die Sync\TeX-Funktion\\
+\vdots & \vdots
+\end{tabular}
+\end{frame}
+
+\section{Installation von \TeX live}
+
+
+
+\begin{frame}[c]{}
+\Huge Happy \TeX{}ing!
+\end{frame}
+\end{document}
