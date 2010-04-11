@@ -1,0 +1,35 @@
+\documentclass[
+	solution,
+	blatt=1,
+	ausgabe=16.\,04.\,2010,
+	rückgabe=23.\,04.\,2010
+]{lcourse-hd}
+
+\header{Achtung: Da die Installation der \TeX-Distribution grundlegend für den Kurs ist, muss die Abgabe für dieses Blatt von jedem Studenten einzeln bearbeitet werden.\\ Keine Gruppenabgaben!}
+
+\begin{document}
+
+\begin{exercise}[name=Minimales \TeX-Dokument,punkte=10,abgabe = Beide Quelltexte per Mail{,} das fertige \TeX-Dokument als Ausdruck.]{minimaltex}
+Grundlage des \LaTeX-Kurses ist eine funktionsfähige \TeX live\,2009-Distribution. 
+
+\subexercise{\TeX-Distribution aufsetzen}
+Installieren Sie also ein lauffähiges \TeX live\,2009-System auf Ihrem Rechner. Konsultieren Sie hierzu die Anleitung im Moodle, machen Sie sich mit dem System vertraut, testen Sie verschiedene Befehle etc.)
+\subexercise{Minimaldokumente erstellen}
+Erstellen Sie nun ein minimales plain\TeX-Dokument. Verwenden Sie dazu einen Texteditor, kompilieren Sie aber über die Kommandozeile! (Befehl: |pdftex mydocument.tex|)
+
+Außer normalem Text soll nur ein einziges \TeX-Kommando verwendet werden (welches und warum genau dieses?). Schreiben Sie |ä,ö,ü,ß| als |ae,oe,ue,sz| und verfassen Sie einen kurzen Text (drei, vier Sätze) darüber, welche Themen Sie gerne in der Vorlesung behandeln würden.
+
+Erstellen Sie weiterhin ein minimales \LaTeX-Dokument, das mindestens „Hallo Welt!“ in eine pdf-Datei ausgibt. Die Wahl der \TeX-Maschine ist dabei Ihnen überlassen.
+\end{exercise}
+
+\begin{expertexercise}[
+	name=Übungsblätter selbst erstellen,
+	abgabe = Keine Abgabe nötig.
+]{exsheet}
+Neben den normalen Pflichtaufgaben wird es besondere Aufgaben für die \TeX perten unter Ihnen geben, die allerdings \emph{keine Punkte} geben. Ein Warnzeichen macht darauf aufmerksam: schwer und keine Punkte! \raisebox{1ex}{\font\manualtiny=manfnt at 6pt\manualtiny\char127} Falls Sie Ihre \TeX-Kenntnisse vertiefen und sich eingehend mit dem System beschäftigen möchten, bieten diese Übungen aber eine gute Gelegenheit.
+
+Diese Übung ist aber noch für alle geeignet: Um möglichst wenig Arbeit zu haben, sind alle Übungsaufgaben unter \url{http://github.com/alt/LaTeX-course/tree/master/exercises/} verfügbar. Um die Dokumente zu erstellen, müssen Sie die Datei |lcourse-hd.dtx| herunterladen und mit \XeLaTeX\ kompilieren. Danach liegt die Datei |lcourse-hd.cls| vor. Wenn nun im gleichen Ordner die Datei |sheet1.tex| mit \XeLaTeX\ kompiliert wird, sollte das vorliegende Dokument generiert werden.
+
+\end{expertexercise}
+
+\end{document}
