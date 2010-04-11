@@ -4,7 +4,13 @@
 \iffalse
 %</internal>
 %<*readme>
-Use XeLaTeX format to compile the source file lcourse-hd.dtx. The resulting pdf is the documentation, the cls file is the class needed to typeset exercises. If option |solution| is set in a document the corresponding filie solutions is needed to compile.
+# This is a XeLaTeX class to produce woking sheets for a course on LaTeX.
+
+## Files
+There are three types of files important: the class file (as documente tex, dtx), the exercises and the solution files. All three are needed to typeset a sheet with solutions. Sheets are also typesettable without solutions.
+
+## How to Compile
+Use XeLaTeX format to compile the source file lcourse-hd.dtx. The resulting pdf is the documentation, the cls file is the class needed to typeset exercises. If class option [solution] is set in a document the corresponding file "filename-solutions.tex" is needed to compile the document.
 %</readme>
 %<*internal>
 \fi
@@ -83,7 +89,7 @@ A small class to build working sheets for the tutorial of the course on LaTeX\ i
 \newpage
 \newcommand\alert[1]{\textcolor{red}{#1}}
 \section{Usage}
-\alert{Important:} \emph{Two} files are needed in order to typeset the full sheet including \alert{exercises} and \alert{solutions}. This has to be splitted as the source code of the exercises will be put on github. Would be pointless to put the solutions there, too. So the latter has to stay local until the sample solution is to be published.
+\alert{Important:} \emph{Two} files are needed in order to typeset the full sheet including \alert{exercises} and \alert{solutions}. This has to be split as the source code of the exercises will be put on github. Would be pointless to put the solutions there, too. So the latter has to stay local until the sample solution is to be published.
 \subsection{Document Header}
 To typeset a sheet, use the following header in the main file (say, |exercises1.tex|):
 \begin{verbatim}
@@ -137,7 +143,9 @@ One needs a second file to write down the solutions. The name of this file must 
 %\subsection{Page layout}
 %First, we define some keys for the layout – so we need |xkeyval|. Options are the number of the sheet etc. and whether the solutions should be printed or not.
 %    \begin{macrocode}
-\RequirePackage{xkeyval,marginnote}
+\RequirePackage{
+  xkeyval
+}
 % default values
 \def\ausgabe{option \texttt{ausgabe=X} needed}
 \def\rückgabe{option \texttt{rückgabe=X} needed}
@@ -155,6 +163,9 @@ One needs a second file to write down the solutions. The name of this file must 
 \LoadClass[headinclude,ngerman]{scrartcl}
 \RequirePackage{
   amsmath,
+  geometry,
+  hyperref,
+  marginnote,
   moreverb,
   shortvrb,
   showexpl,
@@ -165,8 +176,13 @@ One needs a second file to write down the solutions. The name of this file must 
 \RequirePackage[ngerman]{babel}
 \RequirePackage[svgnames]{xcolor}
 \RequirePackage[ilines]{scrpage2}
-\RequirePackage{geometry}
+
 \geometry{top = 4cm,bottom = 3cm}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue,
+  urlcolor=blue
+}
 \frenchspacing
 \reversemarginpar
 
@@ -296,7 +312,7 @@ One needs a second file to write down the solutions. The name of this file must 
 % And markup for the subexercises. It is not always necessary or meaningfull to provide subsolutions to every subexercise, but in most cases it will be. This is just analogue to the subexercise; however, the scores are not given here again. So only one mandatory argument.
 % \begin{macrocode}
 \newcommand\subsolution[1]{
-  \subsubsection*{#2\hfill}
+  \subsubsection*{#1\hfill}
 }
 % \end{macrocode}
 % \subsection{Miscellaneous}

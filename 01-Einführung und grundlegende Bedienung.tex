@@ -2,7 +2,7 @@
 
 \begin{document}
 \section{Organisatorisches}
-\begin{frame}{Organisatiorisches}{Anmeldung/Material}
+\begin{frame}{Organisatiorisches}{Anmeldung}
 \begin{block}{Moodle}
 Anmeldung obligatorisch!
 • http://elearning.uni-heidelberg.de
@@ -14,34 +14,51 @@ Anmeldung obligatorisch!
 \end{block}
 \end{frame}
 
-\begin{frame}{Organisatorisches}
-\begin{block}{Scheine}
+\begin{frame}{Organisatiorisches}{Material}
+\begin{block}{Material im Moodle}
+• Folien als pdf-Dateien
+• Übungsblätter als pdf-Dateien
+• Ergänzungen, Anmerkungen, Links, etc.
+\•
+\end{block}
+\begin{block}{Material auf github}
+• unter \url{http://github.com/alt/LaTeX-course}
+• Quellstlisting zu allen relevanten Dateien (Folien, Übungen, Lösungen, …)
+• schneller, einfacher Zugriff per git\,/\,im Browser
+• Entwicklung „live“ einsehbar
+\•
+\end{block}
+\end{frame}
+
+\begin{frame}{Organisatorisches}{Scheine}
+\begin{block}{Scheinbedingungen}
 • 2 SWS Vorlesung/Übung
-• Übungsblätter
-• 50\% der Übungspunkte für Schein
+• Übungsblätter müssen bearbeitet werden
+• 50\% der Übungspunkte für Scheinvergabe
 • Übungspunkte ergeben Scheinnote
 • 2 ECTS-Punkt (BSc, Informatik)
 \•
 \end{block}
 \end{frame}
 
-\begin{frame}{Organisatiorisches}
+\begin{frame}{Organisatiorisches}{Übungsbetrieb}
 \begin{block}{Übungen}
 • Blätter im Moodle/github, Ausgabe Freitag nach Vorlesung
 • Abgabe Freitag \emph{vor} Vorlesung
 • Abgaben in Dreiergruppen möglich
 • Besprechung am Beginn der nächsten Vorlesung
-• Bereitschaft, die eigene Lösung vorzustellen
+• Bereitschaft zur Vorstellung der eigenen Lösung
 \•
 \end{block}
 \end{frame}
 
-\begin{frame}[fragile]{Organisatorisches}
+\begin{frame}[fragile]{Organisatorisches}{Übungsbetrieb}
 \begin{block}{Übungsabgabe}
-• Je nach Aufgabenstellung Ausdruck, per Mail, handschriftlich etc.%
+• Je nach Aufgabenstellung: Ausdruck, per Mail, handschriftlich etc.%
 \\ E-Mail: jakobs@adres.se\\%
 Betreff: |LaTeX-Übung: Musterfrau, Mustermann|
 • Dateinamen: |uebung1.1_musterfrau_mustermann.tex|
+• Formatierung bitte einhalten, da sonst großer Mehraufwand beim Sortieren!
 \•
 \end{block}
 \end{frame}
@@ -49,19 +66,21 @@ Betreff: |LaTeX-Übung: Musterfrau, Mustermann|
 \begin{frame}{Inhalt (vorläufig)}
 \begin{enumerate}\let•\item
 • Einführung, Übersicht
+• Schriften, Zeichensätze, Kodierungen
 • allgemeine Formatierung; Pakete
 • Gleitobjekte: Bilder, Tabellen, Verzeichnisse
-• Schriften, Zeichensätze, Kodierungen
 • Mathesatz
 • Umfangreiche, mehrsprachige Dokumente
 • Präsentationen
 • Typographische Feinheiten
 • Professionelle Briefe, Lebenslauf
-• \LaTeX-Pakete und -Klassen selbst schreiben
+• \LaTeX-Pakete und -Klassen verstehen\,/\,selbst schreiben
+•[…] weitere Vorschläge?
+•[] Einschub: Con\TeX t
 \end{enumerate}
 \end{frame}
 
-\begin{frame}{Aufbau der Vorlesungen}{}
+\begin{frame}{Bestandteile der Vorlesungen}
 \begin{itemize}
 \item \alert{wie}\\ Nutzung von \LaTeX
 \\ \begin{quote}Wie erreiche ich, was ich haben will?\end{quote}
@@ -73,6 +92,10 @@ Betreff: |LaTeX-Übung: Musterfrau, Mustermann|
 \end{frame}
 
 \begin{frame}{„Laientypographie“}
+\begin{quote}
+Typographie ist doch Geschmackssache. Ich mach das so, wie es schön aussieht!
+\end{quote}
+\pause
 \begin{block}{Hans Peter Willberg/Friedrich Forssmann}
 \begin{quotation}Das Selbermachen ist längst üblich, die Ergebnisse oft fragwürdig, weil Laien-Typografen nicht sehen, was nicht stimmt und nicht wissen können, worauf es ankommt. So gewöhnt man sich an falsche und schlechte Typografie. [\dots] Jetzt könnte der Einwand kommen, Typografie sei doch Geschmackssache. Wenn es um Dekoration ginge, könnte man das Argument vielleicht gelten lassen, da es aber bei Typografie in erster Linie um Information geht, können Fehler nicht nur stören, sondern sogar Schaden anrichten.
 \end{quotation}
@@ -86,11 +109,11 @@ Betreff: |LaTeX-Übung: Musterfrau, Mustermann|
 \\ „\TeX“ von griechisch \fontspec{Arno Pro}τέχνη}
 • Makropaket \plainTeX
 \only<2>{\\ Macht die Nutzung von \TeX\ erst effizient.}
-• großes Makropaket \LaTeX2.09 (Anfänge 1980er)
+• großes Makropaket \LaTeX\ (Anfänge 1980er)
 \only<3>{\\ Von Leslie Lamport: „Lamport’s \TeX“.\\ Viele Vereinfachungen für den normalen Anwender.}
-• aktuelle, stabile Version: \LaTeXe (1994)
+• aktuelle, stabile Version: \LaTeXe\ (1994)
 \only<4>{\\ „in einer $\varepsilon$-Umgebung von 2“…}
-• zukünftige Entwicklung: \LaTeX3 \\ momentan ohne praktische Bedeutung
+• zukünftige Entwicklung: \LaTeX3 \\ noch nicht eigenständig verfügbar,\\ aber als Paket \texttt{expl3} in \LaTeXe\ verfügbar (bietet \LaTeX3-Syntax für Paketautoren)
 \•
 \end{frame}
 
@@ -98,12 +121,13 @@ Betreff: |LaTeX-Übung: Musterfrau, Mustermann|
 \begin{frame}{ Was ist \TeX\ – was nicht?}
 \only<1>{\begin{block}{Was kann \TeX?}
 • Programm, um „The Art of Computer Programming“ zu schreiben
-• Für alle Schriftstücke mit logischem Aufbau:
+• Für alle Schriftstücke mit logischem Aufbau geeignet:
 • Naturwissenschaftliche Arbeiten (hervorragender Mathesatz)
 • Geisteswissenschaftliche Arbeiten (hervorragende Mehrsprachigkeit, Bibliographieerstellung, Erstellung von Apparaten etc.)
 • Artikel, Diplomarbeiten, Dissertationen, …
 • Buchreihen, Briefe
 • Präsentationen
+• Unmenge an „Missbrauch“ durch kreative Paketautoren
 \•
 \end{block}}
 \only<2>{\begin{block}{Was kann \TeX\ nicht?}
@@ -111,11 +135,12 @@ Betreff: |LaTeX-Übung: Musterfrau, Mustermann|
 • Werbezettel
 • Plakate 
 • Alles ohne logische Struktur
+• Dokumente mit vielen uneinheitlichen Bildern, die frei bewegt werden
 \• 
 \end{block}}
 \end{frame}
 
-\section{Erste Schritte}
+\section[Erste Schritte]{Erste Schritte – \TeX\ for the impatient}
 \begin{frame}[fragile]{Wie funktioniert \TeX?}
 \begin{block}{Das Prinzip von \TeX}
 • reine Textdateien
@@ -137,6 +162,7 @@ Betreff: |LaTeX-Übung: Musterfrau, Mustermann|
 • Portabilität
 • Dateien mit beliebigem Programm lesbar
 • Winzige Dateigrößen auch bei riesigen Projekten
+• Trennung von z.\,B. Bildern und Text
 \• 
 \end{block}
 \end{column}
@@ -145,6 +171,7 @@ Betreff: |LaTeX-Übung: Musterfrau, Mustermann|
 • Dokument ist nicht direkt sichtbar
 • Unintuititve Bedienung
 • Bei Änderungen muss alles neu kompiliert werden
+• Trennung von z.\,B. Bildern und Text
 \•
 \end{block}
 \end{column}
@@ -152,42 +179,48 @@ Betreff: |LaTeX-Übung: Musterfrau, Mustermann|
 \end{frame}
 
 \begin{frame}[fragile]{Ein einfaches \TeX-Dokument}
-•<+->„Quellcode“, ähnlich Programmiersprachen.
+•<+->„Quellstlisting“, ähnlich Programmiersprachen.
 •<+->Problem: Wie Text von Befehlen unterscheiden?
 •<+->In den meisten Programmiersprachen: Anführungszeichen
 \•
 \pause
-\begin{lcode}
+\begin{lstlisting}
 print ("Hallo Welt!")
-\end{lcode}
+\end{lstlisting}
 ⇒ Für ein Textverarbeitungsprogramm ungeeignet.
 \end{frame}
 
 \begin{frame}[fragile]{Ein einfaches \TeX-Dokument}
-• In \TeX: \emph{escape character} Backslash \verb|\|\\
-Alle Befehle fangen mit \verb|\| an: \verb|\title, \author|
-• \emph{grouping character} \verb|{}|
-• \verb|$ & # ^ _ ~ %| haben alle besondere Bedeutungen
+• In \TeX: Einzelne Zeichen haben besondere Bedeutungen:
+• \emph{escape character}: Backslash \verb|\|\\
+markiert den Anfang eines Befehls: \verb|\title, \author|%
 \• 
-\vspace{1cm}
-
-\begin{lcode}
+\begin{lstlisting}
 Hallo Welt! \bye
-\end{lcode}
+\end{lstlisting}
 
 \pause\vspace{1cm}
 ⇒ Erzeugt eine |dvi|-Datei (DeVice Independent)\\
-\kern1em (Darstellbar z.\,B. mit |yap|)
+(Darstellbar z.\,B. mit |yap|, |evince|, …)\\
+In andere Formate (|ps|, |pdf|) umwandelbar
+\end{frame}
+
+\begin{frame}[fragile]{Weitere Befehlszeichen}
+• \emph{grouping character}: Geschweifte Klammern \verb|{}|\\%
+gruppieren Zeichen, die zusammen gehören, z.\,B. Argumente: \verb|\textbf{fetter Text}|
+• \emph{math character} |$| startet\,/\,endet Mathemodus
+• \emph{tabbing character} |&| trennt Spalten in Tabellen
+• weitere Sonderzeichen: |# ^ _ ~ %| haben alle besondere Bedeutungen
+\•
 \end{frame}
 
 \begin{frame}[fragile]{Ein einfaches \LaTeX-Dokument} 
-\begin{lcode}
+\begin{LTXexample}
 \documentclass{minimal}
-\usepackage{amsmath}
 \begin{document}
 Hallo Welt!
 \end{document}
-\end{lcode}
+\end{LTXexample}
 \end{frame}
 
 \begin{frame}{Dokumentenklassen}
@@ -199,24 +232,6 @@ Hallo Welt!
 • Durch Änderung von Optionen oder Laden von Paketen änderbar
 \•
 \end{frame}
-
-\begin{frame}[fragile]{Gliederungsbefehle}
-• Struktierte Dokumente ⇒ feste Gliederungsebenen
-• Werden von der Dokumentenklasse definiert, aber standardisiert
-\•
-\begin{lcode}
-\part{Mechanik und Wärme (mit der Klasse scrbook)}
-\chapter{Gase}
-\section{Transportprozesse in Gasen}
-\section{Diffussion}
-\subsubsection{Unterunterabschnitt}
-\paragraph{Paragraph}
-\subparagraph{Unterparagraph}
-\end{lcode}
-\end{frame}
-
-%\pdf[pages={1,3}]{beispiele/gliederung_scrbook.pdf}
-%\pdf[pages=1]{beispiele/gliederung_scrartcl.pdf}
 
 \begin{frame}{Dokumentenklassen}
 \begin{tabular}{rl}
@@ -230,20 +245,52 @@ minimal & Für Minimalbeispiele\\ \\
 scrartcl & Erweiterung von article\\
 scrreprt & Erweiterung von report\\
 scrbook & Erweiterung von book\\
-scrlttr2 & Sehr mächtige Briefklasse\\
+scrlttr2 & Sehr mächtige Briefklasse\\ \\
 &\kern-1.5cm \bf Spezialklassen\\
 beamer & Für Beamer-Präsentationen\\
 powerdot & einfachere Präsentationen
 \end{tabular}
 \end{frame}
 
+\begin{frame}[fragile]{Gliederungsbefehle}
+• Gliederungen strukturieren Dokumente,
+• ermöglichen automatische Nummerierung, Eintragung in Verzeichnisse, Kolumnentitel etc.
+• Werden von der Dokumentenklasse definiert
+• Grundstruktur im Kernel festgelegt
+•[⇒] bestimmte Elemente immer verfügbar
+\•
+\vfill
+\begin{lstlisting}
+\part{Mechanik und Wärme}
+\chapter{Gase}
+\section{Transportprozesse in Gasen}
+\section{Diffussion}
+\subsubsection{Unterunterabschnitt}
+\paragraph{Paragraph}
+\subparagraph{Unterparagraph}
+\end{lstlisting}
+\end{frame}
+
+%\pdf[pages={1,3}]{beispiele/gliederung_scrbook.pdf}
+%\pdf[pages=1]{beispiele/gliederung_scrartcl.pdf}
+
 \begin{frame}[fragile]{Pakete}
 • Pakete liefern zusätzlichen Code
 • Vereinfachen die Arbeit
 • Korrigieren Fehler
 • Bieten viele zusätzliche Features
-• Einbinden mittels |\usepackage{paketname}| in Präambel:
+• Einbinden mittels |\usepackage[options]{paketname}| in Präambel:
 \• 
+
+\begin{lstlisting}
+\documentclass{scrartcl}
+\usepackage{
+  amsmath,
+  keyboard
+}
+\usepackage[left=2cm]{geometry}
+\end{lstlisting}
+
 \end{frame}
 
 \begin{frame}{Nützliche Pakete (sehr kleine Auswahl)}
@@ -263,7 +310,7 @@ tikz & bietet sehr mächtige Zeichenumgebung\\
 \end{frame}
 
 
-\begin{frame}[c,fragile]{Grundbefehle: Struktur}
+\begin{frame}[c,fragile]{Grundbefehle}{allgemein}
 \begin{tabular}{ll}
 |\textit{kursiv}| & \textit{kursiv} (bitte \emph{nicht} |{\it kursiv}| verwenden)\\
 |\textrm{Serifen}| & \textrm{Serifen}\\
@@ -281,7 +328,7 @@ tikz & bietet sehr mächtige Zeichenumgebung\\
 \end{tabular}
 \end{frame}
 
-\begin{frame}[c,fragile]{Grundbefehle}
+\begin{frame}[c,fragile]{Grundbefehle}{Schriftgrößen}
 \begin{block}{}
 \begin{tabular}{ll}
 |\tiny| & \tiny winzig \\
@@ -294,8 +341,8 @@ tikz & bietet sehr mächtige Zeichenumgebung\\
 |\Huge| & \Huge noch riesiger\\
 \end{tabular}
 \end{block}
+Manuelle Anpassung: |\fontsize{10}{12}\selectfont|
 \end{frame}
-
 
 \section[Warum LaTeX?]{Was ist toll an \LaTeX?}
 \begin{frame}{\LaTeX\ vs. Word}{Portabilität}
@@ -322,12 +369,11 @@ tikz & bietet sehr mächtige Zeichenumgebung\\
 \end{frame}
 
 \section{(Weiter-)Entwicklungen von \TeX}
-\begin{frame}{}
-Ein kurzer Überblick über \TeX\ und Weiterentwicklungen sowie Makropakete:
-\\\small \url{http://github.com/alt/tex-overview/tree/master}
+\begin{frame}[c]{Entwicklung von \TeX\ in über 3 Jahrzehnten …}
+In über 30 Jahren \TeX\ gab es viele Entwicklungen des Programms selbst sowie der Makropakete, die die Bedienung vereinfachen.\\
+Eine kurze Übersicht:
+\\ \url{http://github.com/alt/tex-overview}
 \end{frame}
-
-%\pdf[pages=2-4,scale=.4,noautoscale]{Zusatzmaterial/overview.pdf}
 
 \section{Hilfsdateien – Datenmüll?}
 \begin{frame}{So viele Dateien?}
