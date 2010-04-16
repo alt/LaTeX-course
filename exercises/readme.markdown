@@ -5,6 +5,3 @@ There are three types of files important: the class file (as documente tex, dtx)
 
 ## How to Compile
 Use XeLaTeX format to compile the source file lcourse-hd.dtx. The resulting pdf is the documentation, the cls file is the class needed to typeset exercises. If class option [solution] is set in a document the corresponding file "filename-solutions.tex" is needed to compile the document.
-
-## Validity
-The documents here may be online before the official release after the lecture. Up to that time they may change and are NOT valid. It’s just kind of kindness to let you sneak what is coming up ;)
