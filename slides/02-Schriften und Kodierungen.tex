@@ -1,0 +1,440 @@
+\input{kursheader}
+
+\usepackage{epic}
+\graphicspath{{../Mediales/}}
+
+\begin{document}
+\section{Schreiben früher, damals und heute}
+\begin{frame}{Feder, Steinkeil u.\,ä.}
+• Die frühesten Wege, Gedanken auf Papier, Ton oder Stein zu bannen
+• Feder wird in Tinte getaucht und über das Papier geführt
+•[⇒] Autor ist gleichzeitig Schreiber
+• Einzelne Schriftstücke sind „schnell“ und einfach zu erstellen
+• Monumentale Werke dienen zum Schmuck ⇒ handwerkliche oder künstlerische Arbeit
+\•
+\end{frame}
+
+\begin{frame}{Reproduktion}
+\begin{twoblock}{Feder}{Stein}
+inhalt
+\nextblock
+zweithalt
+\end{twoblock}
+\end{frame}
+\end{document}
+
+\begin{frame}{Gutenbergs Druckkunst}
+• Schon Chinesen kannten Druck mit beweglichen Lettern
+• Für tausende von Schriftzeichen ungeeignet …
+• Gutenberg brachte das Verfahren nach Europa
+• Ziel: Hochwertige Schriftstücke (Behauptung gegenüber Handschrift)
+• Einfache Vervielfältigung
+\• 
+\end{frame}
+
+\begin{frame}{Buchdruck: Aufwändiges Verfahren}
+• Buchstaben werden in Bleilettern gegossen
+• Anordnung durch einen Setzer in einem Setzkasten, Zeile für Zeile
+• Für Blocksatz: Verschieden breite Buchstabenvarianten
+• Leerzeichen variabler Breite
+• Mit großem Aufwand hervorragende Drucke möglich (auch Mikrotypographie!)
+• Sobald eine Seite gesetzt ist, beliebig häufige Reproduktion möglich
+• Erstes massentaugliches Verfahren
+\•
+\end{frame}
+
+\begin{frame}[plain]
+\kern-1cm \hfill Bild von Gutenberg? \hfill \includegraphics[height=\paperheight+50pt]{Gutenberg}\hfill\hfill
+\end{frame}
+
+\begin{frame}{Linotype}
+• Schreibprozess ähnlich einer Schreibmaschine
+• Direktes Gießen einzelner Zeilen in Blei
+• Massenproduktion von schnell erstellbaren Seiten möglich
+• „Line-of-Type“
+\• 
+\end{frame}
+
+\begin{frame}{Der Computer}
+• Digitale Textverarbeitung:
+• Schnelle, einfache Eingabe
+• Automatisierte Anpassung des Designs
+• Blocksatz und Mikrotypographie in einer Qualität, die nur von aufwändigem Bleisatz übertroffen werden kann
+• Beliebig schnelle Vervielfältigung, häufig ohne materielles Medium
+\•
+\end{frame}
+
+\begin{frame}{Vom Tastendruck zur Druckausgabe}
+Der lange Weg eines Gedanken vom Tastenanschlag bis zum Papier …
+\end{frame}
+
+
+\section{Kodierungen, Zeichensätze}
+\begin{frame}[fragile]{ASCII}
+• 7-bit-Kodierung
+• Kodiert 128 Zeichen
+• 95 druckbare Zeichen
+• 33 nichtdruckbare Zeichen (Steuerzeichen, z.\,B. escape)
+• Ausgelegt auf englische Sprache und Programmieren
+\• 
+Zeichenvorrat:
+\begin{verbatim*}
+ !"#$%&'()*+,-./0123456789:;<=>?
+@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_
+`abcdefghijklmnopqrstuvwxyz{|}~ 
+\end{verbatim*}
+\end{frame}
+
+\begin{frame}[fragile]{\TeX-Kodierungen}
+• \TeX kann anfangs nur 7-bit-ASCII verstehen.
+• \TeX3 kann auch 8-bit-Kodierungen verarbeiten.
+• Zusätzlicher Zeichenvorrat durch Befehle wie |\"|
+• In \LaTeX\ zugänglich mittels |\usepackage[kodierung]{inputenc}|
+• Verschiedene 8-bit-Kodierungen für verschiedene Sprachumgebungen
+\•
+\end{frame}
+
+\begin{frame}[fragile]{latin1: Westeuropäisch}
+\kern-1ex\small
+\begin{verbatim}
+  	0 	1 	2 	3 	4 	5 	6 	7 	8 	9 	A 	B 	C 	D 	E 	F
+0 	nicht belegt
+1 	nicht belegt
+2 	 	! 	" 	# 	$ 	% 	& 	' 	( 	) 	* 	+ 	, 	- 	. 	/
+3 	0 	1 	2 	3 	4 	5 	6 	7 	8 	9 	: 	; 	< 	= 	> 	?
+4 	@ 	A 	B 	C 	D 	E 	F 	G 	H 	I 	J 	K 	L 	M 	N 	O
+5 	P 	Q 	R 	S 	T 	U 	V 	W 	X 	Y 	Z 	[ 	\ 	] 	^ 	_
+6 	` 	a 	b 	c 	d 	e 	f 	g 	h 	i 	j 	k 	l 	m 	n 	o
+7 	p 	q 	r 	s 	t 	u 	v 	w 	x 	y 	z 	{ 	| 	} 	~ 	DEL
+8 	nicht belegt
+9 	nicht belegt
+A 	  	¡ 	¢ 	£ 	¤ 	¥ 	¦ 	§ 	¨ 	© 	ª 	« 	¬ 	-  	® 	¯
+B 	° 	± 	² 	³ 	´ 	µ 	¶ 	· 	¸ 	¹ 	º 	» 	¼ 	½ 	¾ 	¿
+C 	À 	Á 	Â 	Ã 	Ä 	Å 	Æ 	Ç 	È 	É 	Ê 	Ë 	Ì 	Í 	Î 	Ï
+D 	Ð 	Ñ 	Ò 	Ó 	Ô 	Õ 	Ö 	× 	Ø 	Ù 	Ú 	Û 	Ü 	Ý 	Þ 	ß
+E 	à 	á 	â 	ã 	ä 	å 	æ 	ç 	è 	é 	ê 	ë 	ì 	í 	î 	ï
+F 	ð 	ñ 	ò 	ó 	ô 	õ 	ö 	÷ 	ø 	ù 	ú 	û 	ü 	ý 	þ 	ÿ
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{latin2: Mitteleuropäisch}
+\kern-1ex\small
+\begin{verbatim}
+  	0 	1 	2 	3 	4 	5 	6 	7 	8 	9 	A 	B 	C 	D 	E 	F
+0
+1
+2 	  	! 	" 	# 	$ 	% 	& 	' 	( 	) 	* 	+ 	, 	- 	. 	/
+3 	0 	1 	2 	3 	4 	5 	6 	7 	8 	9 	: 	; 	< 	= 	> 	?
+4 	@ 	A 	B 	C 	D 	E 	F 	G 	H 	I 	J 	K 	L 	M 	N 	O
+5 	P 	Q 	R 	S 	T 	U 	V 	W 	X 	Y 	Z 	[ 	\ 	] 	^ 	_
+6 	` 	a 	b 	c 	d 	e 	f 	g 	h 	i 	j 	k 	l 	m 	n 	o
+7 	p 	q 	r 	s 	t 	u 	v 	w 	x 	y 	z 	{ 	| 	} 	~ 	DEL
+8 	
+9 	
+A 	  	Ą 	˘ 	Ł 	¤ 	Ľ 	Ś 	§ 	¨ 	Š 	Ş 	Ť 	Ź 	  	Ž 	Ż
+B 	° 	ą 	˛ 	ł 	´ 	ľ 	ś 	ˇ 	¸ 	š 	ş 	ť 	ź 	˝ 	ž 	ż
+C 	Ŕ 	Á 	Â 	Ă 	Ä 	Ĺ 	Ć 	Ç 	Č 	É 	Ę 	Ë 	Ě 	Í 	Î 	Ď
+D 	Đ 	Ń 	Ň 	Ó 	Ô 	Ő 	Ö 	× 	Ř 	Ů 	Ú 	Ű 	Ü 	Ý 	Ţ 	ß
+E 	ŕ 	á 	â 	ă 	ä 	ĺ 	ć 	ç 	č 	é 	ę 	ë 	ě 	í 	î 	ď
+F 	đ 	ń 	ň 	ó 	ô 	ő 	ö 	÷ 	ř 	ů 	ú 	ű 	ü 	ý 	ţ 	˙
+\end{verbatim}
+\end{frame}
+\begin{frame}[fragile]{latin5/9: Türkisch}
+\kern-1ex\small
+\begin{verbatim}
+  	0 	1 	2 	3 	4 	5 	6 	7 	8 	9 	A 	B 	C 	D 	E 	F
+0
+1
+2 	  	! 	" 	# 	$ 	% 	& 	' 	( 	) 	* 	+ 	, 	- 	. 	/
+3 	0 	1 	2 	3 	4 	5 	6 	7 	8 	9 	: 	; 	< 	= 	> 	?
+4 	@ 	A 	B 	C 	D 	E 	F 	G 	H 	I 	J 	K 	L 	M 	N 	O
+5 	P 	Q 	R 	S 	T 	U 	V 	W 	X 	Y 	Z 	[ 	\ 	] 	^ 	_
+6 	` 	a 	b 	c 	d 	e 	f 	g 	h 	i 	j 	k 	l 	m 	n 	o
+7 	p 	q 	r 	s 	t 	u 	v 	w 	x 	y 	z 	{ 	| 	} 	~ 	DEL
+8
+9
+A 	  	¡ 	¢ 	£ 	¤ 	¥ 	¦ 	§ 	¨ 	© 	ª 	« 	¬ 	  	® 	¯
+B 	° 	± 	² 	³ 	´ 	µ 	¶ 	· 	¸ 	¹ 	º 	» 	¼ 	½ 	¾ 	¿
+C 	À 	Á 	Â 	Ã 	Ä 	Å 	Æ 	Ç 	È 	É 	Ê 	Ë 	Ì 	Í 	Î 	Ï
+D 	Ğ 	Ñ 	Ò 	Ó 	Ô 	Õ 	Ö 	× 	Ø 	Ù 	Ú 	Û 	Ü 	İ 	Ş 	ß
+E 	à 	á 	â 	ã 	ä 	å 	æ 	ç 	è 	é 	ê 	ë 	ì 	í 	î 	ï
+F 	ğ 	ñ 	ò 	ó 	ô 	õ 	ö 	÷ 	ø 	ù 	ú 	û 	ü 	ı 	ş 	ÿ
+\end{verbatim}
+\end{frame}
+
+\begin{frame}{So viele Kodierungen …}
+• Auf Dauer keine praktikable Lösung:
+• Internationale Kommunikation wird erschwert
+• Programme nicht lauffähig bei unterschiedlicher Kodierung
+• Viele Sprachen haben Sonderzeichen, die berücksichtigt werden müssen
+• Chinesisch passt nicht in 8-bit …
+\•
+\pause
+\centerline{\Large ⇒ Unicode!}
+\end{frame}
+
+\begin{frame}{Unicode}
+\begin{quotation}
+The Unicode Standard is a character coding system designed to support the worldwide interchange, processing, and display of the written texts of the diverse languages and technical disciplines of the modern world. In addition, it supports classical and historical texts of many written languages.\\
+\end{quotation}
+\url{http://www.unicode.org/}
+\pause 
+• Unicode bietet theoretisch eine immens große Zahl von Zeichen.\\
+• Für die Kodierung ist viel Speicher nötig (bis zu 32bit pro Zeichen!)\\
+•[⇒] \emph{utf8} kodiert in variabler Bitlänge\\
+•[⇒] Lateinsprachige Texte sind klein, aber alle Zeichen möglich
+\•
+\end{frame}
+
+\frame[plain]{Unicode}%\includegraphics[width=1\textwidth]{unicode}}
+
+\section{Was ist eine Schrift?}
+\begin{frame}[fragile]{Was ist eine Schrift?}
+• Abstrakte Liste, die einer Zahl eine Glyphe zuordnet
+• Eingabe „a“ muss nicht in einer Glyphe resultieren, die nach einem „a“ aussieht!
+•[⇒] Schriftzeichen einsehbar z.\,B. mittels |fontforge|
+\• 
+\end{frame}
+
+\begin{frame}{Kerning, Ligaturen, …}
+• Manche Zeichenkombinationen sehen „unschön“ aus:
+• Abstände können zu groß oder zu klein sein
+• Buchstabenformen können kollidieren
+\•
+\only<1>{\centerline{\huge\rmfamily V\strut A \quad VA}}
+\only<2->{\centerline{\huge\rmfamily V\strut\alert{\dashline{2}(0,0)(0,4)}A \quad VA\kern-.6em\alert{\dashline{2}(0,0)(0,4)}}}
+\only<3->{\centerline{\rmfamily \huge f\strut i \quad fi}}
+\only<4->{Kerning (Unterschneidung) und Ligaturen sind Schrifteigenschaften!}
+\only<5->{\\ Im deutschen Satz: max. 3 Buchstaben bilden Ligatur ({\fontspec{Arno Pro} ffi, ffl})}
+\only<6->{\\ Im traditionallen arabischen Satz bis zu 7 Buchstaben!}
+\end{frame}
+
+\begin{frame}[plain]
+\parbox[b]{.7\textwidth}{
+\includegraphics[height=1.2\textheight]{gebrochenes}%
+}%
+\parbox[b]{.3\textwidth}{
+• Antiqua: \textrm{„normale Schrift“}
+• Grotesk: \textsf{serifenlose Schrift}
+• gebrochene Schriften: \parbox[t]{5cm}{%
+\fontspec{DS-Normal-Fraktur} Fraktur\\%
+\fontspec{DS-Kurrent}\large Kurrent
+}
+• gebrochene Grotesk: selten und hässlich …
+\•
+\vspace*{2cm}
+}
+\end{frame}
+
+\section{\TeX-Schriften}
+\begin{frame}[fragile]{\TeX-Schriften}
+• \TeX\ benötigt für eine Schrift mindestens zwei Dateien:
+• |tfm| – tex font metric%
+\\ enthält alle Informationen über die Ausmaße der Glyphen
+• Erscheinungsbild der Schrift wird erst im Viewer/Ausdruck festgelegt
+•[⇒] Für Portabilität müssen Schriften eingebunden werden
+• Pakete laden automatisch benötigte Dateien, Kodierungen etc.
+\• 
+\end{frame}
+
+\begin{frame}[fragile]{Latin Modern}
+• Paket |lmodern| lädt Latin Modern-Schriften
+• Verbesserung der ursprünglichen \TeX-Schriften\\ (computer modern/cm-super)
+\•
+%\centerline{\includegraphics{showcase/cmrvslmr}}
+\end{frame}
+
+\begin{frame}{Linux Libertine}
+• Paket |libertine| lädt die |Linux Libertine|
+• Als \TeX-Schrift verfügbar
+• Unterstüztung/Weiterentwicklung größtenteils eingestellt, da neuere Schrifttechnologien bevorzugt
+\•
+\end{frame}
+
+\section{Moderne Schrifttechnologien}
+\begin{frame}{Schrifttypen}
+\let•\item
+\begin{itemize}[<+->]
+• Bitmap-Fonts: Kleine Bilder der Buchstaben, Form als Pixel angegeben
+\\ ⇒ nicht beliebig vergrößerbar!
+• Outline-Schriften:
+• Postscript Type1 (pfb/pfm): Beschreibt Buchstabenformen durch Bézierkurven
+• TrueType (ttf):  – dominierende Schrifttechnologie am Computer
+• OpenType (otf): Weiterentwicklung von Type1 und TrueType
+• Apple Advanced Typogaphy (aat): Entwicklung von Apple für höchste typographische Ansprüche
+\end{itemize}
+\end{frame}
+
+\begin{frame}{OpenType}
+• Verfügen über eine große Zahl von schriftspezifischen Features:
+• (echte) Kapitälchen, Mediävalziffern, besondere Ligaturen, Schmuckschriften, verschiedene Varianten von Buchstaben, optische Skalierung, …
+\•
+\pause
+\TeX\ kann nicht mit OpenType-Schriften umgehen! (Es sei denn, durch spezielle zusätzliche Pakete.)
+\end{frame}
+
+\begin{frame}[fragile]{Installation von Schriften}
+\begin{block}{Windows}Schriftdatei (name.otf) in Ordner |C:\WINDOWS\Fonts| (o.\,ä.) schieben, wird automatisch installiert.
+\end{block}
+\begin{block}{Linux}Datei in den Ordner |/usr/share/fonts| speichern und (als root) |fc-cache -vf| ausführen.
+\end{block}
+\begin{block}{Apple}Dateien in den Ordner |/Library/Fonts| oder |/Users/Nutzername/Library/Fonts| speichern.
+\end{block}
+\end{frame}
+
+\section{Exkurs: Neo-Tastaturlayout}
+\begin{frame}{Die Tastatur}
+\centerline{Warum sind die Tasten so seltsam angeordnet?}
+\begin{figure}
+\includegraphics[width=.9\textwidth]{qwertz.eps}
+\caption{ Wikipedia}
+\end{figure}
+\pause\kern-1ex
+• Zehn-Finger-System
+• Häufigste Buchstaben auf kräftgen, schnellen Fingern%
+\pause%
+•[⇒] \alert{qwertz ist historisch bedingt\\ und hat (fast) nichts mit Erognomie zu tun}
+\• 
+\end{frame}
+
+\begin{frame}{Neo}
+• Ein ergonomisches Tastaturlayout
+• Häufigste Buchstaben auf kräftigen Fingern
+• Möglichst häufige Handwechsel
+• Berücksichtigung häufiger Buchstabenkombinationen
+\•
+\end{frame}
+
+\begin{frame}{Neo}
+\begin{figure}
+\only<1>{\includegraphics[width=1\textwidth]{neo2}
+\caption{ Ebene 2 der Neo-Tastatur}}
+\only<2>{\includegraphics[width=1\textwidth]{neo3}
+\caption{ Ebene 3 der Neo-Tastatur}}
+\only<3>{\includegraphics[width=1\textwidth]{neo4}
+\caption{ Ebene 4 der Neo-Tastatur}}
+\only<4>{\includegraphics[width=1\textwidth]{neo6}
+\caption{ Ebene 6 der Neo-Tastatur}}
+\end{figure}
+\uncover<4>{Projektseite: \url{www.neo-layout.org}}
+\end{frame}
+
+\begin{frame}{Tastaturbelegung}
+Es ist nicht immer drin, was drauf steht:
+• Tasten senden Keycodes
+• Diese sind unabhängig vom Aufdruck
+• Betriebssystem wertet nur die Keycodes aus
+•[⇒] Umbelegung auf Software-Ebene möglich%
+\•
+\pause
+Treiber auf der Neo-Projektseite zum Download;\\ einfache Installation!
+\end{frame}
+
+\section{\XeLaTeX, Unicode, OpenType – und Neo.}
+\begin{frame}{\XeTeX\, Unicode, OpenType}
+• \XeTeX\ kann mit Unicode umgehen
+•[⇒] utf8 als native Kodierung
+• \XeTeX\ kann mit allen modernen Schrifttechnologien umgehen!\pause
+• \XeTeX\ ist aber \alert{kein} pdf\TeX\ und kann daher \alert{keine} Mikrotypographie!
+\•
+\end{frame}
+
+\begin{frame}[fragile]{|xltxtra|}
+• Wichtiges Paket beim Arbeiten mit \XeLaTeX:
+• Übernimmt korrekte Kodierung (lädt |xunicode|)
+• Stellt eine einfache Schriftschnittstelle zur Verfügung (mittels |fontspec|)
+\• 
+\pause
+Schriften laden mit |fontspec|:\\
+\pause \alert{low level:} (schaltet direkt auf die angegebene Schrift)
+\begin{lstlisting}
+\fontspec{Arno Pro}
+\end{lstlisting}
+\pause \alert{document level:} (setzt die angegebene Schrift als Brotschrift bzw. Serifenlose für das ganze Dokument)
+\begin{lstlisting}
+\setmainfont[mapping=tex-text]{Arno Pro}
+\setsansfont{Linux Biolinum},\setmonofont{DejaVu Sans Mono}
+\end{lstlisting}
+|mapping=tex-text| sorgt für \TeX-Ligaturen (|--| für –)\enlargethispage{2cm}
+\end{frame}
+
+\begin{frame}[fragile]{\XeLaTeX\ + Neo}
+• Schnelles, angenehmes Schreiben (allgemein)
+• |\{}[]%$# | liegen alle gut und angenehm erreichbar
+• \XeLaTeX\ unterstützt unicode, also auch alle schreibbaren Zeichen in Neo
+• Intuitiverer Umgang:
+\•
+\begin{tabular}[t]{l@{ statt }l}%
+|–| & |--|\\
+… & |\dots|\\
+|„“| & |"` "'|\\
+|»«| & |\flqq\frqq|\\
+
+\end{tabular}
+\end{frame}
+
+\begin{frame}[fragile]{Listen mit Neo+\XeLaTeX}
+Durch Ändern des sog. Category Code kann man |•| in einem Befehl umwandeln und Listen sehr direkt eingeben:
+\begin{columns}
+\begin{column}{.3\textwidth}
+\begin{lstlisting}
+\catcode`\•=\active
+\let•\item
+\begin{itemize}
+• erster Punkt
+• zweiter Punkt
+•[3] dritter Punkt
+\end{itemize}
+\end{lstlisting}
+\end{column}
+\kern-1cm
+\begin{column}{.3\textwidth}
+\let•\item
+\begin{itemize}
+• erster Punkt
+• zweiter Punkt
+•[3] dritter Punkt
+\end{itemize}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Komplexere Anpassungen}
+Mit komplexeren Definitionen sind Listen ohne |\begin/end{itemize}| schreibbar:
+\begin{columns}\begin{column}{.4\textwidth}
+\begin{lstlisting}
+Normaler Text
+• Punkt 1
+• Punkt 2
+
+weiter im Text.
+\end{lstlisting}
+\end{column}\begin{column}{.6\textwidth}
+\begin{lstlisting}
+\newcommand²{\ifmmode...\else...\fi}
+Aufzählung:
+¹ Punkt 1
+² Unterpunkt 1.1
+² Unterpunkt 1.2
+
+¹ Punkt 2 $E = mc²$
+
+weiter im Text
+\end{lstlisting}
+\end{column}\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Mathesatz mit Unicode}
+Mit einigen Definitionen kann der Mathesatz sehr leicht vereinfacht werden:
+\begin{lstlisting}
+\catcode`\∫=\active
+\let∫\int
+\catcode`\∞=\active
+\let∞\infty
+
+∀ ∫^∞_{-∞}±∂⁴y₄Δα
+statt
+\forall\int^\infty_{-\infty}\pm \partial^4y_4\Delta\alpha
+\end{lstlisting}
+\end{frame}
+\end{document}

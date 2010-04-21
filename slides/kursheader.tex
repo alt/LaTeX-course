@@ -58,7 +58,6 @@
 \catcode`\…13
 \let…\dots
 
-
 \newcommand\notiz[1]{}
 \renewcommand\checkmark{\color{green}\ding{51}}
 \newcommand\cross{\color{red}\ding{53}}
@@ -67,6 +66,24 @@
   \setbeamercolor{background canvas}{bg=}%
   \includepdf[#1]{#2}%
     \egroup
+}
+
+\newenvironment{twoblock}[2]{
+  \begin{columns}
+  \begin{column}{.46\textwidth}
+  \begin{block}{#1}
+\def\nextblock{
+  \end{block}
+  \end{column}
+\ %
+  \begin{column}{.46\textwidth}
+  \begin{block}{#2}
+}
+}
+{
+  \end{block}
+  \end{column}
+  \end{columns}
 }
 
 \AtBeginDocument{
@@ -192,7 +209,7 @@
 \AtBeginDocument{
   \makeitemi{•}
 }
-%——beamer versaut hier irgendwas…
+%——beamer versaut hier irgendwas, daher muss itemize explizit beendet werden!
 \def\•{\end{itemize}}
 %—— itemize-hack
 \makeatother
