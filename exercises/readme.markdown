@@ -1,4 +1,6 @@
-# This is a XeLaTeX class to produce woking sheets for a course on LaTeX.
+# lcourse-hd
+
+This is a XeLaTeX class to produce woking sheets for a course on LaTeX at the University of Heidelberg (hence hd).
 
 ## Files
 There are three types of files important: the class file (as documente tex, dtx), the exercises and the solution files. All three are needed to typeset a sheet with solutions. Sheets are also typesettable without solutions.
