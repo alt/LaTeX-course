@@ -1,0 +1,30 @@
+% !TeX root = sheet1.tex
+
+\startsolution{exsheet}
+Das vorliegende Blatt (pdf und tex-Datei) \emph{ist} die Musterlösung der Aufgabe …
+
+\stopsolution
+
+\startsolution{minimaltex}
+\subsolution{Minimales \TeX-Dokument}
+Es muss der Befehl |\bye| oder |\end| vorkommen, damit das Dokument beendent wird. Ansonsten ist in plain\TeX\ kein weiterer Befehl nötig. Als Ausgabe erhält man die Datei |mydocument.pdf|, wenn die Datei selbst 
+|mydocument.tex| hieß. Hätte man mit dem Befehl |tex| kompiliert, hätte man eine |dvi|-Datei erhalten, die oft vor dem Drucken erst umgewandelt werden muss. Beispiel:
+\begin{lcode}
+Ich wuerde gerne viel ueber den Mathesatz, ueber Tabellen
+und das Einfuegen von Bildern lernen.
+Auszerdem bin ich sehr an der Verwendung professioneller
+Schriften mit Microtypographie interessiert.
+
+\bye
+\end{lcode}
+\subsolution{Minimales \LaTeX-Dokument}
+Hierfür muss etwas mehr Aufwand betrieben werden: Die Dokumentenklasse muss definiert sein und eine |document|-Umgebung muss verwendet werden:
+\begin{lcode}
+\documentclass{minimal}
+\begin{document}
+Hallo Welt!
+\end{document}
+
+\end{lcode}
+
+\stopsolution
