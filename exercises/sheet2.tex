@@ -1,0 +1,32 @@
+\documentclass[
+%	solution,
+	blatt=2,
+	ausgabe=23.\,04.\,2010,
+	rückgabe=30.\,04.\,2010
+]{lcourse-hd}
+
+\begin{document}
+
+\begin{exercise}[name=Erste Schritte mit Schriften,punkte=3,abgabe = Quelltext per Mail{,} das fertige Dokument als Ausdruck.]{fonts}
+Setzen Sie ein kurzes (Xe)\LaTeX-Dokument unter Verwendung eines beliebigen Schriftpaketes. D.\,h. es soll nur ein Paket geladen werden und kein weiterer Schriftumschaltbefehl benötigt sein.
+\end{exercise}
+
+\begin{exercise}[name=Die nächsten Schriftschritte,punkte=7,abgabe = Quelltext per Mail{,} das fertige Dokument als Ausdruck.]{fonts}
+
+Installieren Sie die Schriften, die im Moodle zum Download stehen. (Geo Mono, Linux Libertine/Biolinum, DejaVu Sans Mono) Alle Schriften sind unter freien Lizenzen verfügbar. Die Geo Mono muss nicht installiert werden, sondern kann auch „direkt“ verwendet werden, d.\,h. über die Option |ExternalFont|.
+
+Schreiben Sie ein kurzes Testdokument mit \XeLaTeX, in dem mindestens drei dieser Schriften vorkommen. Überlegen Sie sich dazu, welche Pakete Sie benötigen, welche Befehle nötig sind und welche Definitionen geschickt und sinnvoll sind. (Tipp: |\setmainfont| u.\,ä.)
+
+Geben Sie weiterhin einen kurzen Kommentar (in beliebiger Schrift) zur Lesbarkeit und möglichen Anwendung dieser Schriften an.
+\end{exercise}
+
+\begin{expertexercise}[
+	name=fontforge,
+	abgabe = Keine Abgabe nötig.
+]{fontforge}
+Wie in der Vorlesung dargestellt, ist fontforge ein sehr mächtiges Programm bei der Arbeit mit und Entwicklung von Schriften. Installieren Sie also das frei verfügbare Programm und sehen Sie sich einige Schriften an – welche Kodierungen finden Sie? Wie sehen otf, ttf oder pfb-Dateien aus?
+
+Versuchen Sie, ein paar Glyphen zu ändern, zu verschieben, neu zu kodieren u.\,ä. und testen Sie das Ergebnis mit \XeLaTeX. Probieren Sie dazu die fontspec-Schriftladesyntax als auch die low level-Schnittstelle.
+\end{expertexercise}
+
+\end{document}

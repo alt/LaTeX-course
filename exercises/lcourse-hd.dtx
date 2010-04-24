@@ -152,8 +152,11 @@ One needs a second file to write down the solutions. The name of this file must 
 \def\ausgabe{option \texttt{ausgabe=X} needed}
 \def\rückgabe{option \texttt{rückgabe=X} needed}
 \def\blattnummer{00}
+\newif{\ifdraft}
+\draftfalse
 
 \newif\ifsolution
+\DeclareOptionX{draft}{\drafttrue}
 \DeclareOptionX{ausgabe}{\def\ausgabe{#1}}
 \DeclareOptionX{rückgabe}{\def\rückgabe{#1}}
 \DeclareOptionX{blatt}{\def\blattnummer{#1}}
@@ -201,6 +204,13 @@ One needs a second file to write down the solutions. The name of this file must 
 
 \pagestyle{scrheadings}
 \setmainfont[Ligatures={Rare,Common}]{TeX Gyre Pagella}
+
+\ifdraft
+  \AtBeginDocument{\centerline{%
+    \color{red}\Large \sffamily Vorläufige Version}%
+  \vspace*{2ex}%
+  }
+\fi
 
 \AtBeginDocument{
   \MakeShortVerb{|}\vspace*{-8mm}\setcounter{section}{\blattnummer}

@@ -1,6 +1,7 @@
 \input{kursheader}
 
 \usepackage{epic}
+
 \graphicspath{{../Mediales/}}
 
 \begin{document}
@@ -30,7 +31,8 @@
 \•
 \end{twoblock}
 \vspace*{1em}
-⇒ keine Massenproduktionen möglich
+\centerline{⇒ keine Massenproduktionen möglich}
+\vspace*{1em}
 \end{frame}
 
 \begin{frame}{Gutenbergs Druckkunst}
@@ -65,6 +67,7 @@
 • Massenproduktion von schnell erstellbaren Seiten möglich
 • „Line-of-Type“
 \• 
+\einschub[LinoType]
 \end{frame}
 
 \begin{frame}{Der Computer}
@@ -78,8 +81,8 @@
 
 \begin{frame}{Vom Tastendruck zur Druckausgabe}
 Der lange Weg eines Gedanken vom Tastenanschlag bis zum Papier …
+\einschub[Tafelgraphik zur Kodierungskette]
 \end{frame}
-
 
 \section{Kodierungen, Zeichensätze}
 \begin{frame}[fragile]{ASCII}
@@ -98,10 +101,10 @@ Zeichenvorrat:
 \end{frame}
 
 \begin{frame}[fragile]{\TeX-Kodierungen}
-• \TeX kann anfangs nur 7-bit-ASCII verstehen.
+• \TeX\ kann anfangs nur 7-bit-ASCII verstehen.
 • \TeX3 kann auch 8-bit-Kodierungen verarbeiten.
-• Zusätzlicher Zeichenvorrat durch Befehle wie |\"|
-• In \LaTeX\ zugänglich mittels |\usepackage[kodierung]{inputenc}|
+• Zusätzlicher Zeichenvorrat durch spezielle Befehle (\"a)
+• In pdf\LaTeX\ zugänglich mittels |\usepackage[kodierung]{inputenc}|
 • Verschiedene 8-bit-Kodierungen für verschiedene Sprachumgebungen
 \•
 \end{frame}
@@ -110,16 +113,16 @@ Zeichenvorrat:
 \kern-1ex\small
 \begin{verbatim}
   	0 	1 	2 	3 	4 	5 	6 	7 	8 	9 	A 	B 	C 	D 	E 	F
-0 	nicht belegt
-1 	nicht belegt
-2 	 	! 	" 	# 	$ 	% 	& 	' 	( 	) 	* 	+ 	, 	- 	. 	/
+0 	nicht belegt (Steuerzeichen)
+1 	nicht belegt (Steuerzeichen)
+2 	  	! 	" 	# 	$ 	% 	& 	' 	( 	) 	* 	+ 	, 	- 	. 	/
 3 	0 	1 	2 	3 	4 	5 	6 	7 	8 	9 	: 	; 	< 	= 	> 	?
 4 	@ 	A 	B 	C 	D 	E 	F 	G 	H 	I 	J 	K 	L 	M 	N 	O
 5 	P 	Q 	R 	S 	T 	U 	V 	W 	X 	Y 	Z 	[ 	\ 	] 	^ 	_
 6 	` 	a 	b 	c 	d 	e 	f 	g 	h 	i 	j 	k 	l 	m 	n 	o
 7 	p 	q 	r 	s 	t 	u 	v 	w 	x 	y 	z 	{ 	| 	} 	~ 	DEL
-8 	nicht belegt
-9 	nicht belegt
+8 	nicht belegt (Steuerzeichen)
+9 	nicht belegt (Steuerzeichen)
 A 	  	¡ 	¢ 	£ 	¤ 	¥ 	¦ 	§ 	¨ 	© 	ª 	« 	¬ 	-  	® 	¯
 B 	° 	± 	² 	³ 	´ 	µ 	¶ 	· 	¸ 	¹ 	º 	» 	¼ 	½ 	¾ 	¿
 C 	À 	Á 	Â 	Ã 	Ä 	Å 	Æ 	Ç 	È 	É 	Ê 	Ë 	Ì 	Í 	Î 	Ï
@@ -194,31 +197,45 @@ The Unicode Standard is a character coding system designed to support the worldw
 • Unicode bietet theoretisch eine immens große Zahl von Zeichen.\\
 • Für die Kodierung ist viel Speicher nötig (bis zu 32bit pro Zeichen!)\\
 •[⇒] \emph{utf8} kodiert in variabler Bitlänge\\
-•[⇒] Lateinsprachige Texte sind klein, aber alle Zeichen möglich
+•[⇒] Lateinsprachige Texte sind klein, dennoch sind alle Zeichen verfügbar.
 \•
 \end{frame}
 
-\frame[plain]{\includegraphics[width=1\textwidth]{unicode}}
+\frame{\includegraphics[width=1\textwidth]{unicode}}
 
 \section{Was ist eine Schrift?}
 \begin{frame}[fragile]{Was ist eine Schrift?}
-• Abstrakte Liste, die einer Zahl eine Glyphe zuordnet
-• Eingabe „a“ muss nicht in einer Glyphe resultieren, die nach einem „a“ aussieht!
-•[⇒] Schriftzeichen einsehbar z.\,B. mittels |fontforge|
+• Liste, die einer Zahl eine Glyphe zuordnet
+• Eingabe des Codes \macro{0061} muss nicht in einer Glyphe resultieren, die nach einem „a“ aussieht!
+• Je nach Bedarf können Codepunkte völlig frei missbraucht werden
+(Schachfiguren, Feynmangraphen, …)
+• Schriftdateien mit speziellen Programmen einsehbar
+• \hyperlink{http://fontforge.sourceforge.net/}{fontforge} ist eines der mächtigsten Schriftprogramme\\ (freie Software!)
 \• 
+\centerline{\includegraphics[width=.3\textwidth]{fontforge.jpeg}}
+\einschub[fontforge]
 \end{frame}
 
 \begin{frame}{Kerning, Ligaturen, …}
-• Manche Zeichenkombinationen sehen „unschön“ aus:
+• Zeichen können nicht einfach hintereinander gesetzt werden:
+• manche Zeichenkombinationen sehen „unschön“ aus
 • Abstände können zu groß oder zu klein sein
 • Buchstabenformen können kollidieren
 \•
 \only<1>{\centerline{\huge\rmfamily V\strut A \quad VA}}
 \only<2->{\centerline{\huge\rmfamily V\strut\alert{\dashline{2}(0,0)(0,4)}A \quad VA\kern-.6em\alert{\dashline{2}(0,0)(0,4)}}}
-\only<3->{\centerline{\rmfamily \huge f\strut i \quad fi}}
-\only<4->{Kerning (Unterschneidung) und Ligaturen sind Schrifteigenschaften!}
-\only<5->{\\ Im deutschen Satz: max. 3 Buchstaben bilden Ligatur ({\fontspec{Arno Pro} ffi, ffl})}
-\only<6->{\\ Im traditionallen arabischen Satz bis zu 7 Buchstaben!}
+\only<3>{\centerline{\huge\sffamily IV\quad IA}}
+\only<4->{\centerline{\rmfamily \huge f\strut i \quad fi}}
+\only<5->{Kerning (Unterschneidung) und Ligaturen sind Schrifteigenschaften!}
+\only<6->{\\ Im deutschen Satz: max. 3 Buchstaben bilden Ligatur ({\fontspec[Ligatures=Rare]{Arno Pro} ffi, ffl, st})}
+\only<7->{\\ Im traditionellen arabischen Satz bis zu 7 Buchstaben!}
+\end{frame}
+
+\begin{frame}{Schriften}
+• Heutige Schriftformen durch römisches Alphabet bestimmt
+• durch Kunsteinflüsse vielfältige Abänderungen der Grundformen
+• wichtige Merkmale: Form der Bögen, Serifen, Neigung, Stärke
+\•
 \end{frame}
 
 \begin{frame}[plain]
@@ -235,16 +252,18 @@ The Unicode Standard is a character coding system designed to support the worldw
 • gebrochene Grotesk: selten und hässlich …
 \•
 \vspace*{2cm}
+\einschub[you need a font]
 }
 \end{frame}
 
-\section{\TeX-Schriften}
+\section{Schriften in \TeX}
 \begin{frame}[fragile]{\TeX-Schriften}
 • \TeX\ benötigt für eine Schrift mindestens zwei Dateien:
 • |tfm| – tex font metric%
 \\ enthält alle Informationen über die Ausmaße der Glyphen
-• Erscheinungsbild der Schrift wird erst im Viewer/Ausdruck festgelegt
-•[⇒] Für Portabilität müssen Schriften eingebunden werden
+• Erscheinungsbild der Schrift wird erst im Viewer/Ausdruck festgelegt\\
+(ttf-Schrift, pk-Schrift o.\,a.)
+•[⇒] Für Portabilität müssen Schriften \emph{eingebunden} werden
 • Pakete laden automatisch benötigte Dateien, Kodierungen etc.
 \• 
 \end{frame}
@@ -258,8 +277,10 @@ The Unicode Standard is a character coding system designed to support the worldw
 
 \begin{frame}{Linux Libertine}
 • Paket |libertine| lädt die |Linux Libertine|
-• Als \TeX-Schrift verfügbar
+• als \TeX-Schrift verfügbar
 • Unterstüztung/Weiterentwicklung größtenteils eingestellt, da neuere Schrifttechnologien bevorzugt
+• inzwischen wieder weitergeführt; alternativ Paket |xelibertine| für \XeTeX
+• Linux Biolinum als ergänzende Grotesk
 \•
 \end{frame}
 
@@ -267,12 +288,13 @@ The Unicode Standard is a character coding system designed to support the worldw
 \begin{frame}{Schrifttypen}
 \let•\item
 \begin{itemize}[<+->]
-• Bitmap-Fonts: Kleine Bilder der Buchstaben, Form als Pixel angegeben
+• Bitmap-Fonts: Kleine Bilder der Buchstaben, Form pixelweise angegeben
 \\ ⇒ nicht beliebig vergrößerbar!
 • Outline-Schriften:
 • Postscript Type1 (pfb/pfm): Beschreibt Buchstabenformen durch Bézierkurven
-• TrueType (ttf):  – dominierende Schrifttechnologie am Computer
-• OpenType (otf): Weiterentwicklung von Type1 und TrueType
+• TrueType (ttf,ttc): dominierende Schrifttechnologie am Computer (quadratische B-Splines)
+• smartfonts: Weiterentwicklungen von TrueType
+• OpenType (otf): Weiterentwicklung von Type1 und TrueType mit sehr vielen möglichen Features
 • Apple Advanced Typogaphy (aat): Entwicklung von Apple für höchste typographische Ansprüche
 \end{itemize}
 \end{frame}
@@ -282,11 +304,16 @@ The Unicode Standard is a character coding system designed to support the worldw
 • (echte) Kapitälchen, Mediävalziffern, besondere Ligaturen, Schmuckschriften, verschiedene Varianten von Buchstaben, optische Skalierung, …
 \•
 \pause
-\TeX\ kann nicht mit OpenType-Schriften umgehen! (Es sei denn, durch spezielle zusätzliche Pakete.)
+pdf\TeX\ kann nicht mit OpenType-Schriften umgehen
+• Metriken können nicht extrahiert werden
+• tfm-Datei nötig
+• spezielle Features nicht verwendbar
+•[⇒] Pakete können Schriften verfügbar machen
+\•
 \end{frame}
 
-\begin{frame}[fragile]{Installation von Schriften}
-\begin{block}{Windows}Schriftdatei (name.otf) in Ordner |C:\WINDOWS\Fonts| (o.\,ä.) schieben, wird automatisch installiert.
+\begin{frame}[fragile]{Installation von Systemschriften}
+\begin{block}{Windows}Schriftdatei (name.otf/ttf) in Ordner |C:\WINDOWS\Fonts| (o.\,ä.) schieben, wird automatisch installiert.
 \end{block}
 \begin{block}{Linux}Datei in den Ordner |/usr/share/fonts| speichern und (als root) |fc-cache -vf| ausführen.
 \end{block}
@@ -319,16 +346,18 @@ The Unicode Standard is a character coding system designed to support the worldw
 
 \begin{frame}{Neo}
 \begin{figure}
-\only<1>{\includegraphics[width=1\textwidth]{neo2}
-\caption{ Ebene 2 der Neo-Tastatur}}
-\only<2>{\includegraphics[width=1\textwidth]{neo3}
+\only<1>{\includegraphics[width=1\textwidth]{ebene12}
+\caption{ Ebenen 1 und 2 der Neo-Tastatur}}
+\only<2>{\includegraphics[width=1\textwidth]{ebene3}
 \caption{ Ebene 3 der Neo-Tastatur}}
-\only<3>{\includegraphics[width=1\textwidth]{neo4}
+\only<3>{\includegraphics[width=1\textwidth]{ebene4}
 \caption{ Ebene 4 der Neo-Tastatur}}
-\only<4>{\includegraphics[width=1\textwidth]{neo6}
+\only<4>{\includegraphics[width=1\textwidth]{ebene5}
+\caption{ Ebene 5 der Neo-Tastatur}}
+\only<5>{\includegraphics[width=1\textwidth]{ebene6}
 \caption{ Ebene 6 der Neo-Tastatur}}
 \end{figure}
-\uncover<4>{Projektseite: \url{www.neo-layout.org}}
+\uncover<5>{Projektseite: \url{www.neo-layout.org}}
 \end{frame}
 
 \begin{frame}{Tastaturbelegung}
@@ -343,37 +372,56 @@ Treiber auf der Neo-Projektseite zum Download;\\ einfache Installation!
 \end{frame}
 
 \section{\XeLaTeX, Unicode, OpenType – und Neo.}
-\begin{frame}{\XeTeX\, Unicode, OpenType}
-• \XeTeX\ kann mit Unicode umgehen
-•[⇒] utf8 als native Kodierung
-• \XeTeX\ kann mit allen modernen Schrifttechnologien umgehen!\pause
-• \XeTeX\ ist aber \alert{kein} pdf\TeX\ und kann daher \alert{keine} Mikrotypographie!
+\begin{frame}{Zwischenbilanz}
+• utf8: Vielzahl von Zeichen kodierbar
+• otf/aat: Vielzahl von Zeichen/zusätzlichen Features darstellbar
+• gute Tastaturlayouts: Vielzahl von Zeichen eingebbar
+• Programm, damit umzugehen?
 \•
 \end{frame}
 
-\begin{frame}[fragile]{|xltxtra|}
-• Wichtiges Paket beim Arbeiten mit \XeLaTeX:
-• Übernimmt korrekte Kodierung (lädt |xunicode|)
-• Stellt eine einfache Schriftschnittstelle zur Verfügung (mittels |fontspec|)
+\begin{frame}[fragile]{\XeTeX\, Unicode, OpenType}
+• \XeTeX\ kann mit Unicode umgehen
+•[⇒] utf8 als native Kodierung
+• \XeTeX\ kann mit allen modernen Schrifttechnologien umgehen!
+• alle Schriftfeatures können verwendet werden\pause
+• \XeTeX\ ist aber \alert{kein} pdf\TeX\ und kann daher \alert{keine} Mikrotypographie!
+• lua\TeX\ kann alles (auch Mikrotypographie), aber noch nicht für den normalen \LaTeX-Endnutzer bedienbar
+\•
+Schriften laden (\alert{low level})
+\begin{lstlisting}
+\font\warnock="Warnock Pro/I/S=5:+smcp" at 12pt
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}{\pkg{xltxtra}}
+• wichtiges Paket beim Arbeiten mit \XeLaTeX:
+• übernimmt korrekte Kodierung (lädt |xunicode|)
+• stellt eine einfache Schriftschnittstelle zur Verfügung (mittels |fontspec|)
+• bietet einige kleinere nützliche Features
 \• 
-\pause
+\end{frame}
+
+\begin{frame}[fragile]{\pkg{fontspec}}
 Schriften laden mit |fontspec|:\\
-\pause \alert{low level:} (schaltet direkt auf die angegebene Schrift)
+\alert{high level:}
 \begin{lstlisting}
 \fontspec{Arno Pro}
 \end{lstlisting}
-\pause \alert{document level:} (setzt die angegebene Schrift als Brotschrift bzw. Serifenlose für das ganze Dokument)
+(schaltet im aktuellen Dokument direkt auf die angegebene Schrift)
+\pause \alert{document level:}
 \begin{lstlisting}
 \setmainfont[mapping=tex-text]{Arno Pro}
-\setsansfont{Linux Biolinum},\setmonofont{DejaVu Sans Mono}
+\setsansfont[ExternalFont]{Linux Biolinum}
+\setmonofont{DejaVu Sans Mono}
 \end{lstlisting}
+ (setzt die angegebene Schrift als Brotschrift, Serifenlose bzw. Dicktengleiche für das ganze Dokument)\\
 |mapping=tex-text| sorgt für \TeX-Ligaturen (|--| für –)\enlargethispage{2cm}
 \end{frame}
 
 \begin{frame}[fragile]{\XeLaTeX\ + Neo}
 • Schnelles, angenehmes Schreiben (allgemein)
 • |\{}[]%$# | liegen alle gut und angenehm erreichbar
-• \XeLaTeX\ unterstützt unicode, also auch alle schreibbaren Zeichen in Neo
 • Intuitiverer Umgang:
 \•
 \begin{tabular}[t]{l@{ statt }l}%
@@ -381,72 +429,21 @@ Schriften laden mit |fontspec|:\\
 … & |\dots|\\
 |„“| & |"` "'|\\
 |»«| & |\flqq\frqq|\\
-
 \end{tabular}
-\end{frame}
-
-\begin{frame}[fragile]{Listen mit Neo+\XeLaTeX}
-Durch Ändern des sog. Category Code kann man |•| in einem Befehl umwandeln und Listen sehr direkt eingeben:
-\begin{columns}
-\begin{column}{.3\textwidth}
-\begin{lstlisting}
-\catcode`\•=\active
-\let•\item
-\begin{itemize}
-• erster Punkt
-• zweiter Punkt
-•[3] dritter Punkt
-\end{itemize}
-\end{lstlisting}
-\end{column}
-\kern-1cm
-\begin{column}{.3\textwidth}
-\let•\item
-\begin{itemize}
-• erster Punkt
-• zweiter Punkt
-•[3] dritter Punkt
-\end{itemize}
-\end{column}
-\end{columns}
-\end{frame}
-
-\begin{frame}[fragile]{Komplexere Anpassungen}
-Mit komplexeren Definitionen sind Listen ohne |\begin/end{itemize}| schreibbar:
-\begin{columns}\begin{column}{.4\textwidth}
-\begin{lstlisting}
-Normaler Text
-• Punkt 1
-• Punkt 2
-
-weiter im Text.
-\end{lstlisting}
-\end{column}\begin{column}{.6\textwidth}
-\begin{lstlisting}
-\newcommand²{\ifmmode...\else...\fi}
-Aufzählung:
-¹ Punkt 1
-² Unterpunkt 1.1
-² Unterpunkt 1.2
-
-¹ Punkt 2 $E = mc²$
-
-weiter im Text
-\end{lstlisting}
-\end{column}\end{columns}
+\\
+\einschub[itemize hack in alttex]
 \end{frame}
 
 \begin{frame}[fragile]{Mathesatz mit Unicode}
 Mit einigen Definitionen kann der Mathesatz sehr leicht vereinfacht werden:
-\begin{lstlisting}
+\begin{verbatim}
 \catcode`\∫=\active
 \let∫\int
 \catcode`\∞=\active
 \let∞\infty
-
-∀ ∫^∞_{-∞}±∂⁴y₄Δα
+$∀ ∫^∞_{-∞}±∂⁴y₄Δα$
 statt
-\forall\int^\infty_{-\infty}\pm \partial^4y_4\Delta\alpha
-\end{lstlisting}
+$\forall\int^\infty_{-\infty}\pm \partial^4y_4\Delta\alpha$
+\end{verbatim}
 \end{frame}
 \end{document}
