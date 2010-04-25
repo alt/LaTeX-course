@@ -1,6 +1,8 @@
-\documentclass{scrartcl}
+\documentclass[ngerman]{scrartcl}
 
 \usepackage{
+  babel,
+  hyperref,
   xltxtra
 }
 
@@ -10,12 +12,14 @@
 \subtitle{\LaTeX-Kurs im Sommersemester 2010}
 \author{Arno Trautmann\thanks{Arno.Trautmann@gmx.de}}
 
+\hypersetup{
+  colorlinks
+}
 
 \begin{document}
 \maketitle
 
-Für eine erfolgreiche Teilnahme an der Vorlesung mit Scheinerwerb sind folgende Formalien einzuhalten:
-
+\minisec{Für eine erfolgreiche Teilnahme an der Vorlesung mit Scheinerwerb sind folgende Formalien einzuhalten:\vspace*{1em}}
 \catcode`\•13
 \let•\item
 \begin{itemize}
@@ -23,12 +27,24 @@ Für eine erfolgreiche Teilnahme an der Vorlesung mit Scheinerwerb sind folgende
 • regelmäßige Teilnahme am Kurs
 • Bearbeitung und Einreichung der Übungsaufgaben
 • Erreichen von mindestens 50\% der möglichen Gesamtpunktzahl
+• Scheinnote richtet sich nach erreichter Übungspunktzahl (50\% = Note 4,0; 100\% = Note 1,0; dazwischen linear abgestuft.)
 \end{itemize}
 
-Für die Übungsabgabe sind folgende Punkte einzuhalten:
+\minisec{Für die Übungsabgabe sind folgende Punkte einzuhalten:\vspace*{1em}}
 \begin{itemize}
+• Übungsaufgaben sind bis Freitag vor der folgenden Vorlesung abzugeben, d.\,h. die Mail muss gesendet worden sein und die geforderten Ausdrucke. Sollten Ausdrucke vergessen\,/\, nicht abgegeben werden, dient die Mail als Sicherheit, dass die Aufgaben bearbeitet wurden. Ausdrucke müssen zur Punktvergabe aber auf jeden Fall nachgereicht werden!
+• Abgaben in Gruppen bis zu drei Studenten\footnote{Von lat. studens = sich bemühend, damit sind also sowohl weibliche Bemühende als auch männliche Bemühende gemeint.} sind erwünscht
 • Abgabe je nach Angabe im Aufgabenzettel: per Mail, handschriftlich, gedruckt (das fertige Dokument, also pdf, oder der Quellcode selbst)
 • bei Einsendung per Mail sind nur die angeforderten Dateien zu senden – alles andere überfüllt unnötig die Mailordner
+\end{itemize}
+
+\minisec{Materialien:\vspace*{1em}}
+\begin{itemize}
+• Folien zur Vorlesung sind als pdf-Dateien im Moodle
+• Übungsblätter sind (zumindest vorläufig) im Moodle als pdf
+• alle Dateien sind als Quellcode im github zu finden:
+•[] \url{http://github.com/alt/LaTeX-course}
+• im Moodle stehen von Zeit zu Zeit weitere Materialien, die rein informell gedacht sind, manchmal aber auch Nachtragungen zur Vorlesung. Es lohnt sich immer, nochmal reinzuschauen.
 \end{itemize}
 
 \end{document}
