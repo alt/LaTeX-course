@@ -1,0 +1,430 @@
+\input{kursheader}
+
+\begin{document}
+\section{Der Satzspiegel}
+\begin{frame}{Formatierung: Makrotypographie}
+• „globale“ Typographie:
+• Satzspiegel
+• Gestaltung von Kopf- und Fußzeilen 
+• Wahl der Schriften
+• Formatierung von Abständen u.\,ä.
+• Inhaltsverzeichnis, Indizes, Verzeichnisse …
+\• 
+\end{frame}
+
+
+\begin{frame}{Der Satzspiegel}
+• Verhältnis von Rändern zu Textbreiten
+• Ein- oder zweiseitiger Satz?
+• Schriftgröße, Laufweite
+• Kopf- und Fußzeilen
+\•
+\end{frame}
+
+\begin{frame}{Satzspiegel mit KOMA}
+• KOMA-Skript (Hauptautor Markus Kohm)
+• bietet optimale Satzspiegelkonstruktion
+• eigenes Paket |typearea|
+• automatische Berechnung; anpassbar (z.\,B. mittelalterliche Konstruktion)
+• freie Anpassung mittels |geometry|
+\• 
+\end{frame}
+
+\begin{frame}[fragile]{geometry}
+• Manuelle Einstellung des Satzspiegels
+• Verwendung mittels |\usepackage[top=2cm,bottom=5cm]{geometry}|
+• oder |\geometry{top=2cm,bottom=5cm}|
+\•
+\end{frame}
+
+\begin{frame}[fragile]{geometry}
+\begin{block}{Mögliche Optionen:}
+\begin{verbatim}
+left, right, inner, outer, hmargin
+top, bottom, vmargin
+margin
+bindingoffset, textwidth, textheight
+twocolumn, columnsep, marginparsep, footnotesep
+headsep, footsep, nofoot, nohead
+hoffset, voffset, offset
+\end{verbatim}
+\vdots
+\end{block}
+\end{frame}
+
+\section{Kopf- und Fußzeilen}
+\begin{frame}[fragile]{Kopf- und Fußzeilen}
+• Enthalten wichtige Informationen über das Dokument:
+• Lebende Kolumnentitel
+• Seitenzahlen
+\•
+
+• Anpassung mittels verschiedener Pakete
+• Auswahl über |\pagestyle{Seitenstil}| oder |\thispagestyle{Seitenstil}|
+• Voreinstellungen: |empty|, |plain|, |headings|
+\•
+\end{frame}
+
+\begin{frame}[fragile]{|fancyhdr|}
+Laden des Pakets und Einstellungen im Dokumentenkopf:
+\begin{lstlisting}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\end{lstlisting}
+\begin{columns}
+\begin{column}{.4\textwidth}
+Einseitiger Satz:
+\begin{lstlisting}
+\lhead{}    \lfoot{}
+\chead{}    \cfoot{}
+\rhead{}    \rfoot{}
+\end{lstlisting}
+\end{column}
+\pause
+\begin{column}{.4\textwidth}
+Zweiseitiger Satz (Odd, Even)
+\begin{lstlisting}
+\fancyhead[LO]{}
+\fancyhead[RO,LE]{}
+\fancyhead[CE]{}
+\fancyfoot[LO]{}
+\fancyfoot[RO,LE]{}
+\fancyfoot[CE]{}
+\end{lstlisting}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Aus dem KOMA-Bundle: |scrpage2|}
+\begin{lstlisting}
+\usepackage[automark]{scrpage2}
+\pagestyle{scrheadings}
+\pagestyle{scrplain}
+\lehead[scrplain-links-gerade]{scrheadings-links-gerade}
+\cohead[scrplain-zentriert-ungerade]{scrheadings-zentr-ungr}
+\rehead[]{}
+\cefoot[]{}
+\ohead[]{\pagemark}
+\ihead{\headmark}
+\cfoot{}
+\end{lstlisting}
+\end{frame}
+
+\section{DIY: Befehle und Umgebungen}
+
+\begin{frame}[fragile]{Makros}
+• Abkürzungen, die das Leben erleichtern
+• \LaTeX\ definiert große Zahl von Makros vor
+• Klassen und Pakete erweitern die Möglichkeiten immens
+\•
+\end{frame}
+
+\begin{frame}[fragile]{Neue Befehle}
+• |\newcommand{\wasser}{H$_2$O}| ⇒ H$_2$O
+• Ermöglicht Abkürzungen im Text, die häufig vorkommen\pause
+• Änderung: |\renewcommand{\wasser}{H\kern-.1em$_2$\kern-.1em O}|:\\ H\kern-.1em$_2$\kern-.1em O
+\• 
+\end{frame}
+
+\begin{frame}[fragile]{Leerzeichen in \TeX}
+\parbox{.12\textwidth}{\alert{Achtung:}\\ \includegraphics[width=1.4cm]{lion_colour}}
+\TeX\ „frisst“ gerne Leerzeichen – vor allem nach Befehlen:\\
+|\wasser ist nass| ⇒ H$_2$Oist nass.
+
+\pause
+•<+-> \TeX\ liest Befehle vom |\| bis zum ersten nicht-Buchstaben%
+\\ (Zahl, Klammer, Leerzeichen, Punkt, \dots)
+\\ \verb*|\LaTeX   ist  manchmal   umständlich|%
+•<+-> Befehle im Text immer mit |\| oder |{}| beenden:
+•<+-> \verb*|\LaTeX\ ist manchmal umständlich.|
+\•
+\begin{block}{}\centerline{
+\only<2-3>{\LaTeX ist manchmal umständlich}
+\only<4>{\LaTeX\ ist manchmal umständlich}}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]{Befehle mit Argumenten}
+\begin{lstlisting}
+\newcommand\molekuel[3][H]{Das Molekül #1$_#2$#3}
+\end{lstlisting}
+• Argumente werden mit |[3]| definiert
+• Optionales Argument in eckigen Klammern
+• Zugriff in der Definition möglich mit |#1|
+• In der Verwendung meist mit geschweiften Klammern |{Co}|
+\•
+\newcommand\molekuel[3][H]{Das Molekül #1$_#2$#3}
+|\molekuel{2}{O}| ⇒ \molekuel{2}{O}\\
+|\molekuel[Co]{7}{O}| ⇒ \molekuel[Co]{7}{O}\\
+\end{frame}
+
+\begin{frame}[fragile]{Low Level: def}
+• \TeX\ kennt nur den primitiven Befehl |\def|
+• low level ⇒ \alert{Vorsicht!}
+• \LaTeX\ definiert |\newcommand| aus guten Gründen!\\ (schützt vor Überschreiben)
+• für spezielle Ansprüche kann |\def| aber nützlich sein:
+\•
+
+\begin{lstlisting}
+\def\dosomething#1#2xyz#3{some code}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Umgebungen}
+\begin{lstlisting}
+\begin{umgebung}[opt. Argumente]{evtl. Argumente}
+  .
+  .
+\end{umgebung}
+\end{lstlisting}
+\pause 
+• Jede Umgebung ist eine Gruppierung (wie |{}| )\\
+ ⇒ alle Einstellungen innerhalb einer Umgebung sind lokal%
+• am Anfang und am Ende werden Befehle ausgeführt:
+•[⇒] Abstände (horizontal, vertikal), Schriftumstellungen, Setzen von Zählern
+• Argumente beeinflussen das Aussehen der Umgebung (Anzahl/Ausrichtung von Tabellenspalten, Anordnung von Gleitobjekten, etc.)
+\•
+\end{frame}
+
+\begin{frame}[fragile]{Wichtige Umgebungen}
+\begin{tabular}{ll}
+Aufzählungen & |itemize| \\
+Nummerierungen & |enumerate| \\
+wörtliche Wiedergabe & |verbatim| \\
+zweispaltiger Satz & |twocolumn|\\
+Zitate & |quotation| \\
+zentiert & |centering|\\
+abgeschlossene Einheit & |minipage|\\
+Tabellen & |tabular|, |tabularx|, |tabulary|,\\
+         & |supertabular| etc. \\
+Bilder & |figure| \\
+Gleitumgebung & |table| \\
+Beamerfolie & |frame| \\
+Gleichungen & |align| (Mathe)\\
+Matrizen & |matrix| (Mathe)\\
+\end{tabular}
+\end{frame}
+
+\begin{frame}[fragile]{Einfache Listen}
+\begin{columns}
+\begin{column}{.4\textwidth}
+\begin{lstlisting}
+\begin{itemize}
+\item Erster Punkt
+\item Zweiter Punkt
+\item[3] dritter Punkt
+\end{itemize}
+\end{lstlisting}
+\begin{itemize}
+\item Erster Punkt
+\item Zweiter Punkt
+\item[3] dritter Punkt
+\end{itemize}
+\end{column}
+\begin{column}{.4\textwidth}
+  \begin{lstlisting}
+\begin{enumerate}
+\item Erster Punkt
+\item Zweiter Punkt
+\item[3] dritter Punkt
+\end{enumerate}
+\end{lstlisting}
+\begin{enumerate}
+\item Erster Punkt
+\item Zweiter Punkt
+\item[3] dritter Punkt
+\end{enumerate}
+\end{column}
+\end{columns}
+\bigskip
+\alert{\parbox[t]{.9\textwidth}{Aussehen von |enumerate| und |itemize| wird von der Dokumentenklasse bestimmt!}}
+\end{frame}
+
+\section{Schriftgröße}
+\begin{frame}[fragile]{Schriftgröße}
+\begin{block}{ Als Dokumentoption}
+Fast alle Klassen bieten Option für Schriftgröße:
+\begin{lstlisting}
+\documentclass[10pt]{scrartcl}
+\end{lstlisting}
+Möglich sind 10pt, 11pt, 12pt
+\end{block}\vspace{.4ex}\pause 
+Wer wirklich \emph{genau weiß}, was er tut:
+\begin{lstlisting}
+\fontsize{Größe}{Durchschuss}\selectfont
+\fontsize{10}{12}\selectfont
+\end{lstlisting}
+\end{frame}
+
+\section{Leerzeichen, Striche}
+\begin{frame}{Leerzeichen und Striche}
+\begin{block}{gute Typographie:}
+Es gibt verschieden breite Leerzeichen, je nach Zweck und Position,
+auch horizontale Striche unterscheiden sich je nach Bedeutung in Höhe, Breite und Länge.
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]{Leerzeichen}
+• normales Leerzeichen: \verb*| |
+• schmales Leerzeichen (Spatium): |\,|%
+• negativer Abstand: |\!|
+\\ z. B., z.\,B., z.\!B.%
+• großer Abstand (Geviert) |\emspace|
+• beliebiger Platz: |\hspace(*){2em}|
+• Leerräume im Mathemodus:%
+\\ (werden normal automatisch korrekt gesetzt)%
+\\ |$a b = a\, b = a \! b$| ⇒ $a b = a\, b = a \! b$%
+\pause
+• Explizites Ändern des Abstandes (kerning):%
+\\ |a\kern-0.1em b| ⇒ a\kern-0.1em b \notiz{Mögliche Maße an der Tafel}%
+\\ |a\kern-0.5em b| ⇒ a\kern-0.5em b 
+\• 
+\end{frame}
+
+\begin{frame}[fragile]{Strichlängen}
+• Länge des Striches entscheidend für Grammatik und Lesbarkeit!
+• Viertelgeviertstrich, Bindestrich: |-|
+• Halbgeviertstrich, Gedankenstrich: |--| –
+• Geviertstrich, englischer Gedankenstrich: |---| —
+• Minuszeichen: |$-$| $-$
+• Im Vergleich:%
+\\ |- -- --- $- +$|%
+\\ - – — $- +$%
+\•\pause
+\end{frame}
+
+\begin{frame}[fragile]{Strichlängen}
+\begin{block}{Verwendung}
+Vorder- und Rückseite \dots\\
+Vorderseite – oder Rückseite – \dots\\
+frontmatter—or backmatter— \dots\\
+Längen/Zeitangaben: Düsseldorf\,–\,Koblenz; 18\,–\,20\,Uhr; mit Spatium!
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]{Auslassungen}
+Auslassungspunkte sollten gesperrt gesetzt werden:
+\\ Wenn ganze Satzteile ...
+\\ ausgelassen werden \dots
+\\ Wenn Wortteile ausgelassen werden, kommt kein Leer\dots\ davor.
+\\[2em]
+Befehle |\dots| oder |\ldots| sorgen für richtige Abstände.\\
+Paket |ellipsis| korrigiert den Abstand vor und nach Ellipsen.
+\end{frame}
+
+\begin{frame}[fragile]{Probleme mit |ellipsis|}
+|\usepackage{ellipsis}| führt zu inkonsistenten Abständen nach |\dots|:
+\begin{lstlisting}
+\LaTeX ist \dots manchmal kompliziert \dots
+\end{lstlisting}
+\LaTeX ist \dots{}manchmal kompliziert \dots
+\\[1em]\pause
+|\usepackage[xspace]{ellipsis}| korrigiert dies:
+\begin{lstlisting}
+\LaTeX\ ist \dots manchmal kompliziert \dots
+\end{lstlisting}
+\LaTeX\ ist \dots\ manchmal kompliziert \dots
+\end{frame}
+
+\section{Dokumentation}
+\begin{frame}[fragile]{Welche Befehle möglich?}
+• Woher weiß man, welche Befehle |ellipsis| oder |geometry| bieten?
+• Welche Einstellungen haben die KOMA-Klassen?
+• Wie bekommt man allgemein Informationen über Pakete\,/\,Klassen?
+\•
+\end{frame}
+
+\begin{frame}[fragile]{texdoc}
+• |texdoc| durchsucht die \LaTeX-Ordner
+• liefert direkt die Dokumentation des gesuchten Paketes:
+• |texdoc amsmath| öffnet |amsmath.pdf|
+• |texdoc -l amsmath| listet alle Ergebnisse auf
+• |texdoc -s amsmath| liefert Ergebnisse aus erweiterter Suche
+• |texdoc --help| bietet weitere Informationen%
+\•
+⇒ Vorteile der Kommandozeile\\[2em]
+|texdoctk| bietet (experimentelle) graphische Oberfläche
+\end{frame}
+
+\section{Minimalbeispiel}
+\begin{frame}{Minimalbeispiel}
+• dient zum Finden von Fehlern
+• optimal für Fragen:
+• erspart den Kampf durch unnötigen Code
+• minimales Dokument, das den Fehler noch produziert
+•[⇒] für die meisten Übungsabgaben gefordert
+\•
+\end{frame}
+
+\begin{frame}[fragile]{Erstellen eines Minimalbeispiels}
+• allen Code wegnehmen, der nichts mit dem Problem zu tun hat
+• allen unnützen Text wegnehmen. Wenn langer Text nötig ist, Paket |blindtext| verwenden (Übungsaufgabe \dots)
+• alle Pakete entfernen, die nichts mit dem Problem zu tun haben.
+• falls die Klasse für das Problem unerheblich ist: |\documentclass{minimal}|
+• allen Code wegnehmen, der nichts mit dem Problem zu tun hat!
+\•
+\end{frame}
+
+\section{Fehlermeldungen}
+\begin{frame}{Was tun, wenn \LaTeX\ anhält?}
+\let•\item
+\begin{enumerate}
+• Ruhe bewahren (Dateien können nicht beschädigt werden!)
+• überlegen, was man gerade geändert hat
+• Schreibfehler korrigieren
+• log-Datei lesen
+• nicht überfliegen, sodern lesen!
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{Anhalten bei Fehlern}
+• manche Editoren kompilieren im nonstop-mode
+• Fehler werden ausgegeben, aber ignoriert.
+• „Ich habe 100 Fehler in meinem Dokument“ ist keine sinnvolle Aussage:
+• sobald ein Fehler auftritt, ist das Dokument meist wertlos.
+\•
+\end{frame}
+
+
+\begin{frame}[fragile]{Fehlerausgabe}
+Typische Fehlermeldung:
+\begin{lstlisting}
+! Undefined control sequence.
+l.3 Ein \Latex-Dokument
+                           .
+? 
+! Emergency stop.
+l.3 Ein \Latex-Dokument.
+                           .
+No pages of output.
+Transcript written on xelatextest.log.
+\end{lstlisting}
+⇒ Befehl in Zeile 3 falsch geschrieben.
+\end{frame}
+
+\begin{frame}[fragile]{Komplizierte Fehlermeldungen}
+\begin{lstlisting}
+Runaway argument?
+{ \coursesection {Einleitung, Übersicht} \input {lk09-einf
+! File ended while scanning use of \beamer@howtotreatframe.
+<inserted text> 
+                \par
+\end{lstlisting}
+⇒ Irgendwo nach |\coursesection| ein |}| oder |\end{umgebung}| vergessen.\\
+Die Zeile wird \emph{nicht} ausgegeben, es sei denn Kommandozeilenargument wird angegeben:\\
+|xelatex --file-line-error meinedatei.tex|
+\end{frame}
+
+\begin{frame}[fragile]{Zeig’s mir!}
+\begin{block}{Definition zeigen mittels show:}
+|\show| im Dokument, Ausgabe in der log-Datei:\\
+\begin{lstlisting}
+\show\wasser
+
+> \wasser=macro:
+->H$_2$O.
+l.5 \show\wasser
+\end{lstlisting}
+\end{block}
+\end{frame}
+\end{document}

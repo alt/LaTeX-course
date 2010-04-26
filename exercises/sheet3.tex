@@ -1,0 +1,47 @@
+\documentclass[
+	draft,
+%	solution,
+	blatt=3,
+	ausgabe=30.\,04.\,2010,
+	rückgabe=07.\,05.\,2010
+]{lcourse-hd}
+
+\begin{document}
+
+\begin{exercise}[
+  name=Minimalbeispiel,
+  punkte=3,
+  abgabe = Quelltext per Mail{,} das fertige Dokument als Ausdruck.
+]{minimal}
+Das folgende Dokument produziert einen Fehler, der nicht leicht zu verstehen ist. Oft ist das Verständnis eines Fehlers für den Nutzer nicht von Interesse, wohl aber die Behebung selbigens. Daher erstellt man ein Minimalbeispiel, das man dem \TeX perten seines Vertrauens übergibt, der sich die Zeit nehmen kann, den Fehler zu beheben. Das geht aber nur, wenn er den Fehler in reiner Form extrahiert vorliegen hat. Erstellen Sie also aus dem folgenden Dokument ein Minimalbeispiel nach allen Regeln der Kunst:
+\begin{lcode}
+\documentclass[ngerman,t,newif]{scrbook}
+\usepackage{xltxtra}
+\let\!\relax
+\def\coolCode{\catcode`\! 0 \catcode`\\ 12}
+\begin{document}
+Dieses Beispieldokument zeigt eine Änderung der so genannten
+category-codes in \TeX. Solche Sachen verwenden Leute, die zeigen
+wollen, wie toll sie mit dem Programm umgehen können. Aber es
+bringt oft mehr Probleme als Nutzen, deswegen sollte man es von
+vornherein nicht in einem ernsthaften Dokument verwenden.
+\coolCode
+Nach dem Befehl coolCode kann man nun einen \ schreiben, ohne 
+\ schreiben? Das ist doch ein oft recht nutzloses Zeichen. Also 
+lassen wir das und beenden diesen Modus mit dem Befehl:
+!catcode`!\ 9
+Und jetzt hat der Backslash wieder sein normales Verhalten.
+\end{document}
+\def\test#1{#1}
+\end{lcode}
+Die letzte Zeile ist dabei zu Testzwecken außerhalb der |document|-Umgebung, soll aber im Dokument stehen bleiben!
+\end{exercise}
+
+\begin{expertexercise}[
+	name=\TeX perte des Vertrauens,
+	abgabe = Handschriftliche Erklärung.
+]{expertminimal}
+Das Minimalbeispiel in der obigen Übung soll an den \TeX perten des Vertrauens geschickt werden. Beweisen Sie nun, dass dieses Vertrauen in Sie gerechtfertigt ist: Finden, erklären und beheben Sie den Fehler im Dokument.
+\end{expertexercise}
+
+\end{document}
