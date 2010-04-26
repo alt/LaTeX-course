@@ -1,0 +1,49 @@
+\documentclass{scrartcl}
+
+\usepackage{
+  xltxtra
+}
+\setmainfont{Linux Libertine}
+\setmonofont{Linux Biolinum}
+\title{Arbeiten mit \TeX works}
+\author{Arno Trautmann\thanks{Arno.Trautmann@gmx.de}}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+Dieses Dokument beschreibt ganz kurz den Umgang mit dem Editor \TeX works und die möglichen Einstellungen und Erweiterungen.
+\end{abstract}
+\TeX works ist vom bekannten Editor \TeX shop inspiriert und richtet sich ebenso wie solcher zunächst an \LaTeX-Anfänger. Aber auch Fortgeschrittene und Profis profitieren von der einfachen und klaren Nutzeroberfläche sowie vor allem der eingebauten sync\TeX-Technologie. Aufgrund der Einfachheit der Oberfläche ist auch eine Beschreibung der Verwendung sehr einfach.
+
+\minisec{Kompilieren}
+Zum Erstellen eines \LaTeX-Dokumentes mit Ausgabe benötigt man lediglich folgende Schritte:
+
+\begin{itemize}
+\item Öffnen des Editors
+\item Anlegen einer neuen Datei oder Öffnen einer bereits vorhandenen
+\item Änderungen am Code
+\item evtl. Speichern (nicht nötig, da beim Kompilieren automatisch gespeichert wird)
+\item Auf die Schaltfläche zum Kompilieren drücken (alternativ Tastenkombination Strg+t für typeset)
+\item das fertige pdf wird im eingebauten Viewer in einem neuen Fenster angezeigt
+\item Navigation zwischen pdf und tex-Datei ist möglich mittels Rechtsklick auf die entsprechende Stelle oder durck Linksklick bei gedrückter Strg-Taste
+\end{itemize}
+
+\minisec{Neue Option zum Kompilieren}
+
+Will man mit einer anderen Maschine oder einem anderen Format als dem eingestellten kompilieren (z.\,B. \XeLaTeX\ statt pdf\LaTeX\ oder lua\TeX\ mit dem plain\TeX-Format o.\,ä.), kann man dies an der Schaltfläche zum Kompilieren einstellen. Ist die gewünschte Maschine bzw. das Format nicht verfügbar, kann es folgendermaßen hinzugefügt werden:
+
+\begin{itemize}
+\item[⇒] im Menü auf Edit klicken
+\item[⇒] Preferences
+\item[⇒] Typesetting
+\item bei den \verb|processing tools| kann ein neues Tool hinzugefügt werden (+ Schaltfläche) oder ein bereits vorhandenes editiert werden
+\item bei Hinzufügen eines neuen Tools kann ein Name vergeben werden (wird in der Auswahl später angezeigt) und das Programm angegeben werden. Für \XeLaTeX\ nennt man z.\,B. den Namen \verb|XeLaTeX| und das Programm \verb|xelatex|, also das, was in der Kommandozeile aufgerufen wird.
+\item weiterhin können Argumente und Optionen übergeben werden, es empfiehlt sich, folgendes anzugeben:\\
+\verb|$synctexoption| – ermöglicht sync\TeX-Einsatz\\
+\verb|$fullname| – übergibt den Namen des aktuellen Dokumentes
+\item danach steht die neue Option zur Verfügung und kann in der Schaltfläche ausgewählt werden.
+\end{itemize}
+
+
+
+\end{document}
