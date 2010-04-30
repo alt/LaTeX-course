@@ -1,6 +1,6 @@
 \documentclass[
 	draft,
-%	solution,
+	solution,
 	blatt=3,
 	ausgabe=30.\,04.\,2010,
 	rückgabe=07.\,05.\,2010
@@ -34,14 +34,50 @@ Und jetzt hat der Backslash wieder sein normales Verhalten.
 \end{document}
 \def\test#1{#1}
 \end{lcode}
-Die letzte Zeile ist dabei zu Testzwecken außerhalb der |document|-Umgebung, soll aber im Dokument stehen bleiben!
+Die letzte Zeile ist dabei zu Testzwecken außerhalb der |document|-Umgebung, soll aber im Dokument stehen bleiben, um die exakte Fehlermeldung zu produzieren!
 \end{exercise}
 
 \begin{expertexercise}[
 	name=\TeX perte des Vertrauens,
-	abgabe = Handschriftliche Erklärung.
+	abgabe = Hand- oder maschinenschriftliche Erklärung.
 ]{expertminimal}
 Das Minimalbeispiel in der obigen Übung soll an den \TeX perten des Vertrauens geschickt werden. Beweisen Sie nun, dass dieses Vertrauen in Sie gerechtfertigt ist: Finden, erklären und beheben Sie den Fehler im Dokument.
+\end{expertexercise}
+
+\begin{exercise}[
+  name=Dokumentation und Definition,
+  punkte=6,
+  abgabe = Handschriftliche Zusammenfassung zu |xspace|{,} geschrieben auf den: Ausdruck des fertigen Dokumentes; Quellcode der Datei per Mail. 
+]{xspace}
+Um einen bestimmten Befehl zu definieren, ist oft spezielles Wissen über nützliche Pakete von Vorteil:
+\subexercise[2]{Dokumentation}
+Um den Umgang mit der Dokumentation von Paketen zu lernen, suchen und studieren Sie die Dokumentation zum Paket |xspace|. Diese ist zugänglich über |texdoc xspace| oder auf CTAN bei Suche\footnote{\url{http://www.ctan.org/search.html}} nach |xspace| zu finden. Erläutern Sie kurz \emph{handschriftlich} den Zweck des Paketes, den wichtigsten Befehl und wie dieser zu verwenden ist; am besten auf den Ausdruck zur nächsten Teilaufgabe, um Papier zu sparen.
+
+\subexercise[4]{Definition}
+Erstellen Sie mit diesem Wissen nun ein Minimalbeispiel, in welchem Sie einen Befehl definieren und anwenden. Die Befehlsdefinition soll dabei mindestens ein mandatorisches Argument haben und im normalen Textverlauf angewendet werden (also eine Abkürzung, kurze Formel u.\,ä.). Verwenden Sie das Paket |xspace| und seinen Hauptbefehl in Ihrer Definition. Die genaue Art des Befehls ist dabei Ihnen überlassen.
+
+Schreiben Sie mittels |\verb$definitionstext$| Ihre Befehlsdefiniton auch in das Dokument, sodass im fertigen Ausdruck die Definition als wörtliche Widergabe sichtbar ist.
+\subexercise[+1]{Erweiterte Definition}
+Um einen Zusatzpunkt zu erlangen, erweitern Sie Ihre Definition so, dass der Befehl zwei mandatorische sowie ein optionales Argument enthält.
+\end{exercise}
+
+\begin{expertexercise}[
+	name=\textbackslash def,
+	abgabe = Erklärungen zu den Beobachtungen hand- oder maschinenschriftlich.
+]{def}
+Wie in der Vorlesung angekündigt, kann es für den \TeX perten sehr nützlich oder essentiell nötig sein, mit dem |\def|-Kommando gut umgehen zu können. Betrachten Sie folgenden Spezialfall:
+\begin{lcode}
+\documentclass{minimal}
+\def\one#1#2{erstes Argument: #1, zweites Argument: #2}
+\def\mit#1#2#{erstes Argument: #1, zweites Argument: #2}
+\begin{document}
+\one a b
+
+\mit a b
+
+\end{document}
+\end{lcode}
+Diese unterscheiden sich nur in einem einzigen Zeichen, aber das macht einiges aus. Untersuchen Sie das unterschiedliche Verhalten der Definitionen bezüglich gruppierter/ungruppierter Argumente, Zeilenumbrüchen, produzierten Fehlermeldungen etc. Versuchen Sie durch gezieltes Probieren den Zweck des dritten |#| herauszufinden. Wofür könnte eine solche Definition gut sein? Wie erreicht man, dass |\one| und |\mit| jeweils das gleiche ausgeben, d.\,h. wie kann das überflüssige Leerzeichen entfernt werden?
 \end{expertexercise}
 
 \end{document}
