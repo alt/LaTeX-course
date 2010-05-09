@@ -1,7 +1,36 @@
-\documentclass{minimal}
+\documentclass[ngerman,fleqn]{scrartcl}
+
+\usepackage{
+  amsmath,
+  babel,
+  xltxtra
+}
+
+\usepackage[math]{blindtext}
+
+
+\renewcommand\d{\,\mathrm d}
+
+\setmainfont{Linux Libertine}
+\setsansfont{Linux Biolinum}
+\setmonofont{DejaVu Sans Mono}
 
 \begin{document}
+\textit{Dies \textsf{ist} ein \textbf{Test}.}
 
-test
+\[\int_{-\infty}^\infty\kern-.7em \epsilon_{ijk} \d x \neq \sum_{n = 0\atop m = 0}^\aleph \alpha\]
+
+\begin{equation}
+\int_{-\infty}^\infty\kern-.7em \epsilon_{ijk} \d x \neq \sum_{n = 0\atop m = 0}^\aleph \alpha
+\end{equation}
+
+\begin{align}
+a &= b & c &= d &e &= f & g &= h \\
+a*b &= x\\
+\end{align}
+
+
+
+\blinddocument
 
 \end{document}
