@@ -283,9 +283,12 @@ One needs a second file to write down the solutions. The name of this file must 
 % Finally, the subexercise is defined:
 % \begin{macrocode}
 \newcommand\subexercise[2][]{
+\end{minipage}
   \subsubsection*{#2\hfill #1}
+\begin{minipage}{1.0\textwidth}
 }
 %    \end{macrocode}
+% This implementation allows pagebreaks in a large exercise at subexercises.
 % \subsubsection{Expertexercise}
 % There will be some extra exercises for the \TeX{}perts. Here is their environment, with the well-known ”dangerous bend“-sign of the \TeX{}book:
 %    \begin{macrocode}

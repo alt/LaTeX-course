@@ -1,0 +1,62 @@
+% !TeX root = sheet3.tex
+
+\startsolution{minimal}
+Das Dokument sollte soweit verkürzt werden, bis nur noch der Fehler auftritt. Das Resultat sollte so aussehen:
+\begin{lcode}
+\documentclass{minimal}
+\def\coolCode{\catcode`\! 0 \catcode`\\ 12}
+\begin{document}
+test
+\coolCode
+!catcode`!\ 9
+\end{document}
+\def\test#1{#1}
+\end{lcode}
+Der Fehler wird zwar nicht durch Text verursacht, wird aber nicht ausgegeben, wenn gar kein Text im Dokument vorkommt. Wenn \TeX\ keinen Inhalt auszugeben hat, treten einige Probleme nicht auf. Daher muss mindestens ein gedrucktes Zeichen im Minimalbeispiel enthalten sein.
+\stopsolution
+
+\startsolution{expertminimal}
+Der Fehler besteht eigentlich nur aus einem falschen Zeichen: Der |\catcode| von |\| wird auf |9| gesetzt. Damit wird |\| von \TeX\ einfach ignoriert und der abschließende Befehl |\enddocument| wird nicht ausgeführt. Ohne diesen hält \TeX\ aber nicht an und liest einfach weiter – in diesem Fall die Befehlsdefinition, die aber auch nicht funktioniert, da kein |\| beachtet wird. Es komt daher für \TeX\ nur ein |#| im normalen Text vor – das ist aber verboten (da sinnlos). So ist auch die etwas kryptische Fehlermeldung zu verstehen: Kein |#| im normalen Textmodus (horizontaler Modus) erlaubt!
+
+Ändert man die Zeile in |!catcode`!\ 0|, so funktioniert alles.
+\stopsolution
+
+\startsolution{xspace}
+\subsolution{Dokumentation}
+Das Paket |xspace| definiert den Befehl |\xspace|. Dieser überprüft, ob das folgende Zeichen ein Satzzeichen (oder ein mittels |\xspaceaddexceptions| definiertes Zeichen) ist. Falls ja, wird kein zusätzliches Leerzeichen nach dem Befehl eingefügt, falls nicht, wird ein Leerzeichen eingefügt. Auf diese Weise kann ein neu definierter Befehl, dessen Definition mit |\xspace| endet, im Text als \verb*|\Befehl Text| verwendet werden, ohne dass das Leerzeichen explizit gefordert werden muss.
+
+\subsolution{Definition}
+Um bei dem Beispiel aus der Vorlesung zu bleiben, soll eine chemische Formel verwendet werden, der Einfachheit halber:\\
+\begin{lcode}
+\documentclass{minimal}
+\usepackage{xspace}
+\newcommand{\water}[1]{$H_{#1} O$\xspace}
+\begin{document}
+\water{2} ist nass. Das behauptet die Definition:
+\verb|\newcommand{\water}[1]{$H_{#1} O$\xspace}|
+\end{document}
+\end{lcode}
+
+\subsolution{Erweiterte Definition}
+Hier ist der Phantasie natürlich keine Grenze gesetzt. Man kann \TeX\ etwa dazu nutzen, den Aggregatzustand auszugeben bei gegebener Temperatur. (Zusätzlich könnten Druck o.\,ä. angegeben werden, dann hätte man durchaus ein sinnvolles Makro definiert.)
+\begin{lcode}
+\documentclass{minimal}
+\usepackage{xspace}
+\newcommand{\water}[3][23]{$H_{#2} #3$ (\ifnum#1>100 gasf\"ormig\else
+\ifnum#1>0fl\"ussig\else fest\fi\fi\ifthenelse{\equal{C}{C}}{do}{did} )\xspace}
+\begin{document}
+\water[-50]2O ist nass. Das behauptet die Definition:
+\verb|...|
+\end{document}
+\end{lcode}
+\newcommand{\water}[3][23]{$H_{#2} #3$ (\ifnum#1>100 gasf\"ormig\else
+\ifnum#1>0fl\"ussig\else fest\fi\fi\ifthenelse{\equal{#3}{C}}{, organisch}{, anorganisch} )\xspace}
+\water[120]3C
+\stopsolution
+
+\startsolution{def}
+Die Angabe |#{| verlangt explizit nach dem Zeichen |{| im \emph{Gebrauch} des Makros. Ohne |#| vor der |{| wird nur nach einer Gruppe gefragt. Eine Gruppe kann aber auch aus einem einzelnen Zeichen bestehen, sodass der Aufruf von |\one| korrekt ist. |\mit| hingegen sucht nach einer Klammer. Diese kommt allerdins nicht vor dem nächsten Absatz; da mit |\def| definierte Befehle aber keine Absätze enthalten dürfen, ergibt es also den Fehler: |! Paragraph ended before \mit was complete.| Der korrekte Aufruf von |\mit| muss also |\mit a{b}| lauten; |a| kann auch durch eine Gruppe ersetzt werden, muss aber nicht.
+
+Mit einer solchen Definition wird sichergestellt, dass der Nutzer das betreffende Argument immer gruppiert, was in manchen Situationen eine Sicherheit bezüglich fehleranfälliger Kombinationen gibt.
+
+\stopsolution

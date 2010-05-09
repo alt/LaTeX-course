@@ -1,0 +1,400 @@
+\input{kursheader}
+\usepackage[normalem]{ulem}
+
+\begin{document}
+\section{Inline vs. Display}
+\begin{frame}{Inlinemode}
+• Formeln, die direkt im Fließtext vorkommen
+• kurze Formeln
+• Brüche und Wurzeln vermeiden
+• Grenzen werden \emph{neben} Integrale, Summen, Produkte gesetzt
+\•
+\end{frame}
+
+\begin{frame}[fragile]{Inlinemode}
+\rmfamily
+$E=mc^2$ kennt jedes Kind, aber kaum jemand kann wirklich mehr damit anfangen als mit $\int^\infty_{-\infty}\sum_{n = 1}^5 dx$, wobei diese Formel nun mal gar keinen Sinn ergibt, aber zeigt, wie Grenzen im Mathesatz aussehen.\\
+$E=mc^2$ kennt jedes Kind, aber kaum jemand kann wirklich mehr damit anfangen als mit $\displaystyle \int^\infty_{-\infty}\sum_{n = 1}^5 dx$, wobei diese Formel nun mal gar keinen Sinn ergibt, aber zeigt, wie Grenzen im Mathesatz aussehen.\\
+$E=mc^2$ kennt jedes Kind, aber kaum jemand kann wirklich mehr damit anfangen als mit \[\int^\infty_{-\infty}\sum_{n = 1}^5 dx,\] wobei diese zweite Formel nun mal gar keinen Sinn ergibt, aber zeigt, wie Grenzen im \TeX-Mathesatz aussehen.\\
+\end{frame}
+
+\begin{frame}[fragile]{Inlinemode}
+Der Inlinemode ist über drei Wege zu erreichen:
+• |\(Formel\)| \only<3->{\alert{nicht robust!}}
+• |\begin{math} formel \end{math}| \only<3->{\alert{nicht robust!}}\\ \only<2->{\alert{funktioniert nicht in |alltt|}}
+• |$Formel$| \only<2->{\\ \alert{funktioniert nicht in |alltt|}}
+\•
+\end{frame}
+
+\begin{frame}[fragile]{robust vs. fragile}
+• fragile Befehle können Probleme bereiten bei:
+• Schreiben in Datei, Ausgabe in log\,/\,Terminal, in Verzeichnissen
+• robuste Befehle sind speziell geschützt
+•[⇒] |$ $| ist meist beste Variante
+\•
+\end{frame}
+
+\begin{frame}[fragile]{Umbruch}
+• Formeln können von \TeX\ umbrochen werden an:
+• Relationen |= < >| etc.
+• binären Operatoren |+ -| etc.
+• zum Vermeiden: Gruppieren
+• |beamer|-Klasse kann Probleme bereiten
+\•\pause
+\begin{LTXexample}
+Etwas Text bis zum Zeilenende
+$a + b + c$\\
+Etwas Text bis zum Zeilenende
+${a + b + c}$\\
+Eine viel zu lange Formel:
+${a+b+c+d+e+f+g+h+i+j+k+l+m}$
+\end{LTXexample}
+\end{frame}
+
+\begin{frame}{Display-Formeln}
+• Auszeichnung wichtiger Formeln
+• Darstellung langer Rechnungen
+• komplexe Formeln
+• mehrfach indizierte Größen
+• geschachtelte Brüche
+• …
+\•
+\end{frame}
+
+\begin{frame}[fragile]{ Display-Formeln}
+Display-Formeln sind über drei Wege zu erreichen:
+• |\begin{displaymath} Formel \end{displaymath}|\\%
+– abgesetzte Formel ohne Nummerierung
+• |\[ Formel \]|\\%
+– Abkürzung für |displaymath|
+• |\begin{equation} Formel \end{equation}|%
+\\ abgesetzte Formel mit Nummerierung
+• |$$ Formel $$|
+\•
+\end{frame}
+
+\begin{frame}[fragile]{ Display-Formeln}
+Display-Formeln sind über drei Wege zu erreichen:
+• |\begin{displaymath} Formel \end{displaymath}|\\%
+– abgesetzte Formel ohne Nummerierung
+• |\[ Formel \]|\\%
+– Abkürzung für |displaymath|
+• |\begin{equation} Formel \end{equation}|%
+\\ abgesetzte Formel mit Nummerierung
+• \catcode`\$=12 \xout{$$ Formel $$} \alert{\TeX-Syntax!}%
+\\ \alert{in \LaTeX\ führt Verwenden von |$$ $$| zu unerwarteten und unerwünschten Ergebnissen; unbedingt vermeiden!}
+\•
+\end{frame}
+
+\begin{frame}[fragile]{Option fleqn}
+• oft sehen Formeln zentriert nicht gut aus
+• „zerfledderter“ Eindruck
+• linksbündige Ausrichtung oft besser
+•[⇒] |fleqn| als Dokumentoption (|\documentclass[fleqn]{scrartcl}|)
+•[\alert{!}] funktioniert \emph{nicht} mit |$$ $$|
+\•
+\end{frame}
+
+\begin{frame}[fragile]{Display in Inline und umgekehrt}
+Große Formeln im Inline-Modus:
+• |\displaystyle|
+\• 
+\begin{LTXexample}[pos=b]
+Eine Zeile Text vor dem großen Bruch, damit deutlich sichtbar wird, warum man so große Brüche: $\frac{a}{b} < \displaystyle{\frac{a}{b}}$ nicht im Fließtext setzt. Und danach und noch ein bisschen Text für die zweite Zeile, die deutlich mehr von der ersten getrennt ist als die dritte von der zweiten.
+\end{LTXexample}
+\end{frame}
+
+\begin{frame}[fragile]{Display in Inline und umgekehrt}
+Eher nützlich: Kleine Formeln im abgesetzten Modus:
+• |\textstyle|
+\•
+\begin{LTXexample}[pos=b,rframe={}]
+\[\frac 12 a > \frac 12 b > \frac 12 c \ vs. \
+{ \textstyle \frac 12 a  > \frac 12 b > \frac 12 c}\]
+\end{LTXexample}
+\pause
+Nützliche Definition z.\,B.
+\begin{lstlisting}
+\newcommand\half{\textstyle{\frac 1 2}}
+\end{lstlisting}
+• \AMS{}math bietet |\tfrac| und |\dfrac|
+\•
+\end{frame}
+
+\begin{frame}{Mehrzeilige Formeln}
+• Reihe von untereinander angeordneten, zueinander ausgerichteten Gleichungen, verwendet für:
+• Herleitungen
+• Übersicht
+• Vergleich von Formeln
+\• 
+\end{frame}
+
+\begin{frame}[fragile]{eqnarray}
+• |eqnarray|: Standardumgebung für mehrzeilige Formeln
+• Artikel in der DTK: „Vermeidet |eqnarray|“
+•[⇒] besser: |align| aus dem |amsmath|-Paket:
+\•
+\begin{LTXexample}
+\begin{align}
+a &= b,\\
+c &= d,\\
+abc &= d\\
+&= r
+\end{align}
+\end{LTXexample}
+|{align*}|: keine Nummerierung
+\end{frame}
+
+\begin{frame}[fragile]{\AMS{}math}
+• Paket von der American Mathematical Society (\AMS)
+• besteht aus mehreren Paketen, u.\,a.:\\%
+|amsmath|, |amssymb|, |amsfonts|%
+• bietet umfangreiche Erweiterungen des Mathesatzes:
+• vielfältige Umgebungen und Anpassungen
+• neue oder verbesserte Definitionen von Befehlen
+• Korrekturen von Abständen
+• …
+\•
+\end{frame}
+
+\begin{frame}[fragile]{Abstände}
+• \TeX\ bzw. \LaTeX\ bzw. geladene Pakete kontrollieren Abstände
+• Unterschiede zwischen Variablen, Operatoren, Relationen etc.
+• Festgelegt durch die |\mathcode|s der Zeichen
+• Änderbar mit |\kern|, |\|, |\,| etc.
+• \alert{niemals} Konstrukte wie |\ \ \ \ | verwenden!
+• Besser: |\quad|, |\qquad|, |\hspace{1em}|
+\•
+\end{frame}
+
+\section{Größe von Formeln}
+\begin{frame}[fragile]{Größenänderungen}
+• Standardbefehle wie |\small, \tiny, \Huge| haben in Formeln keine Wirkung
+• Aber Formeln passen sich der Umgebung an:
+\• 
+\begin{LTXexample}[pos=b]
+\small\[E = \Huge mc^2\]
+\Huge\[E = mc^2\]
+\end{LTXexample}
+\end{frame}
+
+\section{Grundbefehle}
+\begin{frame}[fragile]{Variablen und Zahlen}
+• Variablen werden kursiv gesetzt: |$a$|: $a$
+• Schriftart abhängig von der Dokumentenklasse!\\%
+(Groteske, Serifen etc.)
+• Ziffern werden automatisch korrekt gesetzt: $12.2$ statt 12.2
+\•
+\end{frame}
+
+\begin{frame}[fragile]{Punkt vs. Komma}
+im amerikanischen Satz:
+\begin{LTXexample}[preset=\huge]
+$1,234.567$
+\end{LTXexample}\pause
+im deutschen Satz:
+\begin{LTXexample}[preset=\huge]
+$1.234,567$
+\end{LTXexample}
+\alert{⇒ falsche Spationierung!}
+\end{frame}
+\begin{frame}[fragile]{Punkt vs. Komma}
+\begin{block}{Einmalige Anpassung:}
+\Large|$1{,}2\mathpunct{.}3$|\\
+$1,2.3$ \normalsize (nicht angepasst)\\
+\Large $1{,}2\mathord{.}3$ \normalsize(angepasst)
+\end{block}
+\pause
+\begin{block}{Korrektur des Dezimaltrennzeichens}
+|\DeclareMathSymbol{,}{\mathpunct}{letters}{"3B}|\\
+|\DeclareMathSymbol{.}{\mathord}{letters}{"3A}|
+\end{block}
+\pause
+\begin{block}{Automatische Anpassung}
+Paket |icomma| passt Dezimaltrennzeichen automatisch dokumentenweit an.
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]{Hoch- und Tiefstellung}
+• Zeichen mit besonderer Bedeutung: |^| und |_|
+• Hochstellung: |a^b|, Tiefstellung: |a_b|: $a_b$
+• Gruppierungen sind möglich: |a^{bc}|, |a_{bc}|: $a_{bc}$
+• Kombination ist möglich: |a^b_c|: $a^b_c$
+• Ohne vorhergehendes Zeichen: |^{235}U|: $^{235}\mathrm U$
+• Schachtelung nur mit Gruppierung:\\%
+|a_{b_{c_{d_{e_{f^g}}}}}^{h^{i^{j_k}}}| \Large $a_{b_{c_{d_{e_{f^g}}}}}^{h^{i^{j_k}}}$\normalsize
+•[] |a_b_c| produziert Fehler!
+\•
+\end{frame}
+
+\begin{frame}[fragile]{Operatornamen}
+• Operatornamen werden aufrecht gesetzt und sind vordefiniert:
+• $\sin(x)$ vs. $sin(x)$
+• |\sin \cos \tan \lim \atan \arctan|\\%
+$\sin \cos \tan \lim \arctan$
+• Paket |amsopn| bietet weitere Vordefinitionen:
+\•
+\begin{lstlisting}
+\arccos \arcsin \arg \cos \cot \coth \deg \det
+\exp \gcd \inf \injlim \lg \lim \limsup \ln
+\max \min \projlim \sec \sinh \sup \tanh
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Definieren von Operationen}
+Sollten die vorgegebenen Definitionen nicht genügen:
+\begin{lstlisting}
+\usepackage{amsopn}
+\DeclareMathOperator{\Res}{Res}
+\end{lstlisting}
+in der Präambel.
+\end{frame}
+
+\begin{frame}[fragile]{links und rechts}
+• Klammerung von großen Ausdrücken kann Probleme bereiten:
+\•
+\begin{LTXexample}
+\[(\frac{\int^a x dx}{\sum_{n=1} x})\]
+\end{LTXexample}
+• Besser:
+\•
+\begin{LTXexample}
+\[ \left(
+\frac{\int^a x dx}{\sum_{n=1} x}
+\right) \]
+\end{LTXexample}
+\end{frame}
+
+\begin{frame}[fragile]{links und rechts}
+• |\left| und |\right| vor allem, was dehnbar ist
+• |\left( \right]| funktioniert auch
+• |\left. \right)| liefert angepasste rechte Klammer
+• Hoch- und Tiefstellung werden angepasst:
+\•
+\begin{LTXexample}[preset=\DeleteShortVerb|]
+\[\left[\int^a\right\}\]
+\[\left.\int^a\right.\]
+\[\left.\int^a dx\right|^5_1\]
+\end{LTXexample}
+\MakeShortVerb|
+\end{frame}
+
+\begin{frame}[fragile]{Operatoren}
+• Operatoren sind intuitiv per Namen zugänglich
+• Grenzen per |\limits| angeben
+• Mehrzeilige Grenzen mit |\atop|
+\•
+\begin{LTXexample}
+\[\int^X \int\limits^X
+\sum_{n=1}^\infty
+\prod_{n = 1 \atop m = 2}\]
+\end{LTXexample}
+\end{frame}
+
+\begin{frame}[fragile]{Sonderzeichen}
+• Viele Zeichen sind über ihren Namen ereichbar,
+• Griechische Groß- und Kleinbuchstaben ebenso
+\•
+\begin{LTXexample}
+\[\nabla \pm \mp
+\alpha \beta \gamma
+\rho \varrho \kappa \varkappa
+\epsilon \varepsilon \theta \vartheta
+A B \Gamma\]
+\end{LTXexample}
+\end{frame}
+
+\begin{frame}[fragile]{Wurzeln}
+• Wurzel:
+• zu tiefe Unterlängen sind unschön ⇒ |\smash|
+\• 
+\begin{LTXexample}[preset=\Large]
+\[
+\sqrt[3]{a_{n_{m_p}}}
+\quad\sqrt{a}\quad
+\sqrt{\smash[b]{a_{n_{m_p}}}}
+\]
+\end{LTXexample}
+\end{frame}
+
+\section{Vektoren, Matrizen, Tensoren}
+\begin{frame}[fragile]{Vektoren}
+Vektoren sind vielfältig darstellbar:
+• Mit Pfeil drüber als |\vec|
+\•
+
+\begin{LTXexample}
+$\vec a\ \pmb a\ \mathbf a$
+$\underbar a$
+\end{LTXexample}
+\end{frame}
+
+\begin{frame}[fragile]{Matrizen}
+\begin{LTXexample}
+\[\begin{matrix}
+a_{11} & a_{12}\\
+a_{21} & a_{22}
+\end{matrix}\]
+\end{LTXexample}
+\end{frame}
+
+\begin{frame}[fragile]{Matrizen}
+\begin{LTXexample}
+\[\left(\begin{matrix}
+a_{11} & a_{12}\\
+a_{21} & a_{22}
+\end{matrix}\right)\]
+\end{LTXexample}
+\end{frame}
+
+\begin{frame}[fragile]{Matrizen}
+\AMS{}math definiert weitere Matrixumgebungen:\\[2em]
+\begin{minipage}{3cm}
+\[\begin{pmatrix}
+a & b \\ c & d
+\end{pmatrix}\]
+\centering pmatrix
+\end{minipage}
+\begin{minipage}{3cm}
+\[\begin{Vmatrix}
+a & b \\ c & d
+\end{Vmatrix}\]
+\centering Vmatrix
+\end{minipage}
+\begin{minipage}{3cm}
+\[\begin{vmatrix}
+a & b \\ c & d
+\end{vmatrix}\]
+\centering vmatrix
+\end{minipage}
+\\[2em]
+\begin{minipage}{3cm}
+\[\begin{Bmatrix}
+a & b \\ c & d
+\end{Bmatrix}\]
+\centering Bmatrix
+\end{minipage}
+\begin{minipage}{3cm}
+\[\begin{bmatrix}
+a & b \\ c & d
+\end{bmatrix}\]
+\centering bmatrix
+\end{minipage}
+\begin{minipage}{3cm}
+\[\begin{smallmatrix}
+a & b \\ c & d
+\end{smallmatrix}\]
+\centering smallmatrix
+\end{minipage}
+\end{frame}
+
+\begin{frame}{texdoc}
+• Dokumentation:
+• |texdoc amsmath, amsop etc.|
+• |texdoc mathmode|: Öffnet |Math Mode| von Herbert Voss:
+•[] umfassende Dokumentation verschiendenster Thematiken zum Mathesatz
+• auch als Buch verfügbar (reduzierter Preis für DANTE-Mitglieder!)
+\• 
+\end{frame}
+
+\end{document}

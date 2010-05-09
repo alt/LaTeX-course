@@ -1,0 +1,78 @@
+\documentclass[
+%	solution,
+	draft,
+	blatt=4,
+	ausgabe=07.\,05.\,2010,
+	rückgabe=14.\,05.\,2010
+]{lcourse-hd}
+
+\usepackage{txfonts}
+
+\begin{document}
+\begin{exercise}[
+  name={Maxwellgleichungen},
+  punkte=5,
+  abgabe = Quellcode per Mail und ausgedruckt{,} fertiges Dokument ausgedruckt. Bitte Studienfach mit angeben!]{maxwell}
+Jeder Physiker sollte einmal im Leben die Maxwell-Gleichungen \TeX{}en, und auch für Studenten anderer Fächer bieten diese Formeln eine gute Möglichkeit, den Mathesatz zu testen. Die vier Gleichungen lauten:
+
+\[\textstyle \nabla \times \vec E = -\frac{\partial \vec B}{\partial t}\quad \nabla \times \vec B = \vec j + \frac{\partial \vec E}{\partial t}\quad \nabla \cdot \vec E = \rho\quad 
+\nabla \cdot \vec B = 0\]
+
+Überlegen Sie sich eine passende Formatierung und eine gute, übersichtliche Darstellung. Korrigieren Sie Abstände, falls nötig, wählen Sie eine gute und passende Schrift, überlegen Sie sich mögliche Auszeichnungsformen vektorieller Größen etc.
+
+Die nötigen Zeichen für diese Aufgabe finden Sie in der Datei |symbols-a4|. Diese ist auf CTAN zu finden, per google, oder ganz bequem am eigenen Rechner in der Kommandozeile:
+\begin{lcode}
+texdoc symbols-a4
+\end{lcode}
+Die Datei listet eine große Zahl möglicher Symbole auf, die verschiedene \LaTeX-Pakete bieten. Das benötigte Paket steht jeweils in der Überschrift der Auflistungen. Suchen Sie nach den Stichworten |nabla|, |times|, |partial| und |cdot|.
+\end{exercise}
+
+\begin{exercise}[
+  name={Integrale\,/\,Spezialfälle},
+  punkte=5,
+  abgabe = Quellcode(s) per Mail und ausgedruckt{,} fertige(s) Dokument(e) ausgedruckt]{integral}
+Diese Übung besteht aus drei Teilen. Der erste ist für Studenten gedacht, die mit Mathesatz explizit umgehen können müssen, die anderen beiden für Studenten, die keinen Mathesatz benötigen. Daher sollen alternativ entweder nur der erste Teil \emph{oder} die anderen beiden bearbeitet werden.\footnote{Natürlich dürfen alle Teile bearbeitet werden, was aber keinen Punktvorteil ergibt.}
+
+\subexercise[5]{A) Mathesatz: Integrale}
+In der vorjährigen \LaTeX-Einführung wurde spontan ein spezielles Integral definiert. Abgesehen von der tiefgründigen mathematischen Bedeutung soll das Zeichen selbst folgenden Ansprüchen genügen:
+\begin{quotation}
+Ich suche ein vierfaches Integralzeichen mit drei Kreisen und
+zwei Pfeilen in verschiedene Richtungen, die sich leicht
+überschneiden.
+\end{quotation}
+Dieses Jahr hat der Mathematiker Ihres Vertrauens eine großartige neue Theorie aufgestellt, die mit folgendem Konstrukt notiert wird:
+\[\oint\kern.13em\vec\varoiintctrclockwise\kern-2.48em\varoiintclockwise\]
+
+Tip: Suchen Sie in |symbols-a4| nach \verb|txfonts/pxfonts|.
+
+\subexercise[3]{B.1) Spezialfall I: cases}
+Die Umgebung |cases| ermöglicht den Satz von Fallunterscheidungen:
+\begin{lcode}
+\[ a =
+\begin{cases}
+b & b > 0 \\
+-b & b < 0\\
+0 & b = 0
+\end{cases} \]
+\end{lcode}
+Das \emph{muss} zwar im Mathesatz passieren, kann aber auch für Textinhalte (im Mathemodus mit |\text{normaler Text}| zu setzen) nützlich sein. Alternativ kann man auch eine |matrix|-Umgebung verwenden und die nötige Klammer von Hand (z.\.B. |\left(|) setzen. Verwenden Sie nun letzteres, um zwei Formeln aus dem tractatus philosophicus in folgender Form zu setzen:
+\[\text{tractatus philosophicus, Satz 6.}
+\begin{cases}
+03:\hspace*{0.65em} [o,\xi, \xi +1]\\
+231:\ 1+1+1+1 = (1+1) + (1+1)
+\end{cases}\]
+
+\subexercise[2]{B.2) Spezialfall II: Interrobang}
+\def\dej{\fontspec{DejaVu Sans}}
+Im Geschriebenen kommt es oft vor, dass man eine Frage oder Aussage besonders stark betonen möchte. Häufig wird zu diesem Zweck das Ausrufungszeichen in Massenhaltung verwendet:
+\begin{lcode}
+Die Vorlesung heute war soo langweilig!!!!!!!!!!
+\end{lcode}
+Aufgrund der schlechten Lesbarkeit solcher Aussagen ist es typographisch sehr fragwürdig, mehr als zwei Satzzeichen hintereinander anzuordnen, z.\,B. ein Ausrufungs- und ein Fragezeichen: ?! Aber auch bei zwei Satzzeichen ist die Lesbarkeit und Ästhetik fragwürdig. Daher wurde nach einer typographisch akzeptablen Lösung für diesen Fall gesucht, was zum Vorschlag des „Interrobang“ geführt hat. (lat. interrogare = fragen, und „bang“, englisches Buchdruckerwort für das !) Eine mögliche Umsetzung des Interrobang sieht folgendermaßen aus:{\dej ‽}
+
+Oft ist dieses Zeichen (wegen mangelnder Tasturbelegung/Kodierung/Schrift) aber gar nicht direkt verwendbar.
+
+Erstellen Sie daher ein Minimalbeispiel mit einer \LaTeX-Version des Interrobangs. Das Dokument soll ohne Pakete auskommen (außer |xltxtra|) und darf in beliebiger Schrift gesetzt werden.
+\end{exercise}
+
+\end{document}
