@@ -45,19 +45,13 @@
 {
   \leavevmode%
   \hbox{%
-  \begin{beamercolorbox}[wd=.15\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+  \begin{beamercolorbox}[wd=.3\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
       \insertshortauthor
   \end{beamercolorbox}%
-  \begin{beamercolorbox}[wd=.15\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
-    \LaTeX-Kurs
-  \end{beamercolorbox}%
-  \begin{beamercolorbox}[wd=.4\paperwidth,ht=2.25ex,dp=1ex,center]{date in head/foot}%
-    \insertshortsubtitle
-  \end{beamercolorbox}%
-  \begin{beamercolorbox}[wd=.2\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+  \begin{beamercolorbox}[wd=.4\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
     \insertshortdate{}
   \end{beamercolorbox}%
-  \begin{beamercolorbox}[wd=.1\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+  \begin{beamercolorbox}[wd=.3\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
     \insertframenumber{} / \inserttotalframenumber
   \end{beamercolorbox}}%
   \vskip0pt%
@@ -67,11 +61,14 @@
 {
   \leavevmode%
   \hbox{%
-  \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.25ex,dp=1ex,right]{section in head/foot}%
-    \insertsectionhead\hspace*{2ex}
+  \begin{beamercolorbox}[wd=.3\paperwidth,ht=2.25ex,dp=1.5ex,center]{title in head/foot}%
+    \LaTeX-Kurs 2010
   \end{beamercolorbox}%
-  \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.25ex,dp=1ex,left]{subsection in head/foot}%
-    \hspace*{2ex}\insertsubsectionhead
+  \begin{beamercolorbox}[wd=.4\paperwidth,ht=2.25ex,dp=1.2ex,right]{section in head/foot}%
+      \coursenumber\ – \coursetitle \hspace*{2em}
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.3\paperwidth,ht=2.25ex,dp=1.2ex,left]{subsection in head/foot}%
+    \hspace*{2em}\insertsectionhead
   \end{beamercolorbox}}%
   \vskip0pt%
 }
