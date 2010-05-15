@@ -23,7 +23,6 @@
     \vbox to 1cm {\hfill \includegraphics[width=.2\textwidth]{ctanlion}}
       \usebeamerfont{subtitle}\usebeamercolor[bg]{subtitle}
       {\color{black}\Large \insertsubtitle}\vfill
-
     {\hfill \insertdate \hfill}
     \end{centering}
 
@@ -41,6 +40,22 @@
 \setbeamercolor*{section in head/foot}{parent=palette tertiary}
 \setbeamercolor*{subsection in head/foot}{parent=palette primary}
 
+\defbeamertemplate*{headline}{infolines theme changed}
+{
+  \leavevmode%
+  \hbox{%
+  \begin{beamercolorbox}[wd=.3\paperwidth,ht=2.25ex,dp=1.5ex,center]{title in head/foot}%
+    \LaTeX-Kurs 2010
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.4\paperwidth,ht=2.25ex,dp=1.2ex,right]{section in head/foot}%
+     \hfill \coursenumber\ – \coursetitle \hfill\hfill
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.3\paperwidth,ht=2.25ex,dp=1.2ex,left]{subsection in head/foot}%
+    \hspace*{2em}\insertsectionhead
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+
 \defbeamertemplate*{footline}{infolines theme changed}
 {
   \leavevmode%
@@ -53,22 +68,6 @@
   \end{beamercolorbox}%
   \begin{beamercolorbox}[wd=.3\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
     \insertframenumber{} / \inserttotalframenumber
-  \end{beamercolorbox}}%
-  \vskip0pt%
-}
-
-\defbeamertemplate*{headline}{infolines theme changed}
-{
-  \leavevmode%
-  \hbox{%
-  \begin{beamercolorbox}[wd=.3\paperwidth,ht=2.25ex,dp=1.5ex,center]{title in head/foot}%
-    \LaTeX-Kurs 2010
-  \end{beamercolorbox}%
-  \begin{beamercolorbox}[wd=.4\paperwidth,ht=2.25ex,dp=1.2ex,right]{section in head/foot}%
-      \coursenumber\ – \coursetitle \hspace*{2em}
-  \end{beamercolorbox}%
-  \begin{beamercolorbox}[wd=.3\paperwidth,ht=2.25ex,dp=1.2ex,left]{subsection in head/foot}%
-    \hspace*{2em}\insertsectionhead
   \end{beamercolorbox}}%
   \vskip0pt%
 }

@@ -1,6 +1,6 @@
 \documentclass[
 %	solution,
-	draft,
+%	draft,
 	blatt=5,
 	ausgabe=14.\,05.\,2010,
 	rückgabe=21.\,05.\,2010
@@ -8,7 +8,9 @@
 
 \usepackage{
   caption,
-  colortbl
+  colortbl,
+  hhline,
+  arydshln
 }
 
 
@@ -19,10 +21,10 @@
   abgabe = Quellcode per Mail{,} Quellcode und fertiges Dokument (schwarz-weiß) ausgedruckt.]{colortable}
 Bisher waren alle Übungsaufgaben in klassischem schwarz/weiß gehalten. An dieser Stelle soll aber gezeigt werden, dass \LaTeX\ sehr wohl auch mit Farben umgehen kann\footnote{Sogar Videos können in \LaTeX\ eingebunden werden!} – und zwar am Beispiel einer Tabelle.
 
-Farben können in \LaTeX\ mit dem Paket |color| verwendet werden, das den Befehle |\color{}| zur Verfügung stellt. |\color{}| nimmt als Argument eine bekannte Farbe und stellt auf diese um, z.\,B. |\color{blue}|. Angaben in rgb-Code o.\,ä. sind auch möglich, z.\,B. |\color[gray]{0.8}|. Das Paket |xcolor| erweitert die Möglichkeiten des |\color|-Befehls noch enorm. (Unter anderem ist die Angabe der entsprechenden Wellenlänge (!) möglich.)
+Farben können in \LaTeX\ mit dem Paket |color| verwendet werden, das den Befehl |\color{}| zur Verfügung stellt. |\color{}| nimmt als Argument eine bekannte Farbe und stellt auf diese um, z.\,B. |\color{blue}|. Angaben in rgb-Code o.\,ä. sind auch möglich, z.\,B. |\color[gray]{0.8}|. Das Paket |xcolor| erweitert die Möglichkeiten des |\color|-Befehls noch enorm. (Unter anderem ist die Angabe einer Wellenlänge~(!) statt Farbe möglich.)
 
-Studieren Sie die Dokumentation des Paketes |colortbl| und produzieren Sie mithilfe dieses Paketes ein Minimalbeispiel, das eine Tabelle enthalten soll, die aussieht wie die folgende:
-\par 
+Studieren Sie die Dokumentation des Paketes |colortbl| und produzieren Sie mithilfe dieses Paketes ein Minimalbeispiel, das eine Tabelle enthalten soll, die aussieht wie die folgende: % der Code ist natürlich keine Vorlage, sondern soll die geforderte Lösung mit anderer Implementierung visualisieren
+\par
 \centering
 \begin{tabular}{l!{\hspace*{-4.3mm}}l}
 \colorbox{gray}{\textcolor{black}{Wochentag}} & \colorbox{gray}{\textcolor{black}{Buchstaben\vphantom{Wg}}}\\
@@ -34,6 +36,31 @@ Studieren Sie die Dokumentation des Paketes |colortbl| und produzieren Sie mithi
 \captionof{table}{Eine wichtige Tabelle hat immer\\ eine vielsagende Beschriftung!}
 \subexercise{\raisebox{1ex}{\scalebox{.5}{\manual\char127}} \TeX\ als Rechner}
 Nur für die \TeX perten: Überlegen Sie sich eine Methode, die Buchstabenanzahl automatisch berechnen und in der gewünschten Formatierung ausgeben zu lassen!
+\end{exercise}
+
+\begin{exercise}[
+  name={Schöne Tabellen},
+  punkte=5,
+  abgabe = Quellcode per Mail{,} Quellcode und fertige Tabelle ausgedruckt. Handschriftlicher Kommentar auf dem Ausdruck.]{korrekturtabelle}
+Die folgende (inhaltlich völlig fiktive!) Tabelle weist geringe Formatierungsprobleme auf. Korrigieren Sie (in einem Minimaldokument, das die Tabelle enthält) sämtliche formalen Fehler, sodass die Tabelle mit gutem Gewissen publiziert werden kann. Denken Sie auch über die in der Vorlesung vorgestellten Möglichkeiten des |multirow|-Paketes sowie des |\multicolumn|-Befehls\footnote{\pkg{multirow} findet sich wie immer über \pkg{texdoc}. Die Verwendung von \pkg{\textbackslash multicolumn} ist im Beispieldokument im github dargestellt oder über Internetsuche nach dem Befehl zu finden.} nach!
+
+Geben sie handschriftlich einen kurzen Kommentar zu den von Ihnen vorgenommen Änderungen an. (Grund für die Änderungen, Probleme, Alternativlösungen …)
+\bigskip
+
+\begin{minipage}{\textwidth}
+\centering
+\begin{tabular}{|p{2.1cm}||p{2.5cm}:|c*{2}{l};{1pt/5pt}l|}
+\hhline{=-----}
+Programm\,/ Makropaket & Fehler & Verursacher & Reporter 1 & Reporter 2 & Lösung\\\hhline{======}
+\TeX & keine bekannt & – & – & – & – \\\hline
+$\epsilon$\TeX & keine bekannt & – & – & – & – \\\hline
+\LaTeX & einige, nicht änderbar & Leslie & Will & Heinz &  Con\TeX t\\\hline
+lua\TeX & einige, in Entwicklung & Hans & Taco & –  & Abwarten\\\hline
+\XeTeX & wenige & – & unbekannt & unbekannt & evtl. lua\TeX \\\hline
+ppem & ausschließlich fehlerhaft & Arno & Arno & Arno & neuer HiWi\\\hhline{======}
+\end{tabular}
+\captionof{table}{Fehler in Programmen}
+\end{minipage}
 \end{exercise}
 
 \begin{expertexercise}[
