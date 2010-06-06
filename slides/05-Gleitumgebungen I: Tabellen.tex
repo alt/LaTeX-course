@@ -1,0 +1,508 @@
+\let\myoldbar| % as | is needed for tabular headers, we need to restore it’s old meaning later
+\input{kursheader}
+
+\usepackage[normalem]{ulem}
+
+\newcommand\messdaten{
+\toprule
+\bf Pendellänge $l$ [m]& \bf Dauer $T$ [s]\\\midrule
+4 & 8 \\
+2 & 4 \\
+1   & 2 \\
+.9  & 1.8 \\
+0.8 & 1.6 \\
+0.7 & 1.4 \\
+0.6 & 1.2 \\
+0.5 & 1.0 \\
+0.4 & 0.8 \\
+0.3 & 0.6 \\
+0.2 & 0.4 \\
+0.1 & 0.2 \\
+0.05 & 0.1 \\
+0.02 & 0.05 \\
+0.01 & 0.02 \\
+0.005 & 0.01 \\
+0.0025 & 0.005\\
+\bottomrule
+}
+
+\let\eV\relax % to avoid collision of e.V. with electron volt …
+\usepackage{
+  caption,
+  longtable,
+  pifont,
+  rotating,
+  supertabular,
+  tabularx,
+  tabulary
+}
+
+\begin{document}
+% to make tabular headers work correctly. \let/ necessary due to stupidity (?) of array
+\let|\myoldbar
+\catcode`\/=13
+\MakeShortVerb/
+
+\section[Gleitumgebungen]{Allgemeine Gleitumgebungen}
+\begin{frame}{Was sind Gleitobjekte?}
+• Objekte, die frei im Dokument „gleiten“ können
+• Gleiten vermeidet große Leerräume
+• \TeX\ versucht optimale Positionierung
+• zu beachten:
+• Objekte sollen nicht vor Referenzen auftauchen
+• Objekte sollen nicht die Reihenfolge tauschen
+• Seitenumbruch stark abhängig von Gleitobjekten
+• \emph{optimaler Seitenumbruch ist mit \TeX\ nicht möglich!}
+\•
+\end{frame}
+
+\begin{frame}[fragile]{Gleitumgebungen}
+• eine Gleitumgebung besteht aus verschiedenen Teilen:
+• Inhalt (Bild, Tabelle, Text, \dots)
+• automatische Bezeichnung: „Tabelle 1:“ (/\caption/)
+• Beschriftung: „Messergebnisse“ (Argument von /\caption{}/)
+• Markierung für Verweise: /\label{fig:messergebnisse}/
+\•
+\end{frame}
+
+\begin{frame}[fragile]{Gleitumgebungen}
+• \LaTeX\ verfügt über verschiedene Gleitumgebungen:
+• /table/ für Tabellen
+• /figure/ für Abbildungen
+• Paket /float/ ermöglicht Definition eigener Umgebungen
+• für zweispaltigen Satz: /table*/, /figure*/ über beide Spalten
+\•
+\end{frame}
+
+\begin{frame}[fragile]{Gleitumgebungen}
+\begin{block}{Positionierungsparameter für Gleitumgebungen:} 
+/\begin{table}[...]/
+\\
+\begin{mydesc}
+! & ignoriert Einschränkungen und fährt fort \\
+h & Objekt genau an dieser Stelle setzen\\
+t & Objekt am Seitenanfang setzen\\
+b & dito, Seitenende\\
+p & Objekt in Gleitobjektkolumne bzw. -spalte setzen\\
+H & „genau hier und sonst nirgends“ – Paket /float/
+\end{mydesc}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]{Gleitumgebungen}
+• Wenn die automatische Positionierung nicht funktioniert:\\%
+/\suppressfloats[t,b]/\\
+• Unterdrückt Positionierung am Kopf oder Fuß der Seite
+• vermeidet Bilder eines neuen Abschnittes im alten
+• nützliche Pakete:
+• /placeins/
+• /afterpage/
+• /endfloat/
+\•
+\end{frame}
+
+\begin{frame}[fragile]{table}
+\begin{LTXexample}
+\begin{table}
+\begin{tabular}{ccc}
+a & b & c
+\end{tabular}
+\caption{Eine sinnlose Tabelle}
+\label{tab:sinnlos}
+\end{table}
+Im Text kann man auf Tabelle
+\ref{tab:sinnlos} verweisen.
+\end{LTXexample}
+\begin{table}
+\begin{tabular}{ccc}
+a & b & c
+\end{tabular}
+\caption{Eine sinnlose Tabelle}
+\label{tab:sinnlos}
+\end{table}
+\end{frame}
+
+\begin{frame}[fragile]{Nichtgleitende Gleitumgebungen}
+• nichtgleitende Umgebungen als Gleitumgebungen ausgeben:
+•[] Paket \pkg{caption}
+\•
+\begin{LTXexample}[pos=b]
+Eine kleine Abbildung in einem Text, die eigentlich gar keine ist:
+\begin{minipage}[b]{3cm}
+\fbox{ich bin kein Bild}
+\captionof{figure}{test}
+\end{minipage}
+In der /minipage/ kann jeder beliebige Inhalt stehen \dots
+\end{LTXexample}
+\end{frame}
+
+\begin{frame}[fragile]{caption}
+• /caption/ bietet auch vielfältige Einstellungen für Legenden:
+\•
+\begin{LTXexample}[pos=b]
+\captionsetup[figure]{textfont=bf, labelsep=period}
+
+\captionsetup[table]{textfont=it,singlelinecheck=false,
+labelsep=newline,format=plain,justification=justified}
+
+\begin{figure}\fbox{Bild mit \emph{nicht} angepasster Unterschrift – dank Beamer …}
+\caption{Unterschrift}\end{figure}
+\end{LTXexample}
+\end{frame}
+
+\begin{frame}[fragile]{Drehen von Gleitumgebungen}
+• Paket /rotating/ rotiert den Inhalt um 90° bzw. 270°
+• Umgebungen /sidewaysfigure/, /sidewaystable/
+• nichtgleitend: /sideways/
+\•
+\begin{LTXexample}[width=.4\textwidth]
+\centering
+\begin{sideways}
+[Bild]
+\end{sideways}
+\captionof{figure}{Nicht gedrehte Beschriftung}
+\end{LTXexample}
+\end{frame}
+
+\begin{frame}[fragile]{sideways}
+\begin{lstlisting}
+\begin{sidewaysfigure}
+\fbox{Bild}
+\caption{Unterschrift}
+\end{sidewaysfigure}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}{Tabellen und \LaTeX}
+•[\color{red}⇒] Tabellensatz mit \LaTeX\ ist aufwändig!
+•[\color{red}⇒] WYSIWYG-Editoren bieten leichtere, da sichtbare Formatierung von Tabellen.
+•[\bf \color{green}⇒] Ergebnis sieht in \LaTeX\ meist besser aus.
+•[\color{green}⇒] Erscheinungsbild ist frei anpassbar, mit beliebig hohem Aufwand.
+\•
+\end{frame}
+
+\section[tabular]{Standardumgebungen – tabular, tabular*}
+\begin{frame}[fragile]{\LaTeX{}s Standardumgebungen}
+• /tabular/, /tabular*/
+• /tabbing/
+• \alert{nicht zu verwechseln mit /table/!}
+\•
+\end{frame}
+
+\begin{frame}[fragile]{tabular vs. tabbing}
+\begin{tabular}[]{rcc}
+& \textbf{tabular} & \textbf{tabbing}\\
+Eigener Absatz & \cross & \checkmark \\
+Seitenumbruch & \cross & \checkmark  \\
+automatische Spaltenbreite & \checkmark & \cross\\
+Schachtelung & \checkmark & \cross
+\end{tabular}
+\end{frame}
+
+\begin{frame}[fragile]{tabbing}
+Grundbefehle: /\=, \>/
+\begin{LTXexample}
+\begin{tabbing}
+erster Eintrag \= zweiter \= dritter \\
+eins \> zwei \> drei\\
+eins \>      \> \` drei
+\end{tabbing}
+\end{LTXexample}
+/\=/ definiert eine neue Tabulatorposition\\
+/\>/ rückt zur nächsten definierten Position vor
+\end{frame}
+
+\begin{frame}[fragile]{tabbing}
+Weitere Befehle: /\kill, \`/
+\begin{LTXexample}
+\begin{tabbing}
+\hspace{1.5cm} \= \hspace{1cm} \= \qquad \kill
+erster \> zweiter \> dritter \\
+erster Eintrag \> zweiter Eintrag \` dritter Eintrag
+\end{tabbing}
+\end{LTXexample}
+\begin{description}
+\item[/\textbackslash kill/] löscht Inhalt der Zeile, speichert aber die Tabulatoren
+\item[/\textbackslash`/] richtet Text rechtsbündig zum /tabbing/-Rand aus
+\end{description}
+\end{frame}
+
+\begin{frame}[fragile]{tabular}
+/tabular, tabular*/
+\begin{LTXexample}[pos=b,preset={\small}]
+\begin{tabular}{l|c||r|p{2cm}@{\ding{53}}c|}
+links & mitte & rechts & vier & fünf\\\hline\hline
+links & mitte &  & eine lange vierte Spalte, die umbrochen wird\\\hline
+& & & &
+\end{tabular}
+\end{LTXexample}
+\end{frame}
+
+\begin{frame}[fragile]{tabular}
+\begin{mydesc}
+l& linksbündige Spalte\\
+c & zentrierte Spalte\\
+r & rechtbündige Spalte\\
+| & vertikale Linie zwischen Spalten\\
+|| & doppelte Linie zwischen Spalten (wird nicht durchgestrichen)\\
+p\{breite\} & Fügt eine /\parbox[t]{breite}/ ein\\
+@\{Inhalt\} & setzt statt Spaltenabstand /Inhalt/\\
+*\{n\}\{kürz\} & setzt /n/ mal das /kürzel/, z.\,B. /*{2}{|}/\\
+\end{mydesc}
+\end{frame}
+
+\section[booktabs]{Schöne Tabellen – booktabs}
+
+\begin{frame}[fragile]{Fragwürdiges Layout}
+• Paket booktabs (Simon Fear) für hohe Qualität
+• Empfehlungen aus dem Paket:
+\•
+\begin{block}{booktabs}
+\begin{enumerate}
+\item \alert{Never, ever use vertical rules.}
+\item \alert{Never use double rules.}\pause 
+\item Put the units in the column heading (not in the body of the table).
+\item Always precede a decimal point by a digit; thus /0.1/ \emph{not} just /.1/.
+\item Do not use “ditto” signs or any other such convention to repeat a previous
+value. In many circumstances a blank will serve just as well. If it won’t,
+then repeat the value.
+\end{enumerate}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]{booktabs}
+\begin{LTXexample}[width=.45\textwidth,rframe={}]
+\begin{tabular}{lrr}
+\toprule
+Artikel & Zahl & Bezeichnung\\\midrule
+Die & erste & Zeile\\\cmidrule{2-3}
+Die & zweite & Zeile\\
+Die & dritte & Zeile\\
+Die & vierte & Zeile\\
+\bottomrule
+\end{tabular}
+\end{LTXexample}
+\end{frame}
+
+\begin{frame}[fragile]{ohne booktabs}{Negativbeispiel}
+\begin{LTXexample}[width=.45\textwidth,rframe={},preset={\def\ditto{\ --"{}--\ }}]
+\begin{tabular}{l||r|r}
+\hline
+Artikel & Zahl & Bezeichnung\\\hline
+Die & erste & Zeile\\\cline{2-3}
+Die & zweite & Zeile\\
+Die & dritte & \ditto \\
+Die & vierte & \ditto \\
+\hline
+\end{tabular}
+\end{LTXexample}
+\end{frame}
+
+\section[array]{Erweiterungen – array}
+\begin{frame}[fragile]{array}
+• Paket /array/ erweitert die Möglichkeiten von /tabular/
+• Änderung von vertikalen Linien, neue Spaltentypen:
+\•
+\begin{mydesc}
+/|/ & berücksichtigt die Linienbreite\\\hline
+/m{breite}/ & vertikal zentrierte Spalte der angegebenen /breite/\\
+/b{breite}/ & unten ausgerichtete Spalte der angegebenen /breite/ (vgl. p)\\
+/>{Befehl}/ & fügt /Befehl/ direkt vor der nächsten Spalte ein\\
+/<{Befehl}/ & fügt /Befehl/ direkt hinter der letzten Spalte ein\\
+/!{Befehl}/ & wie /|/, fügt aber /Befehl/ ein. Vgl. /@/, aber Abstand korrigiert
+\end{mydesc}
+\end{frame}
+
+\begin{frame}[fragile]{array}
+\begin{LTXexample}[pos=b]
+\begin{tabular*}{6cm}{|p{1cm}p{3cm}p{1cm}|}
+links & mittlerer Text mit eingebautem Umbruch & rechts
+\end{tabular*}
+\end{LTXexample}
+\end{frame}
+\begin{frame}[fragile]{array}
+\begin{LTXexample}[pos=b]
+\begin{tabular*}{6cm}{|m{1cm}m{3cm}m{1cm}|}
+links & mittlerer Text mit eingebautem Umbruch & rechts
+\end{tabular*}
+\end{LTXexample}
+\end{frame}
+\begin{frame}[fragile]{array}
+\begin{LTXexample}[pos=b]
+\begin{tabular*}{6cm}{|b{1cm}b{3cm}b{1cm}|}
+links & mittlerer Text mit eingebautem Umbruch & rechts
+\end{tabular*}
+\end{LTXexample}
+\end{frame}
+\begin{frame}[fragile]{array}
+\begin{LTXexample}[pos=b]
+\begin{tabular}{>{\bfseries}l|>{\color{red}}r}
+links & rechts\\
+links & rechts
+\end{tabular}
+\end{LTXexample}
+\end{frame}
+
+\section[tabularx, tabulary]{Automatische Breite – tabularx, tabulary}
+\begin{frame}[fragile]{tabular*}
+• /tabular*/ ändert \emph{Abstand} der Spalten
+• /tabularx/ verteilt \emph{Breite} der Spalten \emph{gleichmäßig}
+• /tabulary/ verteilet \emph{Breite} der Spalten \emph{am Inhalt orientiert}
+\•
+\end{frame}
+
+\begin{frame}[fragile]{automatische Breiten}
+\begin{LTXexample}[width=.4\textwidth]
+\begin{tabular*}{4cm}{|l|!{\extracolsep\fill}>{(}l<{)}|r|}
+a a & b b & c c
+\end{tabular*}
+\\ \\
+\begin{tabular}{|l|!{\extracolsep\fill}l|r|}
+a a & b b & c c
+\end{tabular}
+\\ \\
+\begin{tabularx}{4cm}{|l|>{(}X<{)}|r|}
+a a & b b & c c
+\end{tabularx}
+\end{LTXexample}
+\end{frame}
+
+\begin{frame}[fragile]{tabularx}
+Automatische Berechnung der Spaltenbreite:
+\begin{LTXexample}
+\begin{tabularx}{\linewidth}{lX|X|r}
+linke Spalte & Eine längere Spalte& kurz & rechts
+\end{tabularx}
+\end{LTXexample}
+\end{frame}
+
+\begin{frame}[fragile]{tabulary}
+\begin{LTXexample}
+\begin{tabulary}{4cm}{|L|L|L|}
+a & b b b b b b b b b & c c c c c c c c c c c c c c c c c 
+\end{tabulary}
+\end{LTXexample}
+\begin{LTXexample}
+\begin{tabular}{|l|l|l|}
+a & b b b b b b b b b & c c c c c c c c c c c c c c c c c 
+\end{tabular}
+\end{LTXexample}
+\begin{LTXexample}
+\begin{tabular*}{4cm}{|l|l|l|}
+a & b b b b b b b b b & c c c c c c c c c c c c c c c c c 
+\end{tabular*}
+\end{LTXexample}
+\end{frame}
+
+\begin{frame}[fragile]{tabulary}
+Mögliche Spaltentypen:\\[1em]
+\begin{mydesc}
+L & linksbündig\\
+R & rechtsbündig\\
+C & zentriert\\
+J & Blocksatz
+\end{mydesc}
+\\[1em]
+• Alle Spalten verhalten sich wie /p/-Spalten.
+• Breite der Spalten ist \emph{nicht} vorher festgelegt.
+\•
+\end{frame}
+
+\section[supertabular, longtable]{Mehrseitige Tabellen – supertabular, longtable}
+\begin{frame}[fragile]{lange Tabellen}
+Lösung: /supertabular/ oder /longtable/\\[1em]
+\begin{mydesc}
+supertabular   & mehrseitige Tabelle, Breite variabel\\
+supertabular*  & festgesetzte Breite\\
+mpsupertabular & setzt Tabelle in /minipage/\\
+mpsupertabular*& /minipage/ mit fester Breite
+\end{mydesc}
+\end{frame}
+
+\begin{frame}[fragile]{supertabular}
+\begin{supertabular}{cc}
+\messdaten
+\end{supertabular}
+\end{frame}
+
+\begin{supertabular}{cc}
+\messdaten
+\end{supertabular}
+
+\begin{frame}[fragile]{supertabular}
+Wichtige Einstellungsmöglichkeiten:
+\begin{LTXexample}
+\tablehead{links & rechts \\\hline}
+\tablefirsthead{\bf links & \bf rechts \\}
+\tabletail{\small \textit{Fortsetzung auf der nächsten Seite} & \\}
+\tablelasttail{Ende der Messdaten}
+\end{LTXexample}
+\end{frame}
+
+\begin{supertabular}{cc}
+\messdaten
+\end{supertabular}
+
+\begin{frame}[fragile]{longtable}
+Paket /longtable/ bietet Umgebung /longtable/:
+• feste Breite der Spalten auf allen Seiten
+• /head/, /firsthead/ etc. werden \emph{innerhalb} der Tabelle festgelegt
+• verwendet die .aux-Datei (auf Schreibrechte achten!)
+\• 
+\end{frame}
+
+\begin{frame}[fragile]{longtable}
+\begin{LTXexample}[pos=b]
+\begin{longtable}{cc}
+\textbf{Messdaten}\\
+\endfirsthead
+links & rechts\\
+\endhead
+\small \textit{Weiter auf der nächsten Seite}
+\endfoot
+Ende der Tabelle.
+\endlastfoot
+\messdaten
+\end{longtable}
+\end{LTXexample}
+\end{frame}
+
+\begin{longtable}{cc}
+\textbf{Messdaten}\\
+\endfirsthead
+links & rechts\\
+\endhead
+\small \textit{Weiter auf der nächsten Seite}
+\endfoot
+Ende der Tabelle.
+\endlastfoot
+\messdaten
+\end{longtable}
+
+\begin{frame}[fragile]{supertabularx, longtablex}
+Für Satz mehrseitiger Tabellen mit automatischer Breitenanpassung:
+\only<1>{/supertabularx/ bzw. /longtablex/}
+\only<2->{{\color{red}\xout{|supertabularx|}} bzw. {\color{red}\xout{|longtabularx|}}}
+\pause\pause
+• Paket /ltxtable/ bietet grundlegende Unterstützung
+• Kombination von /longtable/ und /tabularx/
+• Tabelle (\texttt{tabularx}) selbst steht in externer Datei
+• Nutzer muss diese selbst anlegen, schreiben und verwalten
+• Einbinden mittels \texttt{\textbackslash LTXtable\{width\}\{file\}}
+• am besten mittels /filecontents/ (Umgebung, Paket)
+\•
+\end{frame}
+
+\section[weiteres]{weitere nützliche Pakete}
+\begin{frame}[fragile]{weitere nützliche Pakete}
+\begin{mydesc}
+colortbl & farbige Linien\\
+hhline   & vielfältige Linien (horizontal, vertikal \dots)\\
+arydshln & gestrichelte Linien \\
+tabls    & Zeilenabstände einstellen (inkompatipel zu array!)\\
+multirow & vertikale Ausrichtung \\
+dcolumn  & Ausrichtung am Dezimalpunkt \\
+threeparttable & Fußnoten an Tabellen
+\end{mydesc}
+\end{frame}
+\end{document}

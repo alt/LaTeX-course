@@ -1,0 +1,388 @@
+\input{kursheader}
+
+\usepackage{
+  blindtext,
+  boxedminipage,
+  ecltree,
+  epic,
+  eepic,
+  fancybox,
+  shadow,
+  subfloat,
+  wrapfig
+}
+\usepackage{bar}
+\let\barbar\bar
+\let\bar\relax
+
+\begin{document}
+\let\bar\barbar
+\section{Graphikarten}
+\begin{frame}{Bilder}
+\begin{block}{Pixelgraphik}
+• eine Menge an Punkten
+• jedem Punkt wird eine Farbe zugeordnet
+• Ergebnis von Photos, Scans, etc. 
+• keine Skalierbarkeit
+\•
+\end{block}
+
+\begin{block}{Vektorgraphik}
+• Beschreibung durch mathematische Objekte
+• Kurven (Bézier-Kurven, Polynome, …) o.\,ä.
+• beliebige Skalierbarkeit
+• meist kleine Dateigröße
+• moderne Schriften sind Vektorgraphiken!
+\•
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]{\TeX\ und Bilder}
+• \TeX\ stammt aus einer Zeit, in der Texte den Informationsaustausch dominierten
+• \TeX\ kennt \emph{keine} Möglichkeit, externe Bilder einzubinden
+• \TeX\ kennt nur Boxen
+• Für alles, was darüber hinaus geht: |\special|
+•[⇒] abhängig vom „Ausgabegerät“!
+\•
+\end{frame}
+
+\section[Internes]{„Interne“ Graphiken}
+\begin{frame}[fragile]{Portable Graphiken}
+• \LaTeX-Pakete bieten Möglichkeiten, mittels \TeX-Code Graphiken zu erstellen
+• Beschränkung auf Linien, Boxen und Zusammengesetztes
+• komplexe Graphiken sind mit speziellen Paketen gut möglich
+•[] aber: \alert{\LaTeX\ ist kein Zeichenprogramm}
+\•
+\end{frame}
+
+\begin{frame}{Portable Graphiken}
+• kreative Möglichkeiten:
+• „Missbrauch“ von Schriften zum Erstellen von Graphiken\\%
+z.B. \texttt{feyn}
+• Graphik aus \TeX-Boxen zusammensezten \dots
+\pause
+• sinnvoll: richtige Boxen als graphische Textauszeichnung
+\•
+\end{frame}
+
+\begin{frame}[fragile]{boxedminipage, shadow}
+\begin{LTXexample}
+\begin{boxedminipage}[t]{10em}
+Ein kleines Beispiel für eine eingerahmte Minipage, in der beliebiger Inhalt stehen kann.
+\end{boxedminipage}
+\end{LTXexample}
+\begin{LTXexample}
+\shabox{Ein kleines Beispiel für eine Box mit Schatten.}
+\end{LTXexample}
+\end{frame}
+
+\begin{frame}[fragile]{fancybox}
+• Paket \pkg{fancybox} bietet vielseitige Möglichkeiten, Boxen um Text zu legen
+• viele Parameter beliebig einstellbar
+\•
+\begin{LTXexample}
+\doublebox{Doppelte Umrandung}
+\ovalbox{ovale Umrandung}
+\shadowbox{schattierte Box}
+\end{LTXexample}
+\end{frame}
+
+\begin{frame}[fragile]{epic!}
+• Paket |epic| bietet Erweiterungen zur \LaTeX-Umgebung |picture|
+• Paket |eepic| bietet Erweiterungen zu den Erweiterungen
+• z.\,B. Paket |ecltree| bietet Möglichkeit für Baumdiagramme:
+\•
+\begin{figure}
+\begin{bundle}{Arno}
+\chunk{
+  \begin{bundle}{Ina\strut}
+  \chunk{Laura}\end{bundle}
+}
+\chunk{\begin{bundle}{Stefan\strut}
+	\chunk{Mainzer Studenten}\drawwith{\dottedline{3}}
+\end{bundle}}
+\chunk{\begin{bundle}{Jakob\strut}
+  \chunk{Heidelberger Studenten}\drawwith{\dottedline{3}}
+\end{bundle}}
+\end{bundle}
+\caption{Verbreitung von \TeX}
+\end{figure}
+\end{frame}
+
+\begin{frame}[fragile]{more epic}
+• Paket |bar| bietet Möglichkeit für Balkendiagramme:
+\•
+\begin{LTXexample}[preset=\vspace*{1cm},pos=b]
+\begin{barenv}
+\bar{69}{1}[Windows]
+\bar{23}{4}[Linux]
+\bar{14}{3}[Mac OS]
+\bar{0}{1}[andere]
+\end{barenv}
+\end{LTXexample}
+
+
+\end{frame}
+
+\section{externe Graphiken}
+\begin{frame}[fragile]{externe Graphiken}
+• \LaTeX\ bietet Möglichkeit, extern erzeugte Bilder einzubinden
+• je nach Treiber sind verschiedene Formate möglich
+• u.\,a. jpeg, ps, pdf, gif, tiff, \dots
+• unter Umständen Umformatierung nötig!
+• \XeLaTeX\ bietet Unterstützung für meisten gebräuchlichen Formate
+\•
+\end{frame}
+
+\begin{frame}{externe Graphiken}
+\begin{block}{Vorteile externer Graphiken}
+• freie Gestaltungsmöglichkeit
+• Erzeugung in WYSIWYG-Graphikprogrammen
+• Unabhängigkeit vom Dokument
+• spezialisierte Programme für jeden Zweck
+• Programme bieten guten Export nach \TeX\
+\•
+\end{block}
+\pause
+\begin{block}{Nachteile externer Graphiken}
+• getrennt vom Dokument ⇒ Portabilität leidet
+• Layout passt nicht zum Schriftbild
+• Bildbeschriftungen müssen zur Brotschrift oder Matheschrift passen
+• Treiberabhängigkeit
+\•
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]{Inkompatible Formate}
+• falls eine Graphik benötigt wird, mit welcher der Treiber nicht umgehen kann:
+\•
+\begin{verbatim}
+\Declaregraphiksrule{<Endung>}{<Typ>}{<Größe>}{<Befehl>}
+\DeclareGraphicsRule{.jpg}{eps}{}{'jpg2eps #1'}
+\end{verbatim}
+• Paket \pkg{epstopdf} erleichtert Umgang mit PostScript-Dateien
+• externe Umwandlung empfohlen:\\%
+z.\,B. IrvanView, gimp \dots
+\•
+\end{frame}
+
+\section[graphics/x]{Pakete graphics und graphicx}
+\begin{frame}[fragile]{graphics}
+• Grundbefehl: |\includegraphics[optionen]{datei}|
+• Dateiendung muss nicht angegeben werden
+• bei Arbeit mit pdf- \emph{oder} dvi-Ausgabe:
+•[] Dateiendung besser weglassen
+• keine absoluten Pfadangaben verwenden (Portabilität)
+• nützlich, aber nicht ganz zuverlässig: |\graphicspath|
+\•
+\end{frame}
+
+\begin{frame}[fragile]{graphicx}
+• \pkg{graphicx} erweitert \pkg{graphics}
+• |key=value|-Interface:
+•[] |[scale = 0.5,angle=50]|
+\•
+|graphics: \scalebox{0.5}{\includegraphics{a}}|\\
+|graphicx: \includegraphics[scale=.5]{a}|
+\end{frame}
+
+\begin{frame}[fragile]{Einbinden von Graphiken}
+\begin{LTXexample}[pos=b,width=.9\textwidth]
+\includegraphics[width=2cm]{unilogo.svg}
+\includegraphics[width=.3\textwidth,angle=25]{unilogo.svg}
+\end{LTXexample}
+\end{frame}
+
+\frame{\includegraphics{unilogo.svg}}
+
+\begin{frame}[fragile]{Optionen für \texttt{includegraphics}}
+|\includegraphics| kennt viele Optionen, z.\,B.
+\\[2ex]
+\begin{mydesc}
+Schlüssel & Werte\\\midrule
+|scale| & |0.8| \\
+|width| & |.2\textwidth| \\
+|height| & |2em| \\
+|keepaspectratio| & |true| oder |false|\\
+|angle|  & |50| \\
+|bb| & |0 0 10 20| \\
+|clip| & |true| oder |false|
+\end{mydesc}
+\\[2ex]
+⇒ siehe Dokumentation zu |graphicx|
+\end{frame}
+
+\begin{frame}[fragile]{Bilder im Text}
+• aus Textverarbeitungssystemen bekannt:\\%
+Text, der Bild umfließt (nicht rechteckig, sondern der Form angepasst)
+• typographisch fragwürdig – Abhebung des Bildes vom Text
+• Umfließen stört Lesefluss erheblich
+• \TeX\ kann prinzipiell keine Graphiken umfließen
+• mit immensem Aufwand evtl. möglich
+• Platzierung am Rand einfach möglich
+•[⇒] Pakete \pkg{wrapfig}, \pkg{picins}, \pkg{picinpar}, \pkg{floatflt}
+\•
+\end{frame}
+
+\begin{frame}[fragile]{wrapfig}
+\begin{LTXexample}[preset=\fontsize{4}{5}\selectfont,pos=b]
+\blindtext
+\begin{wrapfigure}{l}[0.2\width]{0pt}
+\includegraphics[width=1cm]{unilogo.svg}
+\end{wrapfigure}
+\blindtext[3]
+\end{LTXexample}
+\end{frame}
+
+\begin{frame}[fragile]{wrapfig}
+\pkg{wrapfig} bietet folgende Optionen:
+|\begin{wrapfigure}[zeilen]{position}[überhang]{breite}|
+\\[2ex]
+\begin{mydesc}
+zeilen & Anzahl schmaler Zeilen\\\midrule
+position & Seite, auf die gesetzt wird.\\
+|L,R| & links bzw. rechts, gleitend\\
+|l,r| & links bzw. rechts, nicht gleitend\\
+|i,o,I,O| & innen bzw. außen, analog\\\midrule
+überhang & Einrückung in den Rand\\\midrule
+breite & Breite der Abbildung
+\end{mydesc}
+\end{frame}
+
+\begin{frame}[fragile]{wrapfig}
+• |wrapfig| bietet auch |wraptable|
+• |wrapfigure| und |wraptable| unterstützen |\caption| und |\label| :%{}
+• Verwendung wie normale Gleitumgebungen
+• |\width| für natürliche Breite
+\•
+\end{frame}
+
+\begin{frame}[fragile]{picinpar}{Löcher im Absatz}
+• \pkg{picinpar} ermöglicht Satz von beliebigem Inhalt innerhalb eines Absatzes
+• Umgebung \pkg{window}: keine weitere Formatierung
+• Umgebungen \pkg{figwindow} und \pkg{tabwindow} ermöglichen konsistenten Satz von Unterschriften
+• \alert{Vorsicht: } evtl. Probleme mit Gleitumgebungen (|figure|, |table|)
+\•
+\end{frame}
+
+\begin{frame}[fragile]{floatflt}
+• \pkg{floatflt} kann Bilder am Anfang eines Absatzes setzen
+• auf CTAN zu finden, nicht bei \TeX live dabei
+\•
+\begin{lstlisting}
+\begin{floatingfigure}{60mm}
+    \includegraphics[width=60mm]{B-7-Physik-Kloster.jpg} %
+    \caption[Grundriß des zweiten Obergeschosses im Dominikanerkloster \newline Heidelberger Jahrbücher der Literatur 13,4 (1820)]
+    {\label{Physik-Kloster} Grundriß des zweiten Obergeschosses im Dominikanerkloster}
+\end{floatingfigure}
+\end{lstlisting}
+\end{frame}
+
+
+\begin{frame}[fragile]{Teilbilder – subfig}
+• Paket \pkg{subfig} definiert |\subfloat[]{}|
+• optionales Argument ist Beschriftung
+• obligatorisches Argument ist Inhalt
+• inkompatibel mit \pkg{beamer} \dots
+\•
+\begin{lstlisting}
+\begin{table}
+\subfloat[Erste Tabelle]{
+\begin{tabular}{ccc} a & b & c \end{tabular}
+}
+\subfloat[Zweite Tabelle]{
+\begin{tabular}{ccc} a & b & c \end{tabular}
+}
+\caption{Zwei Tabellen}
+\end{table}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Teilbilder – subfloat}
+• definiert Umgebungen |subfigures| und |subtables|
+• Objekte werden unabhängig platziert
+• Legenden einzeln, aber zusammenhängend
+\•
+\end{frame}
+
+\begin{frame}[fragile]{Teilbilder – subfloat}
+\begin{LTXexample}[pos=b]
+\begin{subfigures}
+\begin{figure}
+\fbox{Bild 1}\caption{Legende 1}
+\end{figure}
+\begin{figure}
+\fbox{Bild 2}\caption{Legende 2}
+\end{figure}
+\end{subfigures}
+\end{LTXexample}
+\end{frame}
+
+\begin{frame}[fragile]{Legenden seitlich setzen}
+• Paket \pkg{sidecap} ermöglicht Satz von Legenden \emph{neben} Objekten
+• Umgebungen |SCfigure| und |CStable|
+• viele Optionen zur Formatierung der Legende
+\•
+\end{frame}
+
+\begin{frame}[fragile]{sidecap}
+\begin{lstlisting}
+\begin{SCtable}[0.5][t]
+\fbox{Eine Tabelle}
+\caption{Eine Legende neben der tollen Tabelle}
+\end{SCtable}
+\end{lstlisting}
+\end{frame}
+
+\section{Zeichenpakete}
+\newcommand\TikZ{Ti\emph{k}Z\xspace}
+\begin{frame}[fragile]{Zeichenpakete}
+• PS-Tricks und \TikZ{}\\%
+(PostScript-Tricks, \TikZ \emph{i}st \emph{k}ein \emph{Zeichenprogramm}
+• bieten immens große Möglichkeit, Graphiken zu erstellen
+• viele spezielle Erweiterungspakete zu PS-Tricks
+• z.\,B. Erstellen von Knotendiagrammen, Schaltplänen etc. 
+\•
+\end{frame}
+
+\begin{frame}[fragile]{pst-circ}
+\begin{lstlisting}
+\begin{pspicture}(3,2)
+\pnode(0,1){A}\pnode(3,1){B}
+\pnode(3,0){C}\pnode(0,0){D}
+\resistor(A)(B){$R$}
+\capacitor(B)(C){$C$}
+\LED(C)(D){$\mathcal D$}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{pst-circ}
+\begin{lstlisting}
+\begin{pspicture}(3,3)
+\pnode(0,3){A}\pnode(0,0){B}\pnode(3,3){C}\pnode(3,0){D}
+\transformer(A)(B)(C)(D){$\mathcal{T}$}
+\end{pspicture}\begin{pspicture}(3,3)
+\logic[logicType=nand,logicShowNode,logicWidth=1,logicHeight=3,
+logicNInput=6,logicChangeLR](2,1){NAND3}\end{pspicture}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{TikZ}
+\begin{lstlisting}
+\begin{tikzpicture}
+\node(tex) at (3,2) {\TeX};
+\node(TeX-XeT) at (3,0) {\TeX-XeT};
+
+\draw(tex) to (TeX-XeT);
+\end{tikzpicture}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}{TGC}
+Für alles weitere: \\
+Herbert Voss: PS Tricks\\
+Michel Goossens, Sebastian Rahtz, Frank Mittelbach:\\
+The \LaTeX\ Graphics Companion
+\end{frame}
+
+\end{document}

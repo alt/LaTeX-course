@@ -1,0 +1,287 @@
+\input{kursheader}
+
+\gdef\TikZ{{\rmfamily Ti\textit{k}Z}\xspace}
+
+\begin{document}
+\section{beamer}
+\begin{frame}{Vorbemerkungen}
+• \LaTeX\ ist \emph{nicht} für Präsentationen geschaffen
+• spezielle Programme oft besser geeignet
+• Wahl des Programms vom Inhalt abhängig:
+• bei strukturierter, klarer Darstellungsform: \LaTeX\ + \pkg{beamer}
+\•
+\end{frame}
+
+\begin{frame}{Beamer}
+• Dokumentklasse \pkg{beamer} ermöglich Satz von Präsentationen
+• erstellt bildschirmfüllende „Folien“ (pdfs)
+• ansprechende Farbgebung
+• strukturierte Darstellung des Inhaltes
+• „dynamische“ Effekte (Ein\,/\,Ausblenden)
+• multimediale Unterstützung
+\•
+\end{frame}
+
+\begin{frame}[fragile]{Aufbau einer Präsentation}
+• |\documentclass{beamer}|
+• alle Pakete, Befehle, Umgebungen (fast) wie normal zu verwenden:
+• |\tableofcontents| erzeugt Inhaltsverzeichnis, |\begin{tabular}| setzt Tabelle etc.
+• \alert{wichtigste Umgebung:}\\%
+ {\color{red}|\begin{frame}|}\\%
+(setzt jeweils einzelne Folien, auf mehreren pdf-Seiten)\\%
+{\color{red}|\end{frame}|}
+• Abkürzung: |\frame{}|
+\•
+\end{frame}
+
+\begin{frame}[fragile]{Besonderheiten}{frames}
+• Umgebung |frame| erzeugt eine „Folie“
+• erstes Argument: Titel, zweites: Untertitel\\%
+ (beide mit |{}|, aber optional!)
+• optionales Argument |[fragile]| nötig für |\verb| u.\,ä.\\%
+• jede pdf-Seite ist (meist) statisches Objekt
+•[⇒] Überblendeffekte benötigen mehrere pdf-Seiten!
+\• 
+\end{frame}
+
+\begin{frame}[fragile]{Beispielframe}
+vertikale Ausrichtung mittels optionalem Argument |[t,b,c]|, auch als Dokumentklassenoption
+\begin{verbatim}
+ \begin{frame}[fragile,t]{Thema}{Unterthema}
+     Folieninhalt
+ \end{frame}
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{Überblendeffekte}
+• für dynamische Effekte: <kürzel>
+•<+-> |<+->| lässt Objekt erscheinen und bleibt
+•<+> |<+>| lässt Objet erscheinen, verschwindet wieder
+•<4> |<4>| Objekt erscheint auf Folie 4
+\•
+\end{frame}
+
+\begin{frame}[fragile]{Überblendeffekte}
+• z.\,B. bei |itemize|:
+\•
+\begin{verbatim}
+\begin{itemize}<+->  % Angabe gilt für alle \items
+\item<+-> Punkt 1
+\item<4> Punkt 2
+\item<+-> Punkt 3
+\end{itemize}
+\end{verbatim}
+Auch bei |\includegraphics<>| u.\,a.
+\end{frame}
+
+\begin{frame}[fragile]{Überblendeffekte}{Pause}
+• {\color{red} |\pause|} stoppt den Inhalt an beliebiger Stelle
+• erste Seite wird bis zu |\pause| gesetzt
+• zweite Seite enthält den gesamten Inhalt (bis zum nächsten |\pause|)
+\•
+\[a =\pause b_{c\pause \cdot d}\]
+\end{frame}
+
+\begin{frame}[fragile]{Überblendeffekte}{only}
+• {\color{red} |\only<kürzel>{inhalt}|} setzt den |inhalt| nur in den angegeben Seiten
+• Platz für den |inhalt| wird \emph{nicht} freigehalten
+• |\only<4>{inhalt}| setzt nur in der vierten Seite
+• |\only<3->{inhalt}| setzt ab der dritten Seite
+\•
+\end{frame}
+
+\begin{frame}[fragile]{Überblendeffekte}{un(der)cover}
+• {\color{red} |\uncover<kürzel>{inhalt}|} setzt den |inhalt| nur in den angegeben Seiten
+• Platz für den |inhalt| \emph{wird} freigehalten
+• |\uncover<4>{inhalt}| setzt nur in der vierten Seite
+• |\uncover<3->{inhalt}| setzt ab der dritten Seite
+\•
+\end{frame}
+
+\begin{frame}[fragile]{Überblendeffekte}{dynamisch}
+• pdf-Spezifikation definiert standardasierte dynamische Übergänge
+• nur mit pdf\TeX\ bzw. lua\TeX\ möglich!
+• nicht von allen Viewern unterstützt! (möglich: Acrobat Reader, okular)
+• siehe \pkg{beamer}-Dokumentation, |14.3 Slide Transitions|
+\•
+\end{frame}
+
+\begin{frame}[fragile]{themes}{allgemeine}
+• themes sind Stilvorlagen, die das gesamte Layout beeinflussen
+• Einbinden mittels |\usetheme| im Header
+• benannt nach Tagungsorten
+• siehe \pkg{beamer}-Dokumentation, |15 Themes|
+\•
+\end{frame}
+
+\begin{frame}[fragile]{themes}{inner}
+• beeinflussen das Aussehen von Elementen in der Folie
+• Aufzählungen, Abbildungsbeschriftung, Boxen etc.
+• |\useinnertheme|
+\• 
+\end{frame}
+
+\begin{frame}[fragile]{themes}{outer}
+• beeinflussen das Aussehen der äußeren Element
+• Kopfzeile, Fußzeile, Navigation etc.
+• |\useoutertheme|
+\• 
+\end{frame}
+
+\begin{frame}[fragile]{themes}{color}
+• wie der Name sagt …
+• je nach Theme werden verschiedene Elemente coloriert
+• Farben für jedes Element anpassbar:
+• |\setbeamercolor{footnote}{fg=red}|
+• |fg| für |foreground|, |bg| für |background|
+\•
+\end{frame}
+
+\begin{frame}[fragile]{Gliederung}
+• normale Gliederungselemente vorhanden
+• |\section, \subsection, \chapter, ...|
+• Angabe von |\section| bewirkt zunächst nichts!\\%
+(Absatzüberschriften werden \emph{nicht} ausgegeben)
+• Einfluss nur in Inhaltsverzeichnissen und Headern
+\•
+\end{frame}
+
+\begin{frame}[fragile]{Strukturelemente}{block}
+\begin{LTXexample}
+\begin{block}{Titel}
+Inhalt eines schön gefärbten Blockes.
+\end{block}
+\begin{block}{Zwei}
+Und noch einer.
+\end{block}
+\end{LTXexample}
+\end{frame}
+
+\begin{frame}[fragile]{Strukturelemente}{theorem}
+\begin{LTXexample}
+\begin{theorem}[Trautmann et al. 2010]
+1 + 2 = 3
+\end{theorem}
+\begin{proof}
+2 = 1+1\\
+1+1+1 = 3
+\end{proof}
+\begin{example}
+2+1 = 3
+\end{example}
+\end{LTXexample}
+Konflikt mit |theorem| aus \pkg{amsmath}!\\
+Können nummeriert werden mit Dokumentenoption |[envcountsec]|
+\end{frame}
+
+\section{Multimedia}
+\begin{frame}[fragile]{Gleitumgebungen}
+• Einfügen von Abbildungen, Tabellen u.\,ä. wie gewohnt
+• Gleitumgebungen werden nicht nummeriert
+• Positionsangaben (h,t,b) werden ignoriert
+• |\logo| fügt ein Logo global in die Präsentation ein (z.\,B. oben links)
+• Bilder einfügen mittels |\includegraphics| oder:
+\•
+\begin{verbatim}
+\pgfdeclareimage[height=0.5cm]{logo}{tu-logo}
+\logo{\pgfuseimage{logo}}
+\logo{\includegraphics[height=0.5cm]{logo}{tu-logo}}
+\end{verbatim}
+\end{frame}
+
+\begin{frame}{Filme}
+• Paket |multimedia| (gehört zu beamer) laden
+• unter Verwendung von pdf\LaTeX\ und geeignetem Viewer: Einbinden von Videos möglich
+\•
+\end{frame}
+
+\section{Hintergrundinformation: pgf}
+\begin{frame}{pgf}
+• \pkg{beamer} baut auf \pkg{pgf} auf
+• \pkg{pgf}: portable graphics format (oder „pretty, good, functional“)
+• \pkg{pgf} besteht aus drei verschiedenen Ebenen:
+•[1] Systemebene
+•[2] Basisebene
+•[3] Frontend (Nutzerebene)
+\•
+\end{frame}
+
+\begin{frame}[fragile]{pgf}{Systemebene}
+• Abstraktion von Treibern
+• Unabhängigkeit von genauen Abläufen der Treiber
+• Portabilität, Stabilität, leichte Erweiterung auf neue Treiber
+• unterschiedliche |\special|-Befehle je nach Treiber
+• so minimalistisch wie möglich (jeder Befehl muss im Treiber umgesetzt werden)
+• kann z.\,B. keine Kreise, nur Bézier-Kurven
+• Nutzer muss sich nicht um Treiberabhängigkeiten kümmern
+\•
+\end{frame}
+
+\begin{frame}{pgf}{Basisebene}
+• bietet Basisbefehle (z.\,B. Befehl für Kreis)
+• besteht aus verschiedenen Modulen:
+• \emph{core}, bietet die Grundfunktionalität (mehrere Module, die zusammen benötigt werden)
+• weitere optionale Module (node management, plotting …)
+\•
+\end{frame}
+
+\begin{frame}[fragile]{pgf}{Frontend (Nutzerebene)}
+• Vereinfacht die Benutzung der Basisebene (vgl. Makropaket für \TeX)
+• \TikZ ist die normale Nutzerebene von \pkg{pgf}
+• \pkg{pgfpict2e} ist eine Reimplementierung von \LaTeX s |{picture}|-Umgebung
+• \pkg{beamer} ist eine spezialisierte Nutzerebene
+\•
+\end{frame}
+
+\section{Präsentationssoftware}
+
+\begin{frame}{Präsentationssoftware}
+Kriterien für eine gute Präsentationssoftware
+• fullscreen-Modus
+• Bedienung mit Tastatur und Maus möglich
+• schwärzen\,/\,weißen des Schirms
+• schnelle Navigation zwischen Folien
+• Implementierung aller pdf-Features
+• Kennzeichnungen\,/\,Hervorhebungen während der Präsentation
+• eigene Überblendmechanismen
+• kein Blockieren des pdfs!
+\•
+\end{frame}
+
+\begin{frame}{\TeX works}
+• frei verfügbar (= offener Quellcode)
+• hervorragender Editor mit eingebautem Viewer
+• nötige Änderungen in der Präsentation können on-the-fly vorgenommen werden
+• sync\TeX\ bereitet mit beamer große Probleme!
+• nicht alle pdf-features vorhanden
+\•
+\end{frame}
+
+\begin{frame}{Adobe Acrobat Reader}
+• kostenlose Software
+• nicht \emph{frei} (im Sinne von offenem Quellcode)
+• für Windows, Mac, Linux verfügbar
+• implementiert sämtliche pdf-Features (z.\,B. Videos möglich)
+• bietet einige Präsentationsfeatures (Bildschirm schwarz\,/\,weiß etc.)
+• blockiert das pdf!
+\•
+\end{frame}
+
+\begin{frame}{okular}
+• vielfältiger Viewer
+• implementiert (scheinbar) alle pdf-features\\%
+(kann Videos abspielen, Transitions etc)
+• zuverlässiger als Acrobat Reader (persönlicher Eindruck!)
+\•
+\end{frame}
+
+\begin{frame}{impressive!}
+• speziell für Präsentationen erstellt
+• freie Software (⇒ für alle Platformen verfügbar)
+• Start aus Kommandozeile
+• Effekte nur über Kommandozeilenargumente steuerbar!
+• ermöglicht nützliche Präsentationseffekte: Schirm schwärzen, Spotlight, helle Rahmen ziehen, schnelle Navigation …
+\•
+\end{frame}
+
+\end{document}

@@ -1,0 +1,58 @@
+\documentclass[
+%	solution,
+%	draft,
+	blatt=6,
+	ausgabe=24.\,05.\,2010,
+	rückgabe=28.\,05.\,2010
+]{lcourse-hd}
+
+\usepackage{float,booktabs}
+
+
+\begin{document}
+\begin{exercise}[
+  name={Pfingstkalorien},
+  punkte=10,
+  abgabe = Quellcode per Mail{,} Quellcode und fertiges Dokument (schwarz-weiß) ausgedruckt. Alle Angaben zu den Speisen sind natürlich freiwillig und dürfen fiktiv sein.]{kalorien}
+Da Sie über Pfingsten bei Ihren Eltern waren, sind Sie mit Ihrem Diätplan durcheinander gekommen. Erstellen Sie daher eine Tabelle, die eine Übersicht über Ihre (fiktive) Kalorienaufnahme während dieser Tage enthält. Schreiben Sie diese Tabelle dann in ein Dokument; gehen Sie folgendermaßen vor:
+
+\subexercise[2]{Uhrzeit}
+Wichtig ist zunächst, dass Sie genau wissen, zu welcher Zeit was konsumiert wurde. Definieren Sie daher zum Anfang ein Makro |\zeit|, das eine Uhrzeit schön formatiert ausgibt. Das Makro soll zwei Argumente annehmen (Stunden und Minuten) und in der von Ihnen bevorzugten Art ausgeben. |\zeit{19}{30}| soll also z.\,B. zu 19:30\,h werden o.\,ä.
+
+\subexercise[3]{Tabelle}
+Erstellen Sie nun eine schöne Tabelle, in deren erster Spalte die Uhrzeit, und in der zweiten Spalte die konsumierte Speise steht. Es sollten mindestens 3 Zeilen (jeweils Zeit und Speise) gesetzt werden.
+
+\subexercise[4]{Kalorien}
+Fügen Sie nun eine dritte Spalte hinzu, die die Kalorien der Speise in Joule enthält. Verwenden Sie dazu die Fähigkeiten des |siunitx|-Paketes. Sie könnten damit jede Zeile einzeln eingeben. Das ist aber mühselig und vor allem bei langen Tabellen überflüssig, denn das Paket bietet eine hervorragende Tabellenformatierungsmöglichkeit.
+
+Konsultieren Sie dazu die Paketdokumentation auf Seite 7 (Suche nach |tabular| |material|) unter |Aligning numbers|. Dort ist ein ausführliches Beispiel; die dort angegebene Formatierung ist genau die richtige. Geben Sie aber die Einheit (|J| oder |kJ|) im Tabellenkopf an – mit der korrekten Formatierung mittels des |siunitx|-Paketes.
+
+Die Tabelle sollte also folgenden Kopf haben:
+\begin{table}[H]
+\centering
+\begin{tabular}{lll}
+\toprule
+Uhrzeit & Speise & Kalorien $[\mathrm{kJ}]$\\\midrule
+\end{tabular}
+\end{table}
+
+\subexercise[1]{Zusatzinformationen}
+Geben Sie nun noch \emph{entweder} \textbf{a)} als Naturwissenschaftler einen (realistischen) Fehler zur Kalorienangabe an (mittels des |siunitx|-Paketes eine sehr einfache und schnelle Angabe: |50(3)|).
+
+\emph{Oder} \textbf{b)} als Nichtnaturwissenschaftler eine Zusatzinformation zu den Speisen. Diese soll als Fußnote (|Speise\footnote{lecker}|) zu den Speisen gesetzt werden und einen kurzen Kommentar zum Nährwert enthalten („gesund, ungesund, eiweißreich, …“).
+\end{exercise}
+
+\begin{expertexercise}[
+  name={Kalorien – advanced},
+  abgabe = Quellcode per Mail{,} Quellcode und fertiges Dokument ausgedruckt.]{expertkalorien}
+Als \TeX perte haben Sie natürlich höhere Ansprüche an die Möglichkeiten Ihres Diätplanes. Ergänzen Sie daher die einzelnen Aufgaben um folgende Features:
+\subexercise{Uhrzeit}
+Oft ist die Angabe in Minuten zu genau für einen Tagesablauf, es reichen meist die umgangssprachlichen Angaben. Erweitern Sie ihr |\zeit|-Makro, sodass die Eingabe von |\zeit{viertel}{9}| zur Ausgabe von 9:15\,h führt. Oder umgekehrt, wenn gewünscht. Es sollte aber nicht einfach nur das Argument durchgereicht werden!
+\subexercise{Tabelle}
+Verschönern Sie die Tabelle – falls noch nicht geschehen – nach allen Regeln der Kunst!
+\subexercise{Kalorien}
+Gerade im alltäglichen Umgang mit Ernährung ist noch die veraltete Energieeinheit Kalorie ($1\mathrm{cal}$) verbreitet. Unterstützen Sie (aus Kompatibilität z.\,B.) diese Angabe, indem Sie automatisch die Joule-Angabe in Kalorien umrechnen lassen. Verwenden Sie dazu entweder ein Makro, das gleichzeitig zwei Zellen ausgibt für den Joule und Kalorien-Wert oder lassen Sie mittels des Paketes |spreadtab| die Berechnung mittels einer Formel im Stile eines Kalkualationsprogrammes durchführen.
+\subexercise{Zusatzinformationen}
+Überlegen Sie sich eine eigene Aufgabenstellung zu diesem Unterteil und – falls möglich – lösen Sie sie. Falls nicht, gilt dies als Aufgabe für den Dozenten.
+\end{expertexercise}
+\end{document}

@@ -1,0 +1,58 @@
+\documentclass[
+%	solution,
+%	draft,
+	blatt=7,
+	ausgabe=28.\,05.\,2010,
+	rückgabe=03.\,06.\,2010
+]{lcourse-hd}
+
+\usepackage{subfig,subfloat}
+
+
+\begin{document}
+
+\begin{exercise}[
+  name={Abbildungen},
+  punkte=7,
+  abgabe = Quellcode per Mail und Quellcode ausgedruckt. Fertiges Dokument (pdf) per Mail. Beobachtungen zu den Parametern handschriftlich.]{bilder}
+Üben Sie den Umgang mit Abbildungen und Graphiken in einem Dokument anhand der folgenden Unteraufgaben:
+
+\subexercise[2]{Einfügen}
+Schreiben Sie zunächst den Code, um ein Bild in ein Dokument einzufügen und testen Sie, ob das Bild im pdf zu sehen ist. Sie können ein beliebiges Bild verwenden, das in einer |figure|-Umgebung stehen sollte.
+
+\subexercise[1]{Parameter ändern}
+Testen Sie den Einfluss von Parametern bei der Bildeinbindung, speziell Parameter zur Skalierung und Rotation der Bilder. Geben Sie im fertigen Dokument mindestens zwei Parameter an.
+
+\subexercise[3]{Aufteilen – sub}
+Binden Sie nun ein weiteres Bild ein und verwenden Sie eines der „sub“-Pakete (|subfloat|, |subfigures|), damit beide Abbildungen eine einheitliche Numerierung bekommen. (Abbildung 1a, Abbildung 1b o.\,ä.)
+
+Verwenden Sie zwei beliebige Bilder, jedes Bild soll dabei eine eigene Unterschrift bekommen; falls nötig, setzen Sie noch eine Gesamtbeschriftung für beide Bilder.
+
+\subexercise[1]{Dokument}
+Erweitern Sie Ihr Dokument abschließend um Text, den Sie mittels des |\blindtext|-Befehls aus dem |blindtext|-Paket eingeben. Denken Sie an das Laden von |babel| und eine Sprachangabe als Klassen- oder Paketoption!
+
+Schreiben Sie vor, zwischen und hinter die Abbildungen Text und testen Sie die Endausgabe, wenn Sie Parameter an die |figure|-Umgebungen anhängen (|[h]|,|[b]| oder |[t]|). Welche Effekte beobachten Sie? Notieren Sie dies handschriftlich.
+
+\end{exercise}
+
+\begin{exercise}[
+  name={Typographischer Exkurs: \fontspec{Linux Biolinum}\Large ẞ},
+  punkte=3,
+  abgabe = Quellcode per Mail und Quellcode ausgedruckt. Handschriftlicher Kommentar.]{eszett}
+Neben Bildern wird in der Werbeindustrie mit reißerisch gestalteten Schriftzügen geworben, die oft in Großbuchstaben gesetzt sind, um mehr Aufmerksamkeit zu erreichen.
+
+Das „ß“ als spezieller deutscher Buchstabe bereitet dabei Probleme, z.\,B. „DAS GROSSE ABENTEUER“ – das Wort „gross“ gibt es aber im Deutschen nicht. Personen mit „ß“ im Nachnamen sehen ihren Namen in Großschreibung auch oft verunstaltet: „DOSS“, „DOSZ“ oder gar „DOB“, „Doβ“ statt „Doß“. Wenn nun im Personalausweis „Doss“ statt „Doß“ steht, kann das zu Problemen bei Reisen führen! Schon seit Jahrhunderten führt das ß zu Problemen im Groß- und Kapitälchensatz.
+
+Im 20. Jahrhundert kam die Forderung nach einem großen „ß“ auf – und in der modernen Technik ist eine Umsetzung der Forderung möglich. Denn die Unicode-Kodierung hat einen Platz für das große „ß“, und einige Schriften (wie die Linux Libertine/Biolinum) haben dieses Zeichen auch implementiert!
+
+\subexercise[2]{Setzen}
+Erstellen Sie also nun mit den folgenden Informationen ein Minimalbeispiel, das einen kurzen Text mit einem großen „ß“ enthält.
+
+• Ein beliebiges Zeichen kann mit \TeX\ unter Angabe des Kodierungspunktes ausgegeben werden. Wenn man z.\,B. den Hexadezimalcode eines Zeichens kennt (etwa |1B53|), so erzeugt der Befehl |\char"1B53| das entsprechende Zeichen, in diesem Fall eine balinesische 3.
+
+• Die Code-Position des großen „ß“ kann man über Fontforge in der Schrift selbst finden oder über \url{www.decodeunicode.org}. Nutzen Sie dort die Suchfunktion der Seite und suchen Sie nach „sharp s“. Die Angabe der Codeposition ist in der Form |u+1234|, wobei |1234| der Hexadezimalcode ist. Sollte |decodeunicode| nicht erreichbar sein, suchen Sie in der freien Enzyklopädie |wikipedia| nach „großes ß“, dort ist die Position ebenfalls zu finden.
+
+\subexercise[1]{Kommentieren}
+Betrachten Sie das erhaltene Ergebnis und kommentieren Sie kurz – handschriftlich! – Erscheinungsbild der Ausgabe und Zweckhaftigkeit des großen „ß“.
+\end{exercise}
+\end{document}

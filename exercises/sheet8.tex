@@ -1,0 +1,63 @@
+\documentclass[
+%	solution,
+%	draft,
+	blatt=8,
+	ausgabe=06.\,06.\,2010,
+	rückgabe=11.\,06.\,2010
+]{lcourse-hd}
+
+\header{Dieses Übungsblatt ist das erste, das mit der Testversion von \TeX live\,2010 erstellt wurde.}
+
+\begin{document}
+\begin{exercise}[
+  name={Präsentation},
+  punkte=10,
+  abgabe = Quellcode per Mail und Quellcode ausgedruckt. Fertiges Dokument (pdf) per Mail. Beobachtungen zu den Parametern handschriftlich.]{beamer}
+Erstellen Sie mit der Dokumentenklasse |beamer| eine Bildschirmpräsentation, die ein paar Beispiele zum Umgang mit \LaTeX\ zeigt. Gehen Sie dabei folgendermaßen vor:
+
+\subexercise[2]{Grundgerüst}
+Schreiben Sie zunächst ein Dokument, das eine Präsentation erstellt. Dabei sollen drei Folien mit beliebigem Inhalt erstellt werden. Jede Folie \emph{soll} einen Titel und \emph{kann} einen Untertitel haben.
+
+\subexercise[2]{Inhalt}
+Verwenden Sie auf der \emph{dritten} Folie die |verbatim|-Umgebung. In dieser soll ein kurzer Beispielcode für einen \LaTeX-Befehl gezeigt werden (etwas wie |\textsf|, |\color|, |\includegraphics| o.\,ä.)
+
+Schreiben Sie mindestens drei Codezeilen in diesem Beispiel. Falls noch Zeit bleibt, geben Sie auf der gleichen Folie ein paar erklärende Stichworte zum Code.
+
+Bedenken Sie Eigenheiten der |beamer|-Klasse beim Umgang mit |verbatim|!
+
+\subexercise[2]{Dynamik}
+Ersetzen Sie nun den Inhalt der \emph{ersten beiden} Folien durch eine Aufzählung bzw. eine Nummerierung. (|itemize|, |enumerate|) Arbeiten Sie dann mit dynamischen Einblendeffekten Ihrer Wahl, d.\,h. lassen Sie Punkte nacheinander erscheinen, bleiben, verschwinden etc. Die Punkte sollten eine Vorbereitung auf die dritte Folie beinhalten, also z.\,B. kurze Erläuterungen, was \LaTeX\ ist und wie man es verwendet, was der Befehl auf der dritten Folie bezwecken soll etc. Verwenden sie jeweils mindestens 3 Punkte auf beiden Folien.
+
+\subexercise[2]{Struktur}
+Bei drei Folien ist eine Strukturierung des Dokumentes überflüssig, dennoch kann diese hier geübt werden: Fügen Sie vor jeder Folie eine |\section| mit (sinnvollem) Namen ein und erstellen Sie eine zusätzliche Folie (vor der ersten) mit einem Inhaltsverzeichnis. Erstellen Sie weiterhin eine Folie ganz am Anfang, die eine Titelseite zeigt. Bedenken Sie, dass dazu der Autor und der Titel der Präsentation festgelegt werden müssen.
+
+\subexercise[2]{Aussehen}
+Ändern Sie das Aussehen Ihrer Präsentation unter Verwendung beliebiger |theme|s, |inner| und |outer| |theme|s sowie |colortheme|s. Konsultieren Sie hierzu die |beamer|-Dokumentation, die einige Beispiele zeigt. Bedenken Sie dabei, was für alle Präsentationen gilt: Weniger ist mehr! 
+
+Geben Sie handschriftlich einen kurzen Kommentar, warum Sie sich für welches Aussehen entschieden haben.
+\end{exercise}
+
+\begin{expertexercise}[
+  name={Codebeispiele advanced},
+  abgabe = Integriert in die Abgabe des obigen Dokumentes.]{showexpl}
+Verwendet man für Codebeispiele einfach die |verbatim|-Umgebung, ist die Ausgabe des Codes nicht sichtbar. Gerade für \LaTeX-Code ist es aber sehr hilfreich, Eingabe und fertige Ausgabe nebeneinander vergleichen zu können. Genau für diesen Zweck ist das Paket |showexpl| geeignet. Verwenden Sie in obig erstellter Präsentation also anstelle der |verbatim|-Umgebung die entsprechende Version aus dem |showexpl|-Paket. Konsultieren Sie dazu dessen Dokumentation.
+\\
+
+\emph{Vorsicht}: Trotz bugreports ist in der Dokumentation ein schwerwiegender Fehler: Die Umgebung heißt |LTXexample|, mit kleinem |e| am Anfang. In der Dokumentation ist |LTXExample| angegeben, was aber nicht dem Code entspricht!
+\end{expertexercise}
+
+\begin{expertexercise}[
+  name={\TeX live2010},
+  abgabe = keine Abgabe nötig]{texlive2010}
+Um den \TeX live-Entwicklern eine breite Basis an Testern zu bieten, installieren Sie \TeX live\,2010. Das ist aber nur dann zu empfehlen, wenn:
+• Sie unter Linux arbeiten,
+• wissen, wie man die |PATH|-Variable setzt,
+• 1\,GB zu viel Festplattenspeicher frei haben
+• einige Zeit zur Installation aufwenden können (gut 10 Stunden!)
+
+Unter diesen Voraussetzungen können Sie ohne Probleme das alte \TeX live\,2009 auf Ihrem Rechner lassen und beide Varianten parallel verwenden. Unter Windows kann das Setzen der Pfadvariable evtl. Probleme bereiten, daher sollte es nur verwendet werden, wenn keine kritischen \TeX-Arbeiten anstehen.
+
+Bei Einsatz von \TeX works kann man sogar direkt im Editor (|Edit| – |Preferences| – |Typesetting| – |Paths for TeX and related programs|) den Pfad der zu verwendenden Version angeben. Trägt man beide ein, kann man immer direkt auswählen, welche Version man haben mag. So hat man das experimentelle (aber schon sehr stabile) und das aktuelle lauffähige System parallel verfügbar.
+
+\end{expertexercise}
+\end{document}
