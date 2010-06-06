@@ -1,0 +1,63 @@
+%% compile this with pdfTeX
+%% view the output with acrobat reader
+%% or okular to get alle the nice effects
+
+%% this document will NOT compile if the video and the images
+%% are not on your computer – most probably this will
+%% not be the case …
+
+
+\documentclass{beamer}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\mode<presentation>{
+  \usetheme{Frankfurt}
+  \useoutertheme{infolines}
+  \usecolortheme[RGB={0,100,130}]{structure}
+  \useinnertheme{rounded}
+  \setbeamertemplate{navigation symbols}{} 
+}
+
+\title{Eine Testpräsentation}
+\author{Arno Trautmann}
+\date{\today}
+
+\usepackage{multimedia}
+
+\begin{document}
+\frame{\maketitle}
+\titlepage
+\frame{\tableofcontents}
+\section{Titel}
+\begin{frame}{Titel}{Untertitel}
+Dies ist ein kleiner Frame.
+\end{frame}
+
+\begin{frame}{Titel}
+Dieser Frame hat keinen Untertitel :(
+\end{frame}
+
+\section{Effekte}
+\begin{frame}
+\includegraphics<1>[width=.8\textwidth]{/home/arno/Desktop/ppem/Seminarvortrag/Bilder/lochblende_bild.jpg}
+\transdissolve
+\includegraphics<2>[width=.8\textwidth]{/home/arno/Desktop/ppem/Seminarvortrag/Bilder/lochblende.jpg}
+\end{frame}
+
+\begin{frame}
+\transsplitverticalout
+$E = mc^2$
+\end{frame}
+
+\begin{frame}{Ein Video!}
+{}
+{\centering
+\movie[autostart,label=vipmen,width=8cm,height=4cm,poster,showcontrols,repeat]{}{/home/matlab/toolbox/vipblks/vipdemos/vipmen.avi}
+}
+%\hyperlinkmovie[start=5s,duration=7s]{video3}{\beamerbutton{Show the middle stage}}
+%\hyperlinkmovie[start=12s,duration=5s]{video3}{\beamerbutton{Show the late stage}}
+\end{frame}
+
+\end{document}

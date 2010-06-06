@@ -1,5 +1,5 @@
 \documentclass[
-%	solution,
+	solution,
 %	draft,
 	blatt=5,
 	ausgabe=14.\,05.\,2010,
@@ -7,10 +7,12 @@
 ]{lcourse-hd}
 
 \usepackage{
+  booktabs,
   caption,
   colortbl,
   hhline,
-  arydshln
+  arydshln,
+  tabularx
 }
 
 
@@ -49,7 +51,7 @@ Geben sie handschriftlich einen kurzen Kommentar zu den von Ihnen vorgenommen Ä
 
 \begin{minipage}{\textwidth}
 \centering
-\begin{tabular}{|p{2.1cm}||p{2.5cm}:|c*{2}{l};{1pt/5pt}l|}
+\begin{tabular}{|p{2.1cm}||p{2.5cm}|clll|}
 \hhline{=-----}
 Programm\,/ Makropaket & Fehler & Verursacher & Reporter 1 & Reporter 2 & Lösung\\\hhline{======}
 \TeX & keine bekannt & – & – & – & – \\\hline
