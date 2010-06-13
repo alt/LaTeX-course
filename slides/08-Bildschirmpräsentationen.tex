@@ -1,0 +1,153 @@
+\input{kursheader}
+
+\def\TikZ{{\rmfamily Ti\textit{k}Z}\xspace}
+
+\begin{document}
+\section{beamer}
+\frame{\tableofcontents}
+\begin{frame}{Vorbemerkungen}
+• \LaTeX\ ist \emph{nicht} für Präsentationen gedacht
+• spezielle Programme häufig besser geeignet
+• Wahl des Programms vom Inhalt abhängig:
+• strukturierte, klare Darstellungsform: \pkg{beamer}
+\•
+\end{frame}
+
+\begin{frame}{Vorbemerkungen: pgf}
+• \pkg{beamer} baut auf \pkg{pgf} auf
+• \pkg{pgf}: portable graphics format (oder „pretty, good, functional“)
+• \pkg{pgf} besteht aus drei verschiedenen Ebenen:
+•[1] Systemebene
+•[2] Basisebene
+•[3] Frontend (Nutzerebene)
+\•
+\end{frame}
+
+\begin{frame}[fragile]{pgf}{Systemebene}
+• Abstraktion von Treibern
+• Unabhängigkeit von genauen Abläufen der Treiber
+• Portabilität, Stabilität, leichte Erweiterung auf neue Treiber
+• unterschiedliche |\special|-Befehle je nach Treiber
+• so minimalistisch wie möglich (jeder Befehl muss im Treiber umgesetzt werden)
+• kann z.\,B. keine Kreise, nur Bézier-Kurven
+• Nutzer muss sich nicht um Treiberabhängigkeiten kümmern
+\•
+\end{frame}
+
+\begin{frame}{pgf}{Basisebene}
+• bietet Basisbefehle (z.\,B. Befehl für Kreis)
+• besteht aus verschiedenen Modulen:
+• \emph{core}, bietet die Grundfunktionalität (mehrere Module, die zusammen benötigt werden)
+• weitere optionale Module (node management, plotting …)
+\•
+\end{frame}
+
+\begin{frame}[fragile]{pgf}{Frontend (Nutzerebene)}
+• Vereinfacht die Benutzung der Basisebene (vgl. Makropaket für \TeX)
+• \TikZ ist die normale Nutzerebene von \pkg{pgf}
+• \pkg{pgfpict2e} ist eine Reimplementierung von \LaTeX s |{picture}|-Umgebung
+• \pkg{beamer} ist eine spezialisierte Nutzerebene
+\•
+\end{frame}
+
+\begin{frame}{Beamer}
+• Dokumentklasse \pkg{beamer} ermöglich Satz von Präsentationen\pause
+• Erstellen von bildschirmfüllenden „Folien“
+• ansprechende Farbgebung
+• strukturierte Darstellung des Inhaltes
+• dynamische Effekte
+• multimediale Unterstützung
+\•
+\end{frame}
+
+\subsection{Verwendung}
+\begin{frame}[fragile]{Aufbau einer Präsentation}
+• |\documentclass{beamer}|
+• alle Pakete, Befehle, Umgebungen wie normal zu verwenden (fast)
+• |\tableofcontents| erzeugt Inhaltsverzeichnis, |\begin{tabular}| setzt Tabelle etc.
+• \alert{wichtigste Umgebung:} |\begin{frame}|
+\•
+\end{frame}
+
+\begin{frame}[fragile]{Besonderheiten}{frames}
+• Umgebung |frame| erzeugt eine „Folie“
+• erstes Argument: Titel, zweites: Untertitel
+• optionales Argument |[fragile]| nötig für |\verb| u.\,ä.
+• Jede pdf-Seite ist (meist) statisches Objekt
+•[⇒] Überblendeffekte benötigen mehrere Folien
+\• 
+\end{frame}
+
+\begin{frame}[fragile]{Besonderheiten}{Überblendeffekte}
+• für dynamische Effekte: <>
+•<+-> |<+->| lässt Objekt erscheinen und bleibt
+•<+> |<+>| lässt Objet erscheinen, verschwindet wieder
+•<4> |<4>| Objekt erscheint auf Folie 4
+\•
+\end{frame}
+
+\subsection{Anpassung}
+\begin{frame}[fragile]{themes}{allgemeine}
+• themes sind Stilvorlagen, die das Layout gesamt setzen
+• Einbinden mittels |\usetheme|
+• Benannt nach Tagungsorten 
+\•
+\end{frame}
+
+\begin{frame}[fragile]{themes}{inner}
+• beeinflussen das Aussehen von Elementen in der Folie
+• Aufzählungen, Abbildungsbeschriftung, Boxen etc.
+• |\useinnertheme|
+\• 
+\end{frame}
+
+\begin{frame}[fragile]{themes}{outer}
+• beeinflussen das Aussehen der äußeren Element
+• Kopfzeile, Fußzeile, Navigation etc.
+• |\useoutertheme|
+\• 
+\end{frame}
+
+\begin{frame}[fragile]{themes}{color}
+• wie der Name sagt …
+• je nach Theme werden verschiedene Elemente coloriert
+• Farben anpassbar:,
+• |\setbeamercolor{footnote}{fg=red}|
+\•
+\end{frame}
+
+\begin{frame}{Strukturelemente}
+• block
+• theorem
+• 
+\•
+\end{frame}
+
+\section{impressive}
+\begin{frame}{impressive!}
+• für Präsentationen: jeder pdf-viewer geeignet
+• Programm \pkg{impressive!} ermöglicht nützliche Präsentationseffekte
+• Start aus Kommandozeile
+• Effekte nur über Kommandozeilenargumente steuerbar
+\•
+\end{frame}
+
+\section{Rollentausch}
+\begin{frame}[fragile]{Mitschreiben}
+• in Vorlesungen oder Übungen mit\TeX{}en manchmal nützlich
+• entweder extrem hohe Tippgeschwindigkeit nötig
+• oder durchdachte Befehlsdefinitionen
+• \emph{wichtig:} alle strukturelle Information muss vorhanden sein!\\%
+(auch, wenn es nicht gut aussieht)
+\• 
+\end{frame}
+
+\begin{frame}[fragile]{Mitschreiben}
+• häufig nur stichpunktartiges Aufschreiben
+•[⇒] |\obeylines|
+• Aufzählungen abkürzen, z.\,B. mittels |\let•\item|
+• …
+\•
+\end{frame}
+
+\end{document}

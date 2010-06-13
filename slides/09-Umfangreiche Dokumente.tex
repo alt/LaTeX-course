@@ -1,0 +1,334 @@
+\input{kursheader}
+
+\DeleteShortVerb|
+
+\usepackage{
+tikz
+}
+\usetikzlibrary{trees}
+\MakeShortVerb|
+
+\begin{document}
+
+\begin{frame}{Dokumentelemente}
+• Schmutztitel
+• Titelei
+• Verzeichnisse
+• Gliederung
+• Kopf-/Fußzeilen
+• Fußnoten, Randbemerkungen
+• Formeln
+• Abbildungen, Tabellen etc.
+• Verweise
+• Programmcode
+• Anhang
+• Bibliographie
+• Indices
+\•
+\end{frame}
+
+\section{Aufteilung – mehrere Dateien}
+\begin{frame}{Aufteilung}
+• Nachteil von \TeX: lange Dokumente werden unübersichtlich\pause
+• Vorteil von \TeX: Teile des Dokumentes können in externe Dateien ausgelagert werden
+• geschickte Aufteilung und Verwaltung eines Dokumentes:
+• eine Hauptdatei, leeres Gerüst
+• eine header-Datei (evtl. weitere Datei für spezielle Befehlsdefinitionen)
+• Inhalte in einem Unterordner nach strukturierter Anordnung
+• Abbildungen, sonstige Materialien in weiteren Unterordnern
+\•
+\end{frame}
+
+\DeleteShortVerb|
+
+\begin{frame}{Aufteilung}{Beispiel für einen missglückten TikZ-Baum …}
+\begin{tikzpicture}[edge from parent fork right,
+	every node/.style={fill=red!30,rounded corners},
+	edge from parent/.style={red,-,thick,draw}]
+\node {Main}
+child {node [fill=blue!30] {Thesis}}
+child {node [fill=blue!30] {header}}
+child {node [fill=blue!30] {defs}}
+child {node {bilder}
+child {node [fill=blue!30]{pic1}}
+child {node [fill=blue!30]{pic2}}
+}
+child {node {inhalte}
+child {node [fill=blue!30]{chapter1}}
+child {node [fill=blue!30]{chapter2}}
+}
+;
+\end{tikzpicture}
+\end{frame}
+
+\MakeShortVerb|
+\begin{frame}[fragile]{input, include, includeonly, excludeonly}
+• |\input| und |\include| fügen externe Dateien am angegebenen Ort aus
+• \TeX\ „springt“ aus dem aktuellen Dokument, liest woanders, und springt wieder zurück \pause
+• \TeX-Version: |\input| liest den Code einfach ein, als gehöre er ins Hauptdokument
+• \LaTeX-Version: |\include| erstellt eigene |.aux|-Datei (sinnvoll, wenn |.aux| benötigt, s.\,u.)
+• |\includeonly{a.tex,b.tex}| in der Präambel lässt nur die angegebenen Dateien für |\include| zu
+• |\excludeonly{b.tex,c.tex}| lässt die angegebenen Dateien für |\include| \emph{nicht} zu (benötigt Paket \pkg{excludeonly})
+\•
+\end{frame}
+
+\begin{frame}[fragile]{root Dokument}
+• nach Aufteilung muss immer das Hauptdokument kompiliert werden
+•[⇒] ständiges Wechseln zwischen Dokumenten\pause
+• gute Editoren nehmen die Arbeit ab:
+• Definition von Hauptdokumenten möglich
+• in \TeX works: Setzen von \verb*?% !TeX root = Hauptdokument.tex?
+• Dokument im Oberverzeichnis: |% !TeX root = ../Hauptdokument.tex|
+• Kompiliert automatisch das zugehörige Hauptdokument
+\•
+\end{frame}
+
+\begin{frame}[fragile]{Hauptdokument}
+\begin{block}{Ein Beispieldokument}
+\begin{verbatim}
+\input{header}
+
+\includeonly{chapter1}
+\excludeonly{anhang} % erfordert Paket excludeonly!
+
+\begin{document}
+\include{chapter1}
+\include{chapter2}
+...
+\include{anhang}
+\end{document}
+\end{document}
+\end{verbatim}
+\end{block}
+⇒ Nur |chapter1| wird hier gesetzt, |anhang| explizit nie.
+\end{frame}
+
+\section{Header}
+\begin{frame}[fragile]{Header-Dokument}{Einstellungen}
+• Satzspiegel
+• Schriften (Brotschrift, Überschriften)
+• Formatierung von Formeln
+• …
+• alles, was vor |\begin{document}| steht
+\•
+\end{frame}
+
+\section{Titelei}
+\begin{frame}[fragile]{Titelei}
+• enthält alles bis zur ersten Inhaltsseite
+• wird innerhalb des |header| definiert
+• enthält Autor, Titel, etc.
+• mit KOMA: Dokumentoption |titlepage=true/false| setzt eigene Seiten oder einen Titelkopf
+• Umgebung |\begin{titlepage}| setzt eine frei gestaltbare Titelseite
+• Befehl |\maketitle| setzt vordefinierte Titelei
+• Angaben von |\title, \author, \extratitle| etc. nötig und möglich
+\•
+\end{frame}
+
+\begin{frame}[fragile]
+\begin{block}{Titeleibefehle im KOMA-Bundle}
+\begin{verbatim}
+\documentclass{scrbook}
+\usepackage{xltxtra}
+\begin{document}
+\titlehead{{\Large Universität Schlauenheim}}
+\subject{Diplomarbeit}
+\title{Digitale Raumsimulation mit dem DSP\,56004}
+\subtitle{Klein aber fein?}
+\author{cand.\,stup. Uli Ungenau}
+\date{30. Februar 2001}
+\publishers{Betreut durch Prof.\,Dr.\,rer.\,stup. Naseweis}
+\dedication{I love you to peaces, to thee I dedicate this thesis.}
+\maketitle
+\end{document}
+\end{verbatim}
+\end{block}
+\end{frame}
+
+\begin{frame}{abstract}
+• Umgebung |abstract| setzt eine kurze Zusammenfassung des Dokumentes
+• wird im Dokument gesetzt (nicht im header)
+• mehrere Abstractices möglich (z.\,B. englisch\,/\,deutsch etc.)
+\•
+\end{frame}
+
+\section{Verzeichnisse (TOC, LOF, LOT)}
+\begin{frame}[fragile]{TOC, LOF, LOT}
+• Verzeichnisse fassen strukturierte Elemente zusammen
+• prinzipiell kann alles in ein eigenes Verzeichnis aufgenommen werden
+• üblich: Inhaltsverzeichnis (|\tableofcontents|), Abbildungsverzeichnis (|\listoffigures|), Tabellenverzeichnis (|\listoftables|)
+• Aufnamhme der Verzeichnisse ins Inhaltsverzeichnis: Dokumentenoption |toc=totoc|
+• möglich: Codeverzeichnis, Beispielverzeichnis, …
+\• 
+\end{frame}
+
+\section{Fußnoten, Randbemerkungen}
+\begin{frame}[fragile]{Fußnoten, Randbemerkungen}
+• zusätzlicher Text, der nicht ins Hauptdokument\,/\, in den Textfluss passt
+• |\footnote{}|
+• |\marginnote| (Paket |marginnote|)
+• |\marginpar| ist gleitende Randnotiz
+\•
+\end{frame}
+
+\section{Verweise}
+\begin{frame}[fragile]{Verweise}
+• Elemente können mittels |\label{}| bezeichnet werden
+• mögliche Elemente sind Überschriften (sections etc.), |table|, |figure|, Formeln, …
+• Referenzierung mit |\ref{}|
+• Pakete liefern sehr vielfältige Referenzierunge:\\%
+\pkg{fancyref}, \pkg{varioref}, \pkg{cleveref}\\%
+• geschicktes Benennen:
+• |\label{fig:Haus}| ⇒ Pakete können erkennen, dass es eine Abbildung ist
+\•
+\end{frame}
+
+\section{Bibliographie}
+\begin{frame}[fragile]{Bibliographie}
+\def\exclam{!}  %% needed for some strange reason …
+• Aussehen Bibliographie wird von der Dokumentenklasse bzw. Paketen verwaltet
+• bestimmte Syntax zum Setzen der Bibilographie
+• manuelles Erstellen (Sortieren etc.) im Dokument möglich, aber umständlich
+• Einträge nicht wiederverwertbar\exclam\pause
+•[⇒] Programm \BibTeX\ übernimmt Sortierung und Verwaltung der Einträge
+\•
+\end{frame}
+
+\begin{frame}[fragile]{Bibliographie}
+• Einträge liegen als Textdatei (.bib) in fest vorgegbener Syntax vor
+• Referenz im Dokument mit |\cite{mittelbach2004}|
+• Art der Referenz vielfältig einstellbar
+• Zugriff auf große Menge an verfügbaren Referenzen
+\•
+\end{frame}
+
+\begin{frame}{\BibTeX}
+• Verwendung unintuitiv
+• graphische Oberflächen erleichtern das Leben
+• z.\,B. jabref, citavi, etc.
+• direkte online-Suche z.\,B. bei \url{http://scholar.google.de/}
+\•
+\end{frame}
+
+\begin{frame}[fragile]{Pakete}
+• Gestaltung der Bibliographie mittels Paketen
+• \pkg{natbib}, \pkg{jurabib}\pause, \pkg{biblatex} (vielfältigste Gestaltungsmöglichkeiten)
+• Programm \pkg{biber} als Nachfolger von \BibTeX\ für \pkg{biblatex}
+\•
+\end{frame}
+
+\begin{frame}[fragile]{Erstellung: |natbib|}
+\begin{block}{im (Haupt-)Dokument}
+\begin{verbatim}
+\usepackage[optionen]{natbib}
+\begin{document}
+\bibliographystyle{plainnat} % oder andere ...
+Text ... \cite{quelle} \citet{quelle} \citep{quelle}
+\bibliography{Bibquellen}
+\end{document}
+\end{verbatim}
+\end{block}
+
+\begin{block}{in der .bib-Datei}
+\begin{verbatim}
+@Book{Danzer1972,
+ author    ={Danzer, Klaus},
+ title     ={{Robert W. Bunsen und Gustav R. Kirchhoff}},
+ publisher ={B. G. Teubner},
+ address   ={Leipzig},
+ year      ={1972}}
+\end{verbatim}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]{Erstellung: |biblatex|}
+• sämtliche Layouteinstellungen sind über reine \LaTeX-Makros definiert
+• andere Syntax als die „alten“ Pakete (verwenden \BibTeX-Code)
+• Einstellungen über Paketoptionen (siehe \pkg{biblatex}-Dokumentation, |3 User guide|)
+• sehr lange beta-Phase, daher nicht in \TeX live2009 enthalten, aber in 2010 verfügbar
+\• 
+\end{frame}
+
+\section{Code}
+\begin{frame}[fragile]{Setzen von Code}
+• für kurze Sequenzen: |\verb~\befehl~|
+• für längeer Sequzenzen: |\begin{verbatim} \befehle \end{verbatim}|
+• beide bieten |*|-Version für Anzeigen von Leerzeichen: \verb$ $
+• für Setzen von Programmcode: Paket |listings|
+• für Setzen von \LaTeX-Beispielcode: Paket |showexpl|
+\•
+\end{frame}
+
+\section{Index}
+\begin{frame}[fragile]{Indexerstellung}
+• Indexerstellung ist immens aufwändiges Unterfangen:
+• sämtliche (sinnvollen!) Erscheinungen von Namen\,/\,Ereignissen\,/\,Sachthemen müssen registriert werden\\%
+nicht jede Nennung eines Namens soll im Index erwähnt werden!
+• sinnvolle Seitenangabe: |1,2–4,17|
+\• 
+\end{frame}
+
+\begin{frame}[fragile]{Indexerstellung}
+• dank logischer Struktur leichte Erstellung in \TeX:
+• Definieren von Befehlen erleichtert die Eingabe:\\%
+\verb|\kirchhoff| statt |Kirchhoff \index{Kirchhoff}|
+• mit \LaTeX\ dreistufiger Prozess:
+• im \LaTeX-Lauf wird Hilfsdatei erstellt
+• Verarbeitung mittels Programm |makeindex| (Sortierung, Seitenangaben etc.)
+• Einbettung im nächsten \LaTeX-Lauf
+\•
+\end{frame}
+
+\begin{frame}[fragile]{Indexerstellung}{makeidx}
+\begin{block}{im Dokument}
+\begin{verbatim}
+\usepackage{makeidx}
+\makeindex{stichwoerter} % VOR \begin{document}!!
+\index{Stichwort} %% IM Dokument!
+\printindex{stichwoerter} % druckt das Verzeichnis hier
+\end{verbatim}
+\end{block}
+\begin{block}{in der Kommandozeile}
+Aufruf von |makeindex hauptdocument| im Ordner des Hauptdokumentes
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]{Indexerstellung}{multind}
+\pkg{multind} ermöglicht Erstellung mehrerer Indizes – Unterscheidung mit zusätzlichem Attribut:
+\begin{block}{im Dokument}
+\begin{verbatim}
+\usepackage{multind}
+\makeindex{stichwoerter}\makeindex{Personen}
+\index{Stichwoerter}{Stichwort}\index{Personen}{Kirchhoff}
+\printindex{stichwoerter}{Index der Stichwörter} \printindex{personen}{Personenverzeichnis}
+\end{verbatim}
+\end{block}
+\begin{block}{in der Kommandozeile}
+|makeindex personen|
+|makeindex stichwoerter|
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]{xeindex}
+• Paket \pkg{xeindex} verwendet \XeTeX-Interna, um automatisch Indizes zu erstellen
+• \pkg{xesearch} durchsucht dabei (mittels \XeTeX-Befehlen!) selbst das Dokument
+• gefundene Einträge werden Indiziert\pause
+•[$+$] extrem leichtes Erstellen von Indizes beliebiger Größe
+•[$-$] Sinnhaftigkeit fragwürdig – nicht jede Nennung eines Begriffes sollte indiziert werden, sonst ist der Index nutzlos.
+• Der Leser sollte nur die wichtigsten Einträge finden.
+\•
+\end{frame}
+
+\begin{frame}[fragile]{xeindex}
+• verwendet intern \pkg{makeidx}, daher sind |\makeindex|, |\printindex| und |\index| weiter verfügbar
+• zu suchende Einträge:
+\•
+\begin{block}{IndexList}
+|\IndexList⟨*⟩{⟨name⟩}{⟨list of entries⟩}|\\
+\pkg{*} ⇒ case insensitive\\
+\pkg{name} ⇒ beliebiger Name für die Liste (mehrere möglich)\\
+\pkg{list of entries} ⇒ |katze, hund?, maus|\\
+\pkg{hund?} ⇒ findet auch |hundehütte|
+\end{block}
+\end{frame}
+\end{document}
