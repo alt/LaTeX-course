@@ -1,0 +1,118 @@
+\startsolution{beamer}
+\subsolution{Grundgerüst}
+Gefordert ist ein einfaches \verb+beamer+-Dokument:
+\begin{lcode}
+\documentclass[ngerman]{beamer}
+\usepackage{babel,xltxtra}
+\begin{document}
+\begin{frame}{Titel der ersten Folie}{Untertitel}
+Inhalt der ersten Folie
+\end{frame}
+\begin{frame}{Zweite Folie}
+Inhalt der zweiten Folie
+\end{frame}
+\begin{frame}{Dritte Folie}
+Inhalt der dritten Folie
+\end{frame}
+\end{document}
+\end{lcode}
+
+\subsolution{Inhalt}
+Wenn man \texttt{verbatim}-Code mit \texttt{beamer} darstellen möchte, muss man die entsprechende Folie als \emph{fragile} kennzeichnen:
+\begin{lcode}
+\begin{frame}[fragile]{Titel}
+\end{lcode}
+Die dritte Folie könnte dann wie folgt aussehen:
+\begin{lcode}
+% Eine "fragile" Folie für verbatim-Code
+\begin{frame}[fragile]{Verwendung}
+	Nachfolgend Beispiele für Makrodefinitionen
+mittels \verb+\newcommand+ und \verb+\renewcommand+:
+
+	\begin{verbatim}
+		\newcommand\wasser{\ensuremath{\text H_2\text O}}
+		\newcommand\zeit[2][00]{#2\,\textsuperscript{#1}}
+		\renewcommand\emph[1]{\textbf{#1}}
+	\end{verbatim}
+	Die zweite Definition nimmt ein mandatorisches
+und ein optionales Argument entgegen.
+
+	Der Befehl \verb+\renewcommand+ dient zum
+Überschreiben bereits definierter Makros.
+\end{frame}
+\end{lcode}
+\end{minipage}
+\begin{minipage}\textwidth
+\subsolution{Dynamik}
+Die ersten beiden Folien erhalten nun Aufzälungen bzw. Nummerierungen mit verschiedenen Überblendeffekten:
+\begin{lcode}
+% Folie 1
+\begin{frame}{Einleitung}{\TeX{} und \LaTeX}
+	% Liste mit Überblendeffekten
+	\begin{itemize}
+		\item<+-> \TeX{} von D. Knuth entwickelt
+		\item<+> Bedienung umständlich
+		\item<3> Großes Makropaket: \LaTeX
+	\end{itemize}
+\end{frame}
+
+% Folie 2
+\begin{frame}{Was sind Makros}
+	% Nun eine Aufzählung mit Überblendeffekten
+	\begin{enumerate}
+		\only<1>{\item Abkürzungen um Schreibarbeit zu sparen}
+		\uncover<2->{\item Bereitgestellt durch zahlreiche Pakete}
+		\uncover<3>{\item Können manuell definiert werden}
+	\end{enumerate}
+\end{frame}
+\end{lcode}
+
+\subsolution{Struktur}
+Nun fügen wir vor jeder Folie eine Gliederungsüberschrift ein und zusätzlich am Beginn der Präsentation eine Folie mit dem Inhaltsverzeichnis:
+\begin{lcode}
+\begin{frame}{Inhalt}
+\tableofcontents
+\end{frame}
+
+% Erster Abschnitt
+\section{Einleitung}
+\begin{frame}{...}
+...
+\end{lcode}
+Für die Titelfolie muss die Präambel erweitert werden. Sie wird vor allen anderen Folien eingefügt:
+\begin{lcode}
+\author{Jakob Herpich}
+\title{\LaTeX-Makros}
+\begin{document}
+\begin{frame}
+\maketitle
+\end{frame}
+...
+\end{lcode}
+\end{minipage}
+\begin{minipage}{\textwidth}
+\subsolution{Aussehen}
+Zum Schluss kann noch das Aussehen der Präsentation angepasst werden. Dazu stehen viele vordefinierte Themes zur Auswahl (s. Paketdokumentation). Dies sollte in der Präambel geschehen. Zum Beispiel:
+\begin{lcode}
+\usetheme{CambridgeUS}
+\end{lcode}
+Mit beliebig hohem Aufwand kann man fast alles anpassen:
+\begin{lcode}
+\useinnertheme{rounded} % Für runde Listenpunkte etc.
+\useoutertheme{smoothtree} % Zeigt aktuelle section an
+\setbeamertemplate{navigation symbols}{} % Entfernt Symbole für Navigation
+\end{lcode}
+\stopsolution
+\startsolution{showexpl}
+Hierzu muss man nur das Paket \texttt{showexpl} laden und statt der \texttt{verbatim}-Umgebung die \texttt{LTXexample}-Umgebung verwenden:
+\begin{lcode}
+\begin{frame}[fragile]{Beispiele}
+	\begin{LTXexample}
+		\wasser \\
+		\zeit[59]{23} \\
+		\zeit{23} \\
+		\emph{hervorgehoben}
+	\end{LTXexample}
+\end{frame}
+\end{lcode}
+\stopsolution

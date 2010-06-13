@@ -1,0 +1,55 @@
+\documentclass[
+%	solution,
+	draft,
+	blatt=9,
+	ausgabe=12.\,06.\,2010,
+	rückgabe=18.\,06.\,2010
+]{lcourse-hd}
+
+\header{Wie in der Vorlesung besprochen, soll ein umfangreiches Dokument korrigiert und erweitert werden. Die Abgabe des Quellcodes soll nur \emph{einmal} erfolgen, wenn alle Aufgaben zusammen bearbeitet sind. Also diesmal bitte nicht den Code für Aufgabe 1 und Aufgabe 2 getrennt schicken!}
+\begin{document}
+\begin{exercise}[
+  name={Aufsetzen und Korrigieren},
+  punkte=4,
+  abgabe = \begin{itemize}
+\item Handschriftliche Skizze der Ordnerstruktur.
+\item {Falls Aufgabe 2 nicht bearbeitet wird: Den gesamten Quellcode als Email (mehrere Dateien). Bitte überlegen Sie sich, falls möglich, eine Archivierung (zip o.\,ä.), um den Transfer zu erleichtern. Falls Aufgabe 2 bearbeitet wird, keine Abgabe des Quellcodes für Aufgabe 1.}
+\end{itemize}
+]{korrektur}
+Im Moodle finden sich fünf Dateien, die zu einem Dokument gehören. Laden Sie diese auf Ihren Rechner, ordnen Sie sie in einer sinnvollen Ordnerstruktur und kompilieren Sie das Dokument.
+
+Beachten Sie, dass ein Dokument |chapter1.tex| im Unterordner |inhalte| eingebunden wird mittels |\include{inhalte/chapter1}|. Dies muss ggf. im Hauptdokument geändert werden!
+
+Korrigieren Sie nun alles, was in diesem Dokument falsch gemacht wurde. Dabei zählt hier als „falsch“ auch mangelnde Orthographie, undurchdachte Namensgebung von Labels, ungeschickte Platzierungen von Inhalten etc.
+
+Falls Sie den \TeX works-Editor verwenden, testen Sie die Fähigkeit von |TeX root|. (Vorlesungsfolie 7)
+
+Geben Sie handschriftlich eine Skizze Ihrer Ordnerstruktur (vgl. Tafelbild), damit diese für die Korrektur nachvollziehbar ist.
+\end{exercise}
+
+\begin{exercise}[
+  name={Erweiterung},
+  punkte=6,
+  abgabe = \begin{itemize}\item {Den gesamten Quellcode als Email (mehrere Dateien). Bitte überlegen Sie sich, falls möglich, eine Archivierung (zip o.\,ä.), um den Transfer zu erleichtern.}
+\item Fertiges Dokument (pdf) per Mail.
+\item {Ausdruck von Inhaltsverzeichnis, erster Textseite sowie Index bzw. Bibliographie. Also drei repräsentative Seiten Ihres Dokumentes.}
+\item Handschriftliche Begründung für die Indexwahl.
+\end{itemize}
+]{erweiterung}
+Wesentliche Elemente des Dokumentes fehlen noch. Ergänzen Sie also:
+• Die gesamte Titelei (Verwendung der Voreinstellungen der KOMA-Klasse, keine eigene Anpassung des Layouts – |\maketitle|). Es sollten gesetzt werden: 
+Schmutztitel, Titelseite, Inhaltsverzeichnis. Elemente wie Titel, Autor etc. können von Ihnen frei benannt werden.
+• Erstellen Sie einen Anhang (Umgebung |abstract|), der zwei der folgenden drei Punkte enthält:
+•[1] Ein Abbildungs- \emph{und} Tabellenverzeichnis.
+•[2] Einen Index. Überlegen Sie sich dabei, ob Sie mit |makeidx| oder mit |xeindex| arbeiten wollen. |multind| ist ebenfalls möglich, dann müssen aber mindestens zwei Indizes erstellt werden. Begründen Sie handschriftlich ihre Wahl.
+•[3] Eine Bibliographie. Wählen Sie dabei einen Bibliographiestil und ein Backend (|bibtex|, |bibtex8/u|, |biber|) Ihrer Wahl.
+
+Um diese Elemente (bzw. die, die Sie verwendet haben,) mit Inhalt zu füllen:
+• Indizieren Sie mindestens drei Wörter, die jeweils mindestens auf drei verschiedenen Seiten vorkommen.
+• Fügen Sie im Dokument mindestens drei Referenzen ein, die in der Bibliograhpie genannt werden.
+
+\subexercise[+1]{Kreativität}
+Fügen Sie weitere Elemente Ihrer Wahl zum Dokument hinzu. Sehen Sie dies als persönliche Übung; für sinnvolle Einträge kann es den Zusatzpunkt geben.
+
+\end{exercise}
+\end{document}

@@ -1,0 +1,192 @@
+%% solutions by Jakob Herpich
+
+\startsolution{kalorien}
+
+\subsolution{Uhrzeit}
+Es war ein Makro wie das Folgende gefordert. Die Formatierung war dabei beliebig (z.\,B. 19\textsuperscript{32} oder 19:30\,Uhr).
+\begin{lcode}
+\renewcommand\zeit[2]{#1\textsuperscript{#2}}
+\end{lcode}
+Da dieses Makro in Tabellen verwendet werden soll, habe ich auf den Zusatz \emph{Uhr} oder \emph h verzichtet. \verb+\zeit{14}{34}+ ergibt dann \zeit{14}{34}.
+
+\subsolution{Tabelle}
+In dieser Aufgabe war eine Tabell wie die folgende gefordert:
+\begin{center}
+	\captionof{table}{Pfingstmästung}
+	\begin{tabular}{ll}
+		\toprule
+		{\textbf{Uhrzeit}}	&	{\textbf{Speise}}	\\
+		\midrule 
+		\zeit{10}{00}				&	Müsli							\\
+		\zeit{12}{00}				&	Schweinshaxe			\\
+		\zeit{18}{00}				&	5 Steaks					\\
+		\bottomrule
+	\end{tabular}
+\end{center}
+Der Quellcode sieht so aus:
+\begin{lcode}
+\begin{table}
+	\centering
+	\caption{Pfingstmästung}
+	\begin{tabular}{ll}
+		\toprule
+		{\textbf{Uhrzeit}}	&	{\textbf{Speise}}	\\
+		\midrule 
+		\zeit{10}{00}				&	Müsli							\\
+		\zeit{12}{00}				&	Schweinshaxe			\\
+		\zeit{18}{00}				&	5 Steaks					\\
+		\bottomrule
+	\end{tabular}
+\end{table}
+\end{lcode}
+\end{minipage}
+
+\begin{minipage}{\textwidth}
+\subsolution{Kalorien}
+Nun sollte man die Tabelle um eine Kalorienangabe erweitern:
+\begin{lcode}
+	\begin{table}
+		\center
+		\caption{Pfingstmästung}
+		\label{tab:pfingstmaestung}
+		\begin{tabular}{clS[tabnumalign=right,tabformat=2.3]}
+			\toprule
+			{\textbf{Uhrzeit}}  &
+			{\textbf{Speise}}   &
+			\textbf{Brennwert} [\kilo\joule]	\\
+			\midrule 
+			\zeit{10}{00}		&	Müsli				&	1.345	\\
+			\zeit{12}{00}		&	Schweinshaxe		&	23.44	\\
+			\zeit{18}{00}		&	5 Steaks	&	3.445	\\
+			\bottomrule
+		\end{tabular}
+	\end{table}
+\end{lcode}
+
+Die Ausgabe sieht dann so aus:
+  \begin{center}
+    \captionof{table}{Pfingstmästung}
+    \label{tab:pfingstmaestung}
+    \begin{tabular}{clS[tabnumalign=right,tabformat=2.3]}
+      \toprule
+      {\textbf{Uhrzeit}}  &
+      {\textbf{Speise}}   &
+      \textbf{Brennwert} [\kilo\joule] \\
+      \midrule 
+      \zeit{10}{00}   & Müsli       & 1.345  \\
+      \zeit{12}{00}   & Schweinshaxe    & 23.44  \\
+      \zeit{18}{00}   & 5 Steaks  & 3.445 \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+\end{minipage}
+
+\begin{minipage}\textwidth
+\subsolution{Zusatzinformationen}
+In diesem Teil traten die meisten Probleme auf. Zuerst zu den Fehlerangaben in Tabellen.
+Hier zeigt \verb+siunitx+ ein merkwürdiges Verhalten, wenn der Wert ganzzahlig ist:
+\begin{lcode}
+\begin{table}
+	\centering
+	\begin{tabular}{S[tabnumalign=right,tabformat=3.5e1,expproduct=cdot]}
+		\tobrule
+		\textbf{Brennwert} [\kilo\joule] \\
+		\midrule
+		134(4)	\\
+		134.34(5)	\\
+		3.34(4)e3	\\
+		\bottomrule
+	\end{tabular}
+\end{table}
+\end{lcode}
+\begin{center}
+	\begin{tabular}{S[tabnumalign=right,tabformat=3.5e1,expproduct=cdot]}
+		\toprule
+		\textbf{Brennwert} [\kilo\joule] \\
+		\midrule
+		134(4)	\\
+		134.34(5)	\\
+		3.34(4)e3	\\
+		\bottomrule
+	\end{tabular}
+\end{center}
+\end{minipage}
+
+\begin{minipage}\textwidth
+Die \verb+table+-Umgebung "fängt" Fußnoten ein. D.\,h., dass sie nur innerhalb der \verb+table+-Umgebung existieren und daher nicht richtig gesetzt werden können.
+Es gibt zahlreiche Möglichkeiten, dieses Problem zu vermeiden. Eine ist, die Tabelle in einer Minipage zu setzen. Dabei werden die Fußnoten mit einer internen Nummerierung direkt unter die Tabelle gesetzt.
+
+Alternativ kann man die Befehle \verb+\footnotemark+ und \verb+\footnotetext+ verwenden, bei denen man allerdings die Nummerierung manuell vornehmen muss.
+
+Aufgrund der inkonsistenten Nummerierung dieser beiden Methoden, sind sie recht ungegeignet.
+\begin{lcode}
+\begin{minipage}\textwidth
+\captionof{table}{Überschrift für Tabelle in einer Minipage}
+\begin{center}
+\begin{tabular}{l}
+\toprule
+Tabellenkopf	\\
+\midrule
+Inhalt mit Fußnote\footnote{Fußnote in einer Tabelle}	\\
+Mehr Inhalt\footnote{Noch eine Fußnote}	\\
+Zeile mit \verb+\footnotemark+\footnotemark	\\
+\bottomrule
+\end{tabular}
+\end{center}
+\footnotetext[3]{Fußnote mit \verb+\footnotetext+}
+\end{minipage}
+\end{lcode}
+\begin{minipage}\textwidth
+\captionof{table}{Überschrift für Tabelle in einer Minipage}
+\begin{center}
+\begin{tabular}{l}
+\toprule
+Tabellenkopf  \\
+\midrule
+Inhalt mit Fußnote\footnote{Fußnote in einer Tabelle} \\
+Mehr Inhalt\footnote{Noch eine Fußnote}	\\
+Zeile mit \verb+\footnotemark+\footnotemark	\\
+\bottomrule
+\end{tabular}
+\end{center}
+\footnotetext[3]{Fußnote mit \texttt{\textbackslash footnotetext}}
+\end{minipage}
+\end{minipage}
+
+\begin{savenotes}
+\begin{minipage}\textwidth
+Eleganter ist es die \verb+savenotes+-Umbebung aus dem Paket \verb+footnote+ zu verwenden. Diese Umgebung "speichert" die Fußnoten und macht sie dann global verfügbar.
+\begin{lcode}
+\begin{savenotes}
+\captionof{table}{Tabelle mit \verb+savenotes+-Umbebung}
+\begin{center}
+\begin{tabular}{l}
+\toprule
+Tabellenkopf  \\
+\midrule
+Inhalt mit Fußnote\footnote{Fußnote in einer Tabelle} \\
+Mehr Inhalt\footnote{Noch eine Fußnote}	\\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{savenotes}
+\end{lcode}
+
+\captionof{table}{Tabelle mit Umbebung}
+\begin{center}
+\begin{tabular}{l}
+\toprule
+Tabellenkopf  \\
+\midrule
+Inhalt mit Fußnote\footnote{Fußnote in einer Tabelle} \\
+Mehr Inhalt\footnote{Noch eine Fußnote}	\\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{minipage}
+\end{savenotes}
+\begin{minipage}\textwidth
+
+
+
+\stopsolution

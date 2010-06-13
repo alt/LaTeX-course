@@ -1,0 +1,155 @@
+%% solutions by Jakob Herpich (stupid picture-comment by Arno Trautmann)
+
+\startsolution{bilder}
+\subsolution{Einfügen/Parameter ändern}
+Für diese Aufgabe wird das Paket \verb+graphicx/s+ benötigt.
+
+Bilder sollten als Gleitobjekte verwendet werden und dementsprechen in einer \verb+figure+-Umgebung gesetzt werden. Der Befehl um Bilder einzubinden lautet: \verb+\includegraphics[<Optionen>]{<relativer Pfad zum Bild>}+. Mithilfe optionaler Argumente kann man festlegen, wie das Bild gesetzt werden soll, z.\,B. wie es skaliert wird, welche Breite man verwendet, Rotation uvm. Natürlich sollten auch Bilder beschriftet werden, damit der Leser weiß, was er sich gerade ansieht. Wenn man später im Dokument auf das Bild verweisen will sollte man ebenfalls ein \emph{Label} verwenden.
+\begin{lcode}
+  \begin{figure}
+    \centering
+\fbox{Ich bin eine Kamera}
+%    \includegraphics[
+%      width=0.5\textwidth,
+%      keepaspectratio=true,
+%      angle=180
+%    ]{apogeeCamera}
+    \caption{Bild der Kamera auf den Kopf gestellt
+             (Abbildung: Apogee Instruments Inc.)}
+    \label{fig:cameraupsidedown}
+  \end{figure}
+\end{lcode}
+{\centering
+%\includegraphics[%
+%  width=0.5\textwidth,%
+%  keepaspectratio=true,%
+%  angle=180%
+%]{apogeeCamera}
+\fbox{Ich bin eine Kamera}
+\captionof{figure}{Bild der Kamera auf den Kopf gestellt
+                   (Abbildung: Apogee Instruments Inc.)}
+\label{fig:cameraupsidedown}}
+
+\subsolution{Aufteilen – sub}
+Um Abbildungen aufzuteilen gibt es zwei Möglichkeiten. Man verwendet eines der Pakete \verb+subfig+, \verb+subfigure+ oder \verb+subfloat+.
+
+Das Paket \verb+subfloat+ fasst mehrere \verb+figure+-Umgebungen zu einer Einheit zusammen und beschriftet diese einheitlich. Dabei kann durchaus Text zwischen den Gleitumgebungen stehen.
+\end{minipage}
+\begin{lcode}
+\begin{subfigures}
+  \begin{figure}
+    \centering
+%    \includegraphics[width=0.1\textwidth]{apogeeCamera1}
+\fbox{Ich bin eine Kamera}
+    \caption{Vorderansicht
+             (Abbildung: Apogee Instruments Inc.)}
+    \label{fig:frontviewcamera}
+  \end{figure}
+  Text
+  \begin{figure}
+    \centering
+%    \includegraphics[width=0.1\textwidth]{apogeeCamera3}
+\fbox{Ich bin eine Kamera}
+    \caption{Hinterseite
+             (Abbildung: Apogee Instruments Inc.)}
+    \label{fig:backviewcamera}
+  \end{figure}
+  \caption{Verschiedene Ansichten der Kamera mit
+           \texttt{subfigures}-Umgebung
+           (Abbildung: Apogee Instruments Inc.)}
+  \label{fig:cameraviewssubfig}
+\end{subfigure}
+\end{lcode}
+\begin{subfigures}
+  \begin{figure}
+    \centering
+%    \includegraphics[width=0.1\textwidth]{apogeeCamera1}
+\fbox{Ich bin eine Kamera}
+    \caption{Vorderansicht
+             (Abbildung: Apogee Instruments Inc.)}
+    \label{fig:frontviewcamera}
+  \end{figure}
+  Text
+  \begin{figure}
+    \centering
+%    \includegraphics[width=0.1\textwidth]{apogeeCamera3}
+\fbox{Ich bin eine Kamera}
+    \caption{Hinterseite
+             (Abbildung: Apogee Instruments Inc.)}
+    \label{fig:backviewcamera}
+  \end{figure}
+\end{subfigures}
+
+\begin{minipage}\textwidth
+Das \verb+subfig+-Paket hingegen erlaubt es, mehrere Bilder in einer \verb+figure+-Umgebung darzustellen und diese mit separaten Beschriftungen zu versehen:
+\begin{lcode}
+\begin{figure}
+  \centering
+  \subfloat[Vorderansicht]{
+%    \includegraphics[width=0.1\textwidth]{apogeeCamera1}
+\fbox{Ich bin eine Kamera}
+    \label{fig:frontviewcamera}
+  }
+  \subfloat[Hinterseite]{
+%    \includegraphics[width=0.1\textwidth]{apogeeCamera3}
+\fbox{Ich bin eine Kamera}
+    \label{fig:backviewcamera}
+  }
+  \caption{Verschiedene Kameransichten
+           (Abbildungen: Apogee Instruments Inc.)}
+  \label{fig:cameraviewssubfloat}
+\end{figure}
+\end{lcode}
+Das Paket \verb+subfigure+ funktioniert ähnlich. Statt \verb+\subfloat+ verwendet man hier den Befehl \verb+\subfigure+.
+
+\end{minipage}
+\begin{figure}
+  \centering
+  \subfloat[Vorderansicht]{
+%    \includegraphics[width=0.1\textwidth]{apogeeCamera1}
+\fbox{Ich bin eine Kamera}
+    \label{fig:frontviewcamera}
+  }
+  \subfloat[Hinterseite]{
+%    \includegraphics[width=0.1\textwidth]{apogeeCamera3}
+\fbox{Ich bin eine Kamera}
+    \label{fig:backviewcamera}
+  }
+  \caption{Verschiedene Kameransichten
+           (Abbildungen: Apogee Instruments Inc.)}
+  \label{fig:cameraviewssubfloat}
+\end{figure}
+\begin{minipage}\textwidth
+\vspace{3ex}
+\subsolution{Dokument}
+Hier sollte das Verhalten der optionalen Parameter \verb+[t]+, \verb+[h]+ und \verb+[b]+ von Gleitumgebungen untersucht werden. Die Auswirkung ist lediglich, dass das entsprechende Gleitobjekt oben (\verb+[t]+ für "top"), unten (\verb+[b]+ für "bottom") oder möglichst genau an die Position des Quellcodes (\verb+[h]+ für "here") gesetzt wird.
+\stopsolution
+
+\startsolution{eszett}
+Der Hexadezimalcode des \fontspec{Linux Libertine}\char"1E9E\normalfont{} ist \verb+1E9E+. Mit dem Befehl \verb+\char"1E9E+ kann das \fontspec{Linux Libertine}\char"1E9E\normalfont{} gesetzt werden. Dazu muss allerdings die Schrift umgestellt werden, allerdings nur mit \XeTeX.
+\begin{lcode}
+MA\char"1E9EE oder MASSE?
+\end{lcode}
+\fontspec{Linux Libertine}MA\char"1E9E E oder MASSE?\normalfont{}
+
+\vspace{3ex}
+Mit Kapitälchen:
+\begin{lcode}
+\textsc{Maße}
+\end{lcode}
+\fontspec{Linux Libertine}\textsc{Maße}\normalfont{}
+
+\vspace{3ex}
+Es geht auch fett:
+\begin{lcode}
+\textbf{MA\char"1E9E E}
+\end{lcode}
+\fontspec{Linux Libertine}\textbf{MA\char"1E9E E}\normalfont
+
+\vspace{3ex}
+oder kursiv:
+\begin{lcode}
+\textit{MA\char"1E9E E}
+\end{lcode}
+\fontspec{Linux Libertine}\textit{MA\char"1E9E E}\normalfont
+\stopsolution
