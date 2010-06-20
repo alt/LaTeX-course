@@ -1,6 +1,6 @@
 \documentclass[
 %	solution,
-	draft,
+%	draft,
 	blatt=9,
 	ausgabe=12.\,06.\,2010,
 	rückgabe=18.\,06.\,2010
@@ -39,17 +39,28 @@ Geben Sie handschriftlich eine Skizze Ihrer Ordnerstruktur (vgl. Tafelbild), dam
 Wesentliche Elemente des Dokumentes fehlen noch. Ergänzen Sie also:
 • Die gesamte Titelei (Verwendung der Voreinstellungen der KOMA-Klasse, keine eigene Anpassung des Layouts – |\maketitle|). Es sollten gesetzt werden: 
 Schmutztitel, Titelseite, Inhaltsverzeichnis. Elemente wie Titel, Autor etc. können von Ihnen frei benannt werden.
-• Erstellen Sie einen Anhang (Umgebung |abstract|), der zwei der folgenden drei Punkte enthält:
+• Erstellen Sie einen Anhang (Umgebung |appendix|), der zwei der folgenden drei Punkte enthält:
 •[1] Ein Abbildungs- \emph{und} Tabellenverzeichnis.
 •[2] Einen Index. Überlegen Sie sich dabei, ob Sie mit |makeidx| oder mit |xeindex| arbeiten wollen. |multind| ist ebenfalls möglich, dann müssen aber mindestens zwei Indizes erstellt werden. Begründen Sie handschriftlich ihre Wahl.
 •[3] Eine Bibliographie. Wählen Sie dabei einen Bibliographiestil und ein Backend (|bibtex|, |bibtex8/u|, |biber|) Ihrer Wahl.
 
-Um diese Elemente (bzw. die, die Sie verwendet haben,) mit Inhalt zu füllen:
-• Indizieren Sie mindestens drei Wörter, die jeweils mindestens auf drei verschiedenen Seiten vorkommen.
-• Fügen Sie im Dokument mindestens drei Referenzen ein, die in der Bibliograhpie genannt werden.
+Um diese Elemente mit Inhalt zu füllen (ebenfalls nur zwei Punkte zu bearbeiten, die zu obigen beiden gehören!):
+•[1] Fügen Sie den beiden Verzeichnissen eine Nummerierung hinzu. Normalerweise werden diese Elemente nicht nummeriert, aber die KOMA-Klassen bieten die Möglichkeit über Dokumentklassenoption dazu. (Dokumentation, Abschnitt 3.9)
+•[2] Indizieren Sie mindestens drei Wörter, die jeweils mindestens auf drei verschiedenen Seiten vorkommen.
+•[3] Fügen Sie im Dokument mindestens drei Referenzen ein, die in der Bibliograhpie genannt werden.
+
 
 \subexercise[+1]{Kreativität}
 Fügen Sie weitere Elemente Ihrer Wahl zum Dokument hinzu. Sehen Sie dies als persönliche Übung; für sinnvolle Einträge kann es den Zusatzpunkt geben.
-
 \end{exercise}
+
+\begin{expertexercise}[
+  name={Feature Request},
+  abgabe = Handschriftliche Erklärung der Funktionsweise bzw. fiktive Mail ausgedruckt.
+]{request}
+Bei der Erstellung der Testdateien zu diesem Blatt wurde starker Gebrauch von Knut Lickerts Paket |blindtext| gemacht. Dieses ist nützlich, um auch längere Textpassagen auf den optischen Eindruck zu untersuchen. Geboten werden u.\,a. automatisch erzeugte Listen, Gliederungen, Aufzählungen, Formeln (!) u.\,ä.
+
+Konsultieren Sie nun die Dokumentation des Paketes, um herauszufinden, wie auch Tabellen und Abbildungen automatisch gesetzt werden können. Falls dies möglich ist, beschreiben Sie kurz, wie. Falls nicht, entwerfen Sie eine Mail an den Paketautor, in dem Sie ihn um Aufnahme dieses Features bitten. Falls Sie noch sehr viel Zeit haben, erstellen Sie ein Codebeispiel, das in das |blindtext|-Paket aufgenommen werden kann – Anfragen für neue Features werden besonders gerne umgesetzt, wenn der Autor selbst keinen großen Aufwand dafür betreiben muss.
+\end{expertexercise}
+
 \end{document}

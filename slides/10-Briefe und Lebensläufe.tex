@@ -1,0 +1,330 @@
+\input{kursheader}
+
+\begin{document}
+
+\begin{frame}[c]
+\centerline{\large \textcolor{blue}{Teil I}}
+\centerline{Briefe}
+\end{frame}
+
+\section{Briefe mit KOMA: scrlettr2}
+\subsection{Grundlegende Bedienung}
+
+\begin{frame}{scrlettr2: Grundidee}
+• wie immer in \LaTeX: Trennung von Form und Inhalt
+• alle formalen Elemente werden per Makro gesetzt
+• Briefinhalt selbst wird direkt eingegeben
+• Positionierung von Elementen mittels Befehlen anpassbar
+\•
+\end{frame}
+
+\begin{frame}[fragile]{scrlettr2: neue Syntax}
+\LaTeX\ kennt folgende „Dinge“:
+• Befehle (|\texttt{}|)
+• Umgebungen (|\begin{abstract} \end{abstract}|)
+• Zähler (|\thepage|)
+• Längen (|\pageheight=3cm|)
+• Optionen (einfacher Wert oder Key-Value: |ngerman|, |top=2cm|)
+\•
+KOMA-Skript erweitert dies um:
+• Elemente (|\setkomafont{title}{\fontspec{Arno Pro}}|) \pause
+• \pkg{Variablen} (nur in der Briefklasse \pkg{scrlettr2})
+\•
+\end{frame}
+
+\begin{frame}[fragile]{Variablen in scrlettr2}
+• Setzen von Variablen mittels |\setkomavar{variable}{wert}|
+• \alert{nicht zu verwechseln} mit |\KOMAoptions{}|
+• mögliche Elemente: (kleine Auswahl)
+\•
+
+\begin{tabular}{>{\ttfamily}ll}\toprule
+fromname & Absendername\\
+fromaddress & Absenderadresse\\
+fromemail & E-Mailadresse des Absenders\\\pause
+myref & Feld für „Mein Zeichen“\\
+specialmail & Versandart (Luftpost …)\\
+backaddressseparator & Trennzeichen in der Rücksendeadresse\\\bottomrule
+\end{tabular}\\[2ex]
+⇒ siehe |texdoc scrguide|
+\end{frame}
+
+\begin{frame}[fragile]{Setzen von Variablen}
+• Variablen verfügen über \alert{Inhalt}:\\%
+|\setkomavar{fromname}{Mustermann}|
+• aber auch über \alert{Bezeichnung}:\\%
+|\setkomavar*{fromname}{Absender}| (statt „Von“)
+• Kurzform:\\%
+|\setkomavar{fromname}[Absender]{Mustermann}|
+• Ausgabe:\\%
+Absender: Mustermann
+\•
+\end{frame}
+
+\begin{frame}[fragile]{Nutzen von Variablen}
+• normalerweise werden Variablen nur gesetzt und von der Klasse genutzt
+• Dokumentklasse kümmert sich dann um alles
+• eigene Variablen können definiert werden
+• Verwendung mittels |\usekomavar|
+\•
+|\newkomavar[Bezeichnung]{Name}|\\
+|\usekomavar[anweisung]{fromname}| ⇒ |Mustermann|\\
+|\usekomavar*[anweisung]{fromname}| ⇒ |Absender|\\
+Dabei kann mit |anweisung| beliebiger Code ausgeführt werden\\
+(z.\,B. |\MakeUppercase|)
+\end{frame}
+
+\begin{frame}[fragile]{Beispiel}
+\begin{verbatim}
+\documentclass{scrlttr2}
+
+\setkomavar{fromname}{Arno Trautmann}
+\setkomavar{fromaddress}{Rieslingweg 21\\55546 Hackenheim}
+
+\begin{document}
+\begin{letter}{Arno Trautmann\\Boxbergring 10\\ 69126 HD-Boxberg}
+  \opening{Hallo,}
+  dies ist mein erster Brief.
+  \closing{Gruß}
+\end{letter}
+
+\end{document}
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{Besonderheiten}
+• \pkg{scrlettr2} unterscheidet sich in der Bedienung von anderen Klassen:
+• es werden erst Briefe gesetzt, wenn |\begin{letter}| angegeben wird!
+• nur sehr wenige Elemente werden dort angegeben, wo sie verwendet werden
+•[⇒] sehr strikte Trennung von Form und Inhalt
+\•
+\end{frame}
+
+\subsection{Letter Class Options}
+\begin{frame}[fragile]{letter class option}
+• Für standardisiertes Layout: immer gleiche Einstellungen
+•[\alert{⇒}] copy \& paste?
+•[\alert{⇒}] eigene |.cls| oder |.sty|-Datei?
+•[\alert{⇒}] eigene |.tex|?
+•[\alert{⇒}] Inkompatibilität, nicht gut portierbar\pause
+•[⇒] eigenes Format für \pkg{scrlettr2}: |.lco|-Dateien
+\•
+\end{frame}
+
+\begin{frame}[fragile]{letter class option}
+• KOMA definiert bereits einige |.lco|-Dateien
+• einfache Definition eigener |.lco|
+• leichter Austausch\\%
+⇒ normierte Geschäftsbriefe möglich
+• nach Laden Anpassungen möglich\\%
+⇒ dem Zweck angepasstes, schönes Format
+• Verwendung: Als Klassenoption:\\%
+|\documentclass[lconame]{scrlttr2}|\\%
+oder im Dokument\\%
+|\LoadLetterOption{lconame}|
+\•
+\end{frame}
+
+\begin{frame}{letter class option}
+\begin{table}
+\begin{tabular}{ll}\toprule
+DIN & gemäß DIN 676\\
+DINmtext & Alternative für mehr Text auf der ersten Seite\\
+KOMAold & Aussehen der alten \pkg{scrlettr}-Klasse\\
+NipponEL & japanische Briefe\\
+NipponEH & alternative japanische Briefe\\
+SN & schweizer Briefe nach SN 010 130 (Anschrift rechts)\\
+SNleft & dito, Anschrift links\\\bottomrule
+\end{tabular}
+\caption{einige Voreinstellungen für lco-Dateien}
+\end{table}
+Erstellen eigener |.lco|: siehe Dokumentation
+\end{frame}
+
+\subsection{Adressverwaltung}
+\begin{frame}[fragile]{Adressverwaltung}
+• Eingabe von Adressen nervig, zeitaufwändig und fehleranfällig
+• Widerspricht dem Ansatz von \LaTeX
+•[⇒] |.adr|-Dateien verwalten Adressen
+• Einträge mit |\adrentry| bzw. |\addrentry|
+• Verwenden mit |\input{adressen.adr}|
+\•
+\end{frame}
+
+\begin{frame}[fragile]{adrentry vs. addrentry}
+• |\adrentry| nimmt 8 Argumente
+• |\addrentry| nimmt 9 Argumente
+• letztes Argument definiert Befehl |\Kürzel|
+\•
+\begin{columns}
+\begin{column}{.1\textwidth}
+\begin{verbatim}
+\adrentry{Name}
+  {Vorname}
+  {Adresse}
+  {Telefon}
+  {frei1}
+  {frei2}
+  {Kommentar}
+  {Kürzel}
+\end{verbatim}
+\end{column}
+\begin{column}{.1\textwidth}
+\begin{verbatim}
+\addrentry{Name}
+  {Vorname}
+  {Adresse}
+  {Telefon}
+  {frei1}
+  {frei2}
+  {frei3}
+  {frei4}
+  {Kürzel}
+\end{verbatim}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{automatische Adressen}
+• Verwendung im Brief:
+\•
+\begin{verbatim}
+\begin{letter}{\Kürzel}
+\opening{...}
+\end{letter}
+\end{verbatim}
+⇒ Setzt automatisch die Adresse, die zum Eintrag |Kürzel| gehört\\
+(z.\,B. |\ATRAUT|)
+\end{frame}
+
+\begin{frame}[fragile]{adrconv}
+• damit die ganze Arbeit nicht nur im Brief steht:
+• Paket \pkg{adrconv} kann Adressverzeichnisse oder Telefonlisten erstellen
+• verwendet |\adrentry|, |\adrchar{E}| (wird von \pkg{scrlttr2} ignoriert)\\%
+oder eigene Datenbank
+•[⇒] |texdoc adrconv|
+\•
+\end{frame}
+
+\subsection{Serienbriefe}
+\begin{frame}[fragile]{Serienbriefe}
+• „Missbrauch“ der Adressdatei:
+• umdefinieren von |\ad(d)rentry| als Briefanfang
+•[⇒] erstellt Brief an alle Einträge
+\•
+\pause
+\begin{verbatim}
+\renewcommand{\adrentry}[8]{%
+  \begin{letter}{#2 #1\\#3}
+    \opening{Sehr geehrte Geschäftsparnter,}
+    die nächste Sitzung findet morgen statt!
+    \closing{Hochachtungsvoll}
+  \end{letter}
+}
+\input{geschäftspartner.adr}
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[c]
+\centerline{\large \textcolor{blue}{Teil II}}
+\centerline{Lebensläufe}
+\end{frame}
+
+\section{Lebensläufe}
+\begin{frame}{Lebensläufe}
+• professionelles Layout für Bewerbungen
+• häufig standardisiert
+• schlichtes Layout besser als überladenes
+• Farben dezent einsetzen!
+• Layout dem Zweck anpassen\\%
+(Wohnheim, Universität, Bestattungsinstitut, \dots)
+•[⇒] Beispieldokumente im Moodle\,/\,github
+\•
+\end{frame}
+
+\subsection[europecv]{europecv – europäische Standards}
+\begin{frame}[fragile]{europecv}
+\begin{quotation}
+As of 11 March 2002 the European Commission has defined a common format for curricula vitæ. This
+class is an unofficial \LaTeX\ implementation of that format. Although primarily intended for users in the
+European Union, the class can be used for any kind of curriculum vitæ.
+\end{quotation}
+• gute Dokumentation
+• schlichtes, „klassisches“ Layout
+• ausreichend formatierbar
+\•
+\end{frame}
+
+\subsection{moderncv – farbig \fontspec{DejaVu Sans Mono}☺}
+\begin{frame}[fragile]{moderncv}
+• bietet ein modernes, lockeres Layout
+• \alert{keine} offizielle Dokumentation
+•[⇒] Beispieldokumente, README (|texdoc -s moderncv|)
+•[⇒] |moderncv.cls| ansehen
+\•
+\end{frame}
+
+\subsection{curve – Trennung in Rubrikdateien}
+\begin{frame}[fragile]{curve}
+• Grundidee: Trennung von Hauptdokument (skeleton) und Inhalt
+• Inhalte (Rubriken) stehen in eigenen Datein
+• unterschiedliche |\flavor| möglich: \\%
+je nach Zweck angepasster Lebenslauf
+• Dateinamen: |name.flavorname.rubrikname|:\\%
+|sprachkenntnisse.mpi.tex|\\%
+|programmierkenntnisse.mpi.tex|\\%
+|grogrammierkenntnisse.dante.tex|
+• Einbinden mittels |\makerubric{dateiname}|
+\•
+\end{frame}
+
+\subsection{simplecv – kiss}
+\begin{frame}[fragile]{simplecv}
+• einfacher und schichter, schnell zu erzeugender Lebenslauf
+• Setzen von Headern: |\leftheader{}\rightheader{}|
+• |\title|, |\maketitle| wie gewohnt
+• |\section| und |\subsection| zur Strukturierung
+• Aufzählungen in der |topic|-Umgebung
+• Bibliographie möglich!
+• Dokumentation am einfachsten über Suchfunktion von \pkg{texdoc}\\ (u.\,U. selbst kompilieren)
+\• 
+\end{frame}
+
+\begin{frame}[c]
+\centerline{\large \textcolor{blue}{Teil III}}
+\centerline{\TeX works}
+\end{frame}
+
+\section{\TeX works, sync\TeX }
+\begin{frame}{\TeX works}{Historische Folie}
+• Editor \TeX works bietet Bezug zwischen Quellcode und pdf
+• inspiriert von \TeX shop (Mac)
+• Verwendung von |synctex|\\%
+(nur von sehr wenigen Programmen unterstützt \fontspec{DejaVu Sans} ☹)
+• freie Software
+• Binärdateien für Windows und Mac
+• auf Linux-Systemen sehr leicht zu kompilieren
+• pre-$\alpha$-Status!
+\•
+\end{frame}
+
+\newcommand{\comb}[2]{\texttt{#1} – \texttt{#2}}
+
+
+\begin{frame}{\TeX works – Tips zur Bedienung}{Editor}
+• Suchen: \comb{strg}s
+• nochmals Suchen: \comb{strg}g
+• Ersetzen: \comb{strg}r
+• Kompilieren: \comb{strg}t
+• (Aus)Kommentieren: \comb{strg}d, \comb{strg – shift}d
+• Einrücken: \texttt{Tab}
+• Remove aux: \texttt{alt}3$\times$\texttt{Pfeil hoch}\texttt{Enter}
+\• 
+\end{frame}
+
+
+\begin{frame}{\TeX works – Tips zur Bedienung}{Einstellungen}
+• Einstellen\,/\,Ändern der Maschinen
+\•
+\end{frame}
+\end{document}
