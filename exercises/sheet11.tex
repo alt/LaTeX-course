@@ -1,0 +1,46 @@
+\documentclass[
+%	solution,
+	draft,
+	blatt=11,
+	ausgabe=25.\,06.\,2010,
+	rückgabe=02.\,07.\,2010
+]{lcourse-hd}
+
+\begin{document}
+
+\begin{exercise}[
+  name=Typographie auf Anfrage,
+  punkte=5,
+  abgabe = Quelltext per Mail{,} das fertige Dokument als Ausdruck.
+]{iftypo}
+Manchmal kann es nötig sein, ein inhaltlich gleiches Dokument mit verschiedenen \TeX-Maschinen zu erstellen. Angenommen, Sie haben zwei verschiedene Vorgaben für ein langes Dokument:
+
+• Der Verlag besteht auf der hausinternen Schrift mit bestimmten, festgelegten Schriftfeatures,
+• das Dekanat Ihrer Fakultät hingegen setzt Mikrotypographie voraus, damit der Korrektor die Arbeit möglichst schnell lesen kann und mehr Zeit für sonstige Verwaltungsaufgaben hat.
+
+Machen Sie es beiden recht, indem Sie ein Dokument erstellen, das zunächst aus folgendem Grundgerüst besteht:
+
+• Dokumentenklasse: scrreprt
+• eine Titelseite mit Autor, Titel und Datum
+• Inhaltsverzeichnis
+• zwei Abschnitte mit ein paar Zeilen Text
+
+Um die Anforderungen zu erfüllen, müssen Sie eine Fallunterscheidung (|if|-Abfrage) machen. Der folgende Pseudokode soll das Vorgehen verdeutlichen:
+\begin{verbatim}
+neueVariable falls_pdf
+setze falls_pdf true
+
+if falls_pdf then
+  lade_alles_für_pdfTeX
+else
+  lade_alles_für_XeTeX
+fi
+\end{verbatim}
+
+Bedienen Sie sich dazu der Möglichkeiten des |ifthen|-Paketes. (In dieser Übung \emph{keine} \TeX-Interna und Kernel-low-level-Befehle!) Legen Sie damit zunächst eine wahr/falsch-Variable (Boolsche Variable) an und setzen Sie sie auf einen Wert (|true| oder |false|).
+
+Nun folgt die Abfrage: Prüfen Sie, ob die Variable |true| ist und schreiben Sie in diesem Fall alles, was für ein Dokument mit Mikrotypographie nötig ist. Für den |false|-Fall soll eine beliebige Systemschrift als Standardschrift geladen werden, bei der noch zwei Optionen gesetzt werden sollen. Das können z.\,B. spezielle Ligaturen, Farben, Skalierungen o.\,ä. sein.
+
+Achten Sie in beiden Fällen (\XeTeX, pdf\TeX) darauf, die |utf8|-Kodierung zu verwenden und bedenken Sie, welche Pakete jeweils dafür nötig sind!
+\end{exercise}
+\end{document}
