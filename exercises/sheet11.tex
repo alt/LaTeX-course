@@ -1,6 +1,6 @@
 \documentclass[
 %	solution,
-	draft,
+%	draft,
 	blatt=11,
 	ausgabe=25.\,06.\,2010,
 	rückgabe=02.\,07.\,2010
@@ -10,8 +10,8 @@
 
 \begin{exercise}[
   name=Typographie auf Anfrage,
-  punkte=5,
-  abgabe = Quelltext per Mail{,} das fertige Dokument als Ausdruck.
+  punkte=7,
+  abgabe = Quelltext per Mail und ausgedruckt. Fertige Dokumente als pdf per Mail.
 ]{iftypo}
 Manchmal kann es nötig sein, ein Dokument mit verschiedenen \TeX-Maschinen zu erstellen, z.\,B. in diesem fiktiven Fall:
 
@@ -24,7 +24,7 @@ Machen Sie es beiden recht, indem Sie ein Dokument erstellen, das zunächst aus 
 • eine Titelseite mit Autor, Titel und Datum
 • zwei Abschnitte mit ein paar Zeilen Text
 
-Um die Anforderungen zu erfüllen, müssen Sie eine Fallunterscheidung (|if|-Abfrage) machen, der es ermöglicht, das Dokument entweder mit pdf\LaTeX\ oder mit \XeLaTeX\ zu kompilieren, ohne dass Fehler auftreten. Der folgende Pseudokode soll das Vorgehen verdeutlichen:
+Um die Anforderungen zu erfüllen, müssen Sie eine Fallunterscheidung (|if|-Abfrage) machen, die es ermöglicht, das Dokument entweder mit pdf\LaTeX\ oder mit \XeLaTeX\ zu kompilieren, ohne dass Fehler auftreten. Der folgende Pseudokode soll das Vorgehen verdeutlichen:
 \begin{verbatim}
 neueVariable falls_pdf
 setzeVariable(falls_pdf)(true)
@@ -40,11 +40,11 @@ Für den |false|-Fall soll eine beliebige Systemschrift als Standardschrift gela
 
 Achten Sie in beiden Fällen (\XeTeX, pdf\TeX) darauf, die |utf8|-Kodierung zu verwenden und bedenken Sie, welche Pakete jeweils dafür nötig sind – der ganze Code kommt in die Präambel!
 
-\footnotetext{Falls Sie Verständnisprobleme haben, was if-Konstrukte sind und was sie bedeuten (als Nichtinformatiker), kontaktieren Sie den Tutor oder Dozenten!}
+\footnotetext[0]{Falls Sie Verständnisprobleme mit den Fachausdrücken aus der Informatik haben, kontaktieren Sie den Tutor oder Dozenten; die Aufgabe soll nicht an Begrifflichkeiten scheitern!}
 \end{exercise}
 
 \begin{expertexercise}[
-  name=Typographie auf Anfrage,
+  name=Wunderwaffe,
   abgabe = Quelltext per Mail{,} das fertige Dokument als Ausdruck.
 ]{luatex}
 Dank der Entwicklungen des |luaotfload|-Paketes ist es möglich, die obigen Anforderungen gleichzeitig zu erfüllen. Lesen Sie dazu in der Dokumentation dieses Paketes, wie man unter lua\LaTeX\ eine Schrift laden muss, um Mikrotypographie zu unterstützen. Testen Sie dies und erweitern Sie obiges Dokument um die Möglichkeit, mit lua\LaTeX\ zu kompilieren oder schreiben Sie handschriftlich, wie man die Schrift laden muss und ob und wie es bei Ihnen funktioniert hat.
