@@ -1,0 +1,98 @@
+\documentclass[
+%	solution,
+	draft,
+	blatt=12,
+	ausgabe=02.\,07.\,2010,
+	rückgabe=09.\,07.\,2010
+]{lcourse-hd}
+
+\header{Wahlmöglichkeit: Aufgabe 12.1 ist von allen Teilnehmern zu bearbeiten. Aufgaben 12.2 oder 12.3 sind \emph{alternativ} zu bearbeiten, also nur eine von beiden! Es gibt keine Zusatzpunkte für Bearbeitung beider Aufgaben.}
+
+\begin{document}
+
+\begin{exercise}[
+  name=Typographie auf Anfrage – Teil 2,
+  punkte=6,
+  abgabe = Quelltext per Mail und ausgedruckt. Erklärungen zum Codebeispiel hand- oder maschinenschriftlich. Fertiges Dokument (in der |classicthesis|-Version) als pdf per Mail.
+]{classicorugly}
+Im letzten Übungsblatt wurde die Möglichkeit untersucht, ein Dokument typographisch auf bestimmte Ansprüche zu optimieren.
+
+In der Realität kommt es öfter vor, dass Korrektoren eine Abgabe mit 1,5-fachem Zeilenabstand fordern. Für Ihre Abschlussarbeit wollen Sie natürlich eine gut lesbare und schöne Version, andererseits müssen Sie den Anforderungen nachkommen.
+
+Erstellen Sie daher ein Dokument, das wahlweise auf der |classicthesis|-Vorlage basiert oder die \LaTeX-Standardklasse |article| verwendet.
+
+\subexercise{Grundaufbau}
+Da die Abfrage hierfür bereits vor der Dokumentenklasse gemacht werden muss, empfehlen sich die \TeX-Primitiva für |if|-Abfragen.
+
+Verwenden Sie die Abfrage mittels |\iftrue - \else - \fi|, um im |if|-Fall |classicthesis| (mit |scrartcl|!) zu verwenden, im |else|-Fall aber die |article|-Klasse zu laden. Durch Ändern von |\iftrue| in |\iffalse| kann dann umgeschaltet werden.
+
+\subexercise{Allgemeine Einstellungen}
+Bei |classicthesis| müssen Sie sich nun um keine weiteren Einstellungen kümmern. Für die Einstellungen von 1,5-fachem Zeilenabstand hingegen sollten Sie das Paket |setspace| verwenden.  Laden Sie es direkt in der |\iftrue|-Abfrage am Dokumentenanfang. Wie man |setspace| verwendet, finden Sie im Internet oder direkt in der |.sty|-Datei.\footnote{Zu finden in Ihrem \TeX live-Ordner, unter /texmf-dist/tex/latex/setspace/setspace.sty, Zeile 322 bis 338. Die Makronamen sind selbsterklärend.}
+
+\subexercise{Seitenweise Einstellungen}
+Oft fordern Korrektoren mit diesen Ansprüchen, dass Elemente wie Inhaltsverzeichnisse, Danksagung etc. nicht 1,5-zeilig gesetzt werden. Um nun nicht  für diese Elemente immer umzuschalten zwischen normalem Satz und Satz für den Korrektor, sollte dies ebenfalls mit einer |\if|-Abfrage gesetzt werden. Die kürzeste Möglichkeit, dies umzusetzen, ist, sich einen neuen Befehl in folgender Art zu definieren:
+\begin{verbatim}
+\let\setforcorrector\iftrue  %% Satz für Korrektor
+% \let\setforcorrector\iffalse %% Satz für Leute, die die Arbeit lesen wollen
+\end{verbatim}
+Erklären Sie (hand- oder maschinenschriftlich), was diese Definition bedeutet. Überlegen Sie sich nun, wie mit dieser Definition im Dokument geschickt eingestellt werden kann, wo normal und wo 1,5-zeilig gesetzt wird. Bedenken Sie auch, dass dies bereits beim Laden der Dokumentenklasse angewendet werden kann.
+
+Schreiben Sie Ihr Dokument nun so, dass das Inhaltsverzeichnis normal, der normale Text aber 1,5-zeilig gesetzt wird.
+\end{exercise}
+
+\begin{exercise}[
+  name=xparse,
+  punkte=4,
+  abgabe = Quelltext per Mail und ausgedruckt.
+]{xparse}
+Wie in der Vorlesung vorgestellt, bietet das |xparse|-Paket eine sehr nutzerfreundliche Möglichkeit, komplexe Makros mit beliebigen Argumenten zu erstellen. Verwenden Sie den |\DeclareDocumentCommand|-Befehl, um ein Makro zu definieren, das folgendermaßen verwendet wird:
+
+\begin{verbatim}
+\mycommand[eins]<zwei>[drei]{vier}
+\end{verbatim}
+Dabei sollen erstes und drittes Argument optional sein, das zweite ebenfalls optional, aber in spitzen Klammern gegeben werden, und das vierte Argument soll mandatorisch sein. Testen Sie, was passiert, wenn man die Argumente eins bis drei angibt oder nicht.
+\subexercise{optionale Argumente prüfen}
+Ermitteln Sie nun mithilfe der |xparse|-Dokumentation, wie man testen kann, ob ein optionales Argument angegeben wurde oder nicht. Geben Sie mit Ihrem Makro eine Meldung aus (entweder im Text oder – für die \TeX perten – mithilfe der Fehlermeldungen von \LaTeX3), dass der Parameter fehlt.
+\end{exercise}
+
+\begin{exercise}[
+  name=Fehlersuche,
+  punkte=4,
+  abgabe = Quelltext per Mail und ausgedruckt.
+]{error}
+Das folgende Dokument (auch im Moodle/github verfügbar) weist einige Fehler auf. Finden und korrigieren Sie die Fehler. Falls das nicht möglich ist, isolieren Sie die fehlerhaften Stellen und kommentieren Sie sie aus. Es gibt auch Fehler, die im Dokument erst sichtbar werden und nicht während des Kompilierens auftreten! (Ein fehlendes Bild zählt hier natürlich \emph{nicht} als Fehler!)
+\begin{verbatim} 
+\documentclass[ngerman]{article}
+
+\usepackage{
+babel,
+blindtext,
+graphicx,
+tikz,
+xparse
+}
+
+\ExplSyntaxNamesOn
+\NewDocumentEnvironment{morsepotential}{O{}}{
+  \begin{tikzpicture}[domain=1:3]
+    \draw plot[smooth] (\x,{(1*(1-exp(-0.7*(\x*2-1))))^2}){};}{
+  \end{tikzpicture}}
+\ExplSyntaxNamesOff
+
+\begin{document}
+\blindtext
+\begin{figure}
+\includegraphics{\textwidth}{testpic}
+\label{fig:testbild}
+\caption{Dies ist ein tolles Bild.}
+\end{figure}
+\blintext
+\begin{morsepotential}
+Morse hatte Potential!
+\end{morsepotential}
+\blindtext
+\end{document}
+\end{verbatim}
+\end{exercise}
+
+\end{document}
