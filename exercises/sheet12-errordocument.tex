@@ -1,0 +1,25 @@
+\documentclass[ngerman]{article}
+
+\usepackage{blindtext,babel,graphicx,tikz,xparse}
+
+\ExplSyntaxNamesOn
+\NewDocumentEnvironment{morsepotential}{O{}}{
+  \begin{tikzpicture}[domain=1:3]
+    \draw plot[smooth] (\x,{(1*(1-exp(-0.7*(\x*2-1))))^2}){};}{
+  \end{tikzpicture}}
+\ExplSyntaxNamesOff
+
+\begin{document}
+\blindtext
+\begin{figure}
+\includegraphics{\textwidth}{testpic}
+\label{fig:testbild}
+\caption{Dies ist ein tolles Bild.}
+\end{figure}
+\blintext
+\begin{morsepotential}
+Morse hatte Potential!
+\end{morsepotential}
+Das Bild \ref{fig:testbild} ist sehr aussagekräftig in diesem Zusammenhang.
+\blindtext
+\end{document}
